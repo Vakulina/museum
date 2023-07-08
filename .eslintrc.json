@@ -3,28 +3,17 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "airbnb-base",
-    "airbnb-typescript/base"
-  ],
+  "extends": ["airbnb-base", "airbnb-typescript/base"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "no-console": "warn",
     "import/export": "warn",
-    "linebreak-style": [
-      "warn",
-      "unix"
-    ],
-    "max-len": [
-      2,
-      160
-    ],
+    "linebreak-style": ["warn", "unix"],
+    "max-len": [2, 160],
     "dot-notation": "off",
     "no-unused-expressions": "off",
     "@typescript-eslint/no-unused-expressions": "warn",
@@ -33,27 +22,18 @@
     "no-empty": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
     "class-methods-use-this": "off",
-    "max-params": [
-      2, 4
-    ],
+    "max-params": [2, 4],
     "@typescript-eslint/no-shadow": "off",
-    "import/prefer-default-export": [
-      "off"
-    ],
+    "import/prefer-default-export": ["off"],
     "no-constructor-return": "off",
-    "prefer-promise-reject-errors":"warn",
-    "@typescript-eslint/naming-convention":"off",
-    "no-param-reassign":"off",
+    "prefer-promise-reject-errors": "warn",
+    "@typescript-eslint/naming-convention": "off",
+    "no-param-reassign": "off",
     "import/extensions": "off",
-    "@typescript-eslint/default-param-last":"off",
-    "arrow-body-style": [
-      "off"
-    ],
-    "import/no-cycle":"warn",
-    "consistent-return":"warn",
-    "semi": [
-      "warn",
-      "always"
-    ]
+    "@typescript-eslint/default-param-last": "off",
+    "arrow-body-style": ["off"],
+    "import/no-cycle": "warn",
+    "consistent-return": "warn",
+    "semi": ["warn", "always"]
   }
 }

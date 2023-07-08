@@ -5,7 +5,7 @@ import minMenu1Img from '../../assets/img/image450_1.jpg';
 import minMenu2Img from '../../assets/img/image450_2.jpg';
 import minMenu3Img from '../../assets/img/image450_3.jpg';
 
-export const getTemplate = (styles:any) => `
+export const getTemplate = (styles: any) => `
 <div class="container ${styles.header__container}">
     <a class="${styles['header__logo-link']}" href="#tickets">
         <div class="logo ${styles.header__logo}"></div>
