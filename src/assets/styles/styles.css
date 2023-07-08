@@ -1,15 +1,14 @@
-body{
-    font-family: 'Roboto', 'Arial', sans-serif;
-    font-weight: 300;
-    box-sizing: border-box;
-    
-      }
-    
-    html{
-      scroll-behavior: smooth;
-    }
-    
-    :root {
+body {
+  font-family: "Roboto", "Arial", sans-serif;
+  font-weight: 300;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* :root {
     --gold-hover: #9D8665;
     --gold-active: #7E6C51;
     --progress-el:#710707;
@@ -32,33 +31,31 @@ body{
       --font3: 22px;
       --font4: 18px;
       --font-logo: 28px;
-    }
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-    /* Убираем внешние отступы */
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    p,
-    ul,
-    ol,
-    li,
-    figure,
-    figcaption,
-    blockquote,
-    dl,
-    dd {
-      margin: 0;
-    }
-    
-    ul,
-    ol {
-      padding: 0;
-    }
-    
-    
+    }*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+}

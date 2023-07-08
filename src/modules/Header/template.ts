@@ -5,7 +5,7 @@ import minMenu1Img from '../../assets/img/image450_1.jpg';
 import minMenu2Img from '../../assets/img/image450_2.jpg';
 import minMenu3Img from '../../assets/img/image450_3.jpg';
 
-export const template =`
+export const template = `
 <div class="container header__container">
     <a class="header__logo-link" href="#tickets">
         <div class="logo header__logo"></div>
@@ -68,4 +68,4 @@ export const template =`
     </div>
 
 
-</div>`
+</div>`;
