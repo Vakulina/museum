@@ -43,27 +43,13 @@
             margin: 0 auto;
         }
 
-        &_open span {
-            opacity: 0;
-            transition: 0.5s;
-        }
 
-        &_open:before {
-            transform: rotate(45deg);
-            top: 8px;
-            transition: 0.4s;
-        }
-
-        &_open:after {
-            transform: rotate(-45deg);
-            bottom: 8px;
-            transition: 0.4s;
-        }
 
         @include media($breakpoint_large) {
             display: block;
         }
     }
+
 
     &__container {
         display: flex;
@@ -272,10 +258,6 @@
             padding-bottom: 0;
 
         }
-
-        &_open {
-            left: 0px;
-        }
     }
 
     &__menu-images {
@@ -351,17 +333,33 @@
         color: $font-gold;
     }
 
-    &__title_open {
+    &_open &__burger span {
+        opacity: 0;
+        transition: 0.5s;
+    }
+
+   &_open &__burger:before {
+        transform: rotate(45deg);
+        top: 8px;
+        transition: 0.4s;
+    }
+
+    &_open &__burger:after {
+        transform: rotate(-45deg);
+        bottom: 8px;
+        transition: 0.4s;
+    }
+
+    &_open &__main-menu {
+        left: 0px;
+    }
+    &_open &__title {
         padding-left: 20px;
 
         @include media($breakpoint_middle) {
-
             padding-left: 25px;
         }
     }
-
-
-
     @include media($breakpoint_large) {
         padding: 49px 0 48px 0;
     }

@@ -11,8 +11,8 @@ export const getTemplate = (styles:any) => `
         <div class="logo ${styles.header__logo}"></div>
         <h1 class="${styles.header__title}">Louvre</h1>
     </a>
-    <div class="${styles.header__burger}">
-        <span></span>
+    <div class="${styles.header__burger}" data-btn='toogle-burger'>
+        <span data-btn='toogle-burger'></span>
     </div>
     <div class="${styles['header__main-menu']}">
         <nav class="${styles.header__nav}">

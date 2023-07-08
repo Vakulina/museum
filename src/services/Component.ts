@@ -60,6 +60,10 @@ export abstract class Component {
     this.element.classList.remove(className);
   }
 
+  toogleClass(className: string): void {
+    this.element.classList.toggle(className);
+  }
+
   private _addEvents(): void {
     if (this.props && this.props.events) {
       const { events } = this.props;
