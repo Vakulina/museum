@@ -1,13 +1,13 @@
 import { eventBus, EventBus } from './EventBus';
 
-type Props = Record<string, any> | undefined  //classes events children
+export type ComponentProps = Record<string, any> | undefined  //classes events children
 
-export abstract class Block {
+export abstract class Component {
     element: HTMLElement;
     protected eventBus: () => EventBus;
-    protected props: Props;
+    protected props: ComponentProps;
 
-    constructor(target = 'div', props: Props) {
+    constructor(target = 'div', props: ComponentProps) {
         this.element = document.createElement(target);
         this.eventBus = () => eventBus;
         this.props = props
@@ -15,15 +15,17 @@ export abstract class Block {
 
 
     render() {
-        this.element.appendChild(this.markup())
+        this.element.innerHTML =this.markup()
+
         if (this.props && this.props.children) {
             this.element.appendChild(this.props.children)
         }
+        this._addClasses()
         this._addEvents();
     }
 
     markup() {
-        return new DocumentFragment();
+        return '';
     }
 
     show(): void {
@@ -39,7 +41,7 @@ export abstract class Block {
         this.element.remove();
     }
 
-    addClass() {
+    private _addClasses() {
         if (this.props && this.props.classes) {
             const { classes } = this.props;
             const classArr = classes.split(' ');
@@ -49,6 +51,9 @@ export abstract class Block {
         }
     }
 
+    addClass(className: string): void {
+        this.element.classList.add(className);
+    }
 
     removeClass(className: string): void {
         this.element.classList.remove(className);
