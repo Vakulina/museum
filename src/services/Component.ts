@@ -39,42 +39,14 @@ export abstract class Component {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_RENDER);
   }
 
-  protected componentDidMount() {}
+  protected componentDidMount() { }
 
   protected dispatchComponentDidMount() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CDM);
   }
 
-  render() {
-    this.element.innerHTML = this.markup();
-    this._addClasses();
-    this._addEvents();
-  }
-
-  getInitChildren() {
-    const children = document.createElement("div");
-    if (this.props && this.props.children) {
-      const childrenArr = this.props.children;
-      childrenArr.map((child: HTMLElement) => children.appendChild(child));
-    }
-    return children;
-  }
-
   markup() {
     return "";
-  }
-
-  show(): void {
-    this.element.style.display = "block";
-  }
-
-  hide(): void {
-    this.element.style.display = "none";
-  }
-
-  remove(): void {
-    this._removeEventListeners();
-    this.element.remove();
   }
 
   private _addClasses() {
@@ -85,22 +57,6 @@ export abstract class Component {
         this.element.classList.add(className);
       });
     }
-  }
-
-  addClass(className: string): void {
-    this.element.classList.add(className);
-  }
-
-  addAttribute(nameAttribute: string, attribute: string): void {
-    this.element.setAttribute(nameAttribute, attribute);
-  }
-
-  removeClass(className: string): void {
-    this.element.classList.remove(className);
-  }
-
-  toogleClass(className: string): void {
-    this.element.classList.toggle(className);
   }
 
   private _addEvents(): void {
@@ -119,5 +75,41 @@ export abstract class Component {
         this.element!.removeEventListener(eventName, events[eventName]);
       });
     }
+  }
+
+  render() {
+    this.element.innerHTML = this.markup();
+    this._addClasses();
+    this._addEvents();
+  }
+
+  getInitChildren() {
+    const children = document.createElement("div");
+    if (this.props && this.props.children) {
+      const childrenArr = this.props.children;
+      childrenArr.map((child: HTMLElement) => children.appendChild(child));
+    }
+    return children;
+  }
+
+  remove(): void {
+    this._removeEventListeners();
+    this.element.remove();
+  }
+
+  addClass(className: string): void {
+    this.element.classList.add(className);
+  }
+
+  addAttribute(nameAttribute: string, attribute: string): void {
+    this.element.setAttribute(nameAttribute, attribute);
+  }
+
+  removeClass(className: string): void {
+    this.element.classList.remove(className);
+  }
+
+  toogleClass(className: string): void {
+    this.element.classList.toggle(className);
   }
 }
