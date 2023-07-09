@@ -56,6 +56,7 @@ const children = cardList.map(
 class Visiting extends Component {
   markup() {
     const children = this.getInitChildren();
+    this.addAttribute('id', 'visiting');
     return getTemplate(s, children);
   }
 }

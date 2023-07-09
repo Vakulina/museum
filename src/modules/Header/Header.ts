@@ -4,6 +4,7 @@ import s from "./Header.module.scss";
 
 class Header extends Component {
   markup() {
+    this.addAttribute('id', 'header');
     return getTemplate(s);
   }
 }

@@ -91,6 +91,10 @@ export abstract class Component {
     this.element.classList.add(className);
   }
 
+  addAttribute(nameAttribute: string, attribute: string): void {
+    this.element.setAttribute(nameAttribute, attribute);
+  }
+
   removeClass(className: string): void {
     this.element.classList.remove(className);
   }

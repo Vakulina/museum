@@ -1,0 +1,362 @@
+@import "../../assets/styles/_variables";
+@import "../../assets/styles/_mixins";
+
+.welcome {
+  @include section;
+  @include dark-section;
+  padding: 0;
+
+  &__swiper {
+    display: block;
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: 26px;
+    pointer-events: none;
+  }
+
+  &__text {
+    max-width: 650px;
+    position: absolute;
+    top: 150px;
+    left: 0;
+    z-index: 10;
+
+    @include media($breakpoint_xxl) {
+      left: 20px;
+      top: 150px;
+    }
+
+    @include media($breakpoint_large) {
+      max-width: 396px;
+      left: 20px;
+      top: 50px;
+      opacity: 1;
+      transition: 0.3s;
+    }
+
+    @include media($breakpoint_middle) {
+      position: static;
+      margin: 0 auto;
+    }
+  }
+
+  &__swiper-container {
+    max-width: 1000px;
+    margin-right: 0;
+
+    @include media(1900px) {
+      width: 71.14%;
+      margin: 0 0 0 auto;
+    }
+
+    @include media($breakpoint_middle) {
+      width: 100%;
+      margin: 0 0 0 auto;
+    }
+  }
+
+  &__slide {
+    max-width: 1000px;
+    position: relative;
+
+    &::after {
+      content: " ";
+      background: linear-gradient(
+        90deg,
+        #000000 0%,
+        rgba(0, 0, 0, 0.5) 16.19%,
+        rgba(0, 0, 0, 0) 30.73%
+      );
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      @include media($breakpoint_middle) {
+        display: none;
+      }
+    }
+  }
+
+  &__paragraf {
+    font-size: 28px;
+    line-height: 33px;
+    letter-spacing: 2px;
+    margin: 0;
+    margin-bottom: 73px;
+
+    @include media($breakpoint_large) {
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 28px;
+      margin-bottom: 48px;
+    }
+
+    @include media($breakpoint_middle) {
+      font-size: 20px;
+      line-height: 23px;
+      text-align: center;
+    }
+
+    @include media($breakpoint_small) {
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 2px;
+    }
+  }
+
+  &__link {
+    font-family: "Roboto", "Arial", sans-serif;
+    max-width: 360px;
+    height: 75px;
+    font-weight: 200;
+    font-size: $font3;
+    letter-spacing: 2px;
+    line-height: 1.182;
+    background-color: $dark-red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $font-light;
+    border-radius: 10px;
+    transition: 0.5s linear;
+
+    &:hover {
+      background-color: $gold-hover;
+    }
+
+    @include media($breakpoint_large) {
+      max-width: 300px;
+      height: 60px;
+      font-family: Roboto;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 23px;
+    }
+
+    @include media($breakpoint_middle) {
+      display: none;
+    }
+  }
+
+  &__image-container {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__container {
+    position: relative;
+    min-height: 810px;
+    overflow: hidden;
+    display: flex;
+    min-width: 0;
+
+    @include container;
+
+    @include media($breakpoint_xxl) {
+      min-height: 585px;
+    }
+
+    @include media($breakpoint_middle) {
+      flex-direction: column;
+      min-height: 580px;
+    }
+
+    @include media($breakpoint_small) {
+      min-height: 540px;
+      height: 540px;
+    }
+  }
+}
+
+.welcome__text_open {
+  opacity: 0;
+}
+
+.image-pagination {
+  display: flex;
+  padding: 0 75px;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 60%;
+  min-height: 100px;
+  background-color: $bg-dark;
+  position: relative;
+  left: 40%;
+  bottom: 65px;
+  z-index: 100;
+  margin-bottom: -65px;
+
+  &__total {
+    display: block;
+  }
+
+  &__separator {
+    display: block;
+  }
+
+  &__current {
+    display: block;
+  }
+
+  &__right-arrow {
+    background-image: url("../../assets/svg/image-panagination__right-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center 54%;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    transition: 0.3s linear;
+    cursor: pointer;
+
+    &:hover {
+      filter: invert(53%) sepia(45%) saturate(267%) hue-rotate(356deg)
+        brightness(93%) contrast(60%);
+    }
+
+    @include media(600px) {
+      width: 20px;
+      background-size: contain;
+    }
+  }
+
+  &__left-arrow {
+    background-image: url("../../assets/svg/image-panagination__left-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.3s linear;
+
+    &:hover {
+      filter: invert(53%) sepia(45%) saturate(267%) hue-rotate(356deg)
+        brightness(93%) contrast(60%);
+    }
+
+    @include media(600px) {
+      width: 20px;
+      background-size: contain;
+    }
+  }
+
+  &__fraction {
+    color: $font-light;
+    width: 76px;
+    height: 40px;
+    background-color: $bg-dark;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    line-height: 40px;
+
+    @include media(1050px) {
+      font-size: 20px;
+      width: 70px;
+    }
+
+    @include media(650px) {
+      font-size: 16px;
+      width: 50px;
+      line-height: 40px;
+    }
+  }
+
+  &__bullets {
+    display: flex;
+    max-width: 180px;
+    justify-content: space-between;
+    background-color: #030303;
+
+    @include media(1050px) {
+      justify-content: space-around;
+    }
+
+    @include media($breakpoint_small) {
+      max-width: 75px;
+      justify-content: space-between;
+    }
+  }
+
+  &__bullet {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 0;
+    background-color: $font-light;
+    z-index: 101;
+    opacity: 1;
+    transition: 0.3s linear;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $gold-hover;
+    }
+
+    &_active {
+      background-color: #d2b183;
+    }
+
+    @include media(1050px) {
+      width: 12px;
+      height: 12px;
+    }
+
+    @include media($breakpoint_small) {
+      width: 7px;
+      height: 7px;
+    }
+  }
+
+  &__arrows {
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+
+    @include media($breakpoint_small) {
+      width: 55px;
+    }
+  }
+
+  @include media(1440px) {
+    bottom: 85px;
+    padding: 0 20px;
+  }
+
+  @include media(1050px) {
+    max-width: 100%;
+    left: 0;
+    bottom: 65px;
+    padding: 0 10.7% 0 32%;
+    height: 120px;
+  }
+
+  @include media($breakpoint_middle) {
+    left: 0;
+    bottom: 0px;
+    padding: 0 22.27%;
+    max-height: 80px;
+    margin-bottom: 0;
+    height: 110px;
+  }
+
+  @include media($breakpoint_small) {
+    padding: 0 20%;
+    min-height: 47px;
+  }
+
+  @include media(410px) {
+    padding: 0 3%;
+    min-height: 47px;
+  }
+}

@@ -2,7 +2,7 @@ import Swiper from "swiper/bundle";
 import "swiper/css";
 import { Component, ComponentProps } from "../../services/Component";
 import { getTemplate } from "./template";
-import s from "./Welcome.module.scss";
+import s from "./Explore.module.scss";
 
 class Welcome extends Component {
   welcomeSlider: any;
@@ -57,14 +57,12 @@ class Welcome extends Component {
   }
 
   componentDidMount() {
-    this.addAttribute('id', 'welcome');
     this.initSlider();
   }
 }
 
 const welcome = new Welcome("section", {
   classes: s.welcome,
-  id: "welcome",
 });
 
 export { welcome };
