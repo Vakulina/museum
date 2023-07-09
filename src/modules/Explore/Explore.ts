@@ -7,9 +7,12 @@ import s from "./Explore.module.scss";
 class Explore extends Component {
   slider: HTMLElement | null;
 
+  overlay: HTMLElement | null;
+
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
     this.slider = null;
+    this.overlay = null;
   }
 
   markup() {
@@ -18,15 +21,13 @@ class Explore extends Component {
   }
 
   initSlider() {
-    const overlay: HTMLElement | null = document.querySelector(`.${s["explore-slider__new-image"]}`);
-    this.slider = document.querySelector(`.${s["explore-slider__separator"]}`);
-
     const compareImages = (img: HTMLElement) => {
       if (this.slider) {
         let clicked = 0;
         const w = img.offsetWidth;
         const wid = +window.getComputedStyle(this.slider as Element, null).getPropertyValue('width').slice(0, -2);
         img.style.width = `${(w / 2) + 20}px`;
+
         this.slider.addEventListener("pointerdown", slideReady);
         window.addEventListener("pointerup", slideFinish);
 
@@ -61,7 +62,7 @@ class Explore extends Component {
           let x = 0;
           evt = evt || window.event;
           const a = img.getBoundingClientRect();
-          x = evt.pageX - a.left;
+          x = evt.clientX - a.left;
           x -= window.pageXOffset;
           return x;
         }
@@ -73,13 +74,28 @@ class Explore extends Component {
       }
     };
 
-    if (overlay) {
-      compareImages(overlay);
+    if (this.overlay) {
+      compareImages(this.overlay);
     }
   }
 
+  lazyInitSlider(): void {
+    this.overlay = document.querySelector(`.${s["explore-slider__new-image"]}`);
+    this.slider = document.querySelector(`.${s["explore-slider__separator"]}`);
+    const options = {};
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        this.initSlider();
+        observer.unobserve(entry.target);
+      });
+    }, options);
+
+    if (this.slider) observer.observe(this.slider);
+  }
+
   componentDidMount() {
-    this.initSlider();
+    this.lazyInitSlider();
   }
 }
 
