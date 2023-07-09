@@ -42,11 +42,6 @@ const cardList = [
   },
 ];
 
-const card = new Card("article", {
-  img: tour2Img,
-  alt: "gorgeous bas-relief of the ceiling in Royal Palace",
-  title: "Royal Palace",
-});
 const children = cardList.map(
   (item) => new Card("article", {
     ...item,
