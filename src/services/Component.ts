@@ -13,7 +13,7 @@ export abstract class Component {
 
   protected eventBus: () => EventBus;
 
-  protected props: ComponentProps;
+  props: ComponentProps;
 
   constructor(target = "div", props: ComponentProps) {
     this.element = document.createElement(target);
@@ -35,24 +35,29 @@ export abstract class Component {
     );
   }
 
-  init() {
+  protected init() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_RENDER);
   }
 
-  componentDidMount() {}
+  protected componentDidMount() {}
 
-  dispatchComponentDidMount() {
+  protected dispatchComponentDidMount() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CDM);
   }
 
   render() {
     this.element.innerHTML = this.markup();
-
-    if (this.props && this.props.children) {
-      this.element.appendChild(this.props.children);
-    }
     this._addClasses();
     this._addEvents();
+  }
+
+  getInitChildren() {
+    const children = document.createElement("div");
+    if (this.props && this.props.children) {
+      const childrenArr = this.props.children;
+      childrenArr.map((child: HTMLElement) => children.appendChild(child));
+    }
+    return children;
   }
 
   markup() {

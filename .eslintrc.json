@@ -10,6 +10,7 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/quotes": "off",
     "no-console": "warn",
     "import/export": "warn",
     "linebreak-style": ["warn", "unix"],

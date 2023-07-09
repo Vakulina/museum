@@ -36,7 +36,7 @@
       transition: 0.3s;
     }
 
-    @include media($breakpoint_small) {
+    @include media($breakpoint_middle) {
       position: static;
       margin: 0 auto;
     }

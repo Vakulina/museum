@@ -1,0 +1,118 @@
+@import "../../assets/styles/_variables";
+@import "../../assets/styles/_mixins";
+
+.card {
+  position: relative;
+  transition: 1s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 354px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    width: 300px;
+    background-color: $dark-red;
+    transition: 1s ease;
+
+    @media (max-width: $breakpoint_large) {
+      top: 281px;
+      width: 150px;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      top: 239px;
+      width: 150px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      top: 234px;
+      width: 150px;
+    }
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-family: Forum;
+    font-size: $font2;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 5px;
+    text-align: left;
+    padding: 22px 0 21px 0;
+    color: $font-dark;
+
+    &__title_long {
+      @media (max-width: $breakpoint_large) {
+        letter-spacing: 3px;
+      }
+
+      @media (max-width: $breakpoint_middle) {
+        font-size: 22px;
+        line-height: 24px;
+        letter-spacing: 3px;
+      }
+    }
+
+    @media (max-width: $breakpoint_large) {
+      font-size: 28px;
+      line-height: 31px;
+      letter-spacing: 5px;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      font-size: 22px;
+      line-height: 24px;
+      letter-spacing: 3px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      font-size: 18px;
+      line-height: 20px;
+      letter-spacing: 5px;
+    }
+  }
+
+  &__paragraph {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 26px;
+    color: $font-dark;
+    padding-bottom: 10px;
+
+    @media (max-width: $breakpoint_large) {
+      &:first-of-type {
+        font-size: 20px;
+        line-height: 23px;
+      }
+
+      &:last-child {
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      &:first-of-type {
+        font-size: 18px;
+        line-height: 21px;
+      }
+
+      &:last-child {
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+
+    @media (max-width: $breakpoint_small) {
+      padding-bottom: 8px;
+    }
+  }
+}
