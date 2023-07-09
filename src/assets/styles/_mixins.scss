@@ -38,6 +38,47 @@
   width: 100%;
   padding: 75px 0;
 
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    color: $font-dark;
+    font-size: $font3;
+  }
+
+  h2 {
+    font-family: "Forum", "Roman", serif;
+    font-weight: normal;
+    font-size: $font1;
+    line-height: 1.125;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: $font-gold;
+
+    @media (max-width: $breakpoint_large) {
+      font-size: 50px;
+      font-weight: 400;
+      line-height: 90px;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      font-size: 40px;
+      line-height: 60px;
+      text-align: center;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      font-size: 28px;
+      line-height: 40px;
+      letter-spacing: 5px;
+    }
+  }
+
   @media (max-width: $breakpoint_large) {
     padding: 52px 0;
   }
@@ -45,6 +86,13 @@
 
 @mixin dark-section {
   background-color: $bg-dark;
-
   color: $font-light;
+
+  p {
+    color: $font-light;
+  }
+
+  h2 {
+    color: $font-light;
+  }
 }

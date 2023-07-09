@@ -1,2 +1,2 @@
-export { default as Welcome } from './Welcome';
-export * from './Welcome';
+export { default as Welcome } from "./Welcome";
+export * from "./Welcome";

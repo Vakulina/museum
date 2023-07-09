@@ -3,7 +3,6 @@ import jDarkImg from '../../assets/img/welcome_JDark.jpg';
 import dama3Img from '../../assets/img/welcome_dama3.jpg';
 import dama4Img from '../../assets/img/welcome_shtorm.jpg';
 import dama5Img from '../../assets/img/welcome_scientist.jpg';
-import minMenu3Img from '../../assets/img/image450_3.jpg';
 
 export const getTemplate = (styles: any) => `
 <div class="container ${styles.welcome__container}">
@@ -52,18 +51,18 @@ export const getTemplate = (styles: any) => `
                 </div>
 
             </div>
-            <div class="image-pagination">
-                <div class="image-pagination__fraction">
-                    <div class="image-pagination__current">01</div>
-                    <div class="image-pagination__separator">|</div>
-                    <div class="image-pagination__total">01</div>
+            <div class="${styles['image-pagination']}">
+                <div class="${styles['image-pagination__fraction']}">
+                    <div class="${styles['image-pagination__current']}">01</div>
+                    <div class="${styles['image-pagination__separator']}">|</div>
+                    <div class="${styles['image-pagination__total']}">01</div>
                 </div>
 
-                <div class="image-pagination__bullets"></div>
+                <div class="${styles['image-pagination__bullets']}"></div>
                 <!-- If we need navigation buttons -->
-                <div class="image-pagination__arrows">
-                    <div class="image-pagination__left-arrow"></div>
-                    <div class="image-pagination__right-arrow"></div>
+                <div class="${styles['image-pagination__arrows']}">
+                    <div class="${styles['image-pagination__left-arrow']}"></div>
+                    <div class="${styles['image-pagination__right-arrow']}"></div>
                 </div>
             </div>
         </div>
