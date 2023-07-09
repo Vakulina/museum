@@ -6,6 +6,10 @@
   @include dark-section;
   padding: 0;
 
+  &__swiper {
+    display: block;
+  }
+
   &__title {
     margin: 0;
     margin-bottom: 26px;
@@ -18,7 +22,6 @@
     top: 150px;
     left: 0;
     z-index: 10;
-    pointer-events: none;
 
     @include media($breakpoint_xxl) {
       left: 20px;
@@ -193,6 +196,18 @@
   z-index: 100;
   margin-bottom: -65px;
 
+  &__total {
+    display: block;
+  }
+
+  &__separator {
+    display: block;
+  }
+
+  &__current {
+    display: block;
+  }
+
   &__right-arrow {
     background-image: url("../../assets/svg/image-panagination__right-arrow.svg");
     background-repeat: no-repeat;
@@ -236,10 +251,10 @@
   }
 
   &__fraction {
-    color: var(--font-light);
+    color: $font-light;
     width: 76px;
     height: 40px;
-    background-color: var(--bg-dark);
+    background-color: $bg-dark;
     display: flex;
     justify-content: space-between;
     font-size: 22px;
@@ -278,7 +293,7 @@
     width: 16px;
     height: 16px;
     border-radius: 0;
-    background-color: var(--font-light);
+    background-color: $font-light;
     z-index: 101;
     opacity: 1;
     transition: 0.3s linear;

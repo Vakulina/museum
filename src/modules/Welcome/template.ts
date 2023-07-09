@@ -7,11 +7,11 @@ import dama5Img from '../../assets/img/welcome_scientist.jpg';
 export const getTemplate = (styles: any) => `
 <div class="container ${styles.welcome__container}">
     <div class="${styles.welcome__text}">
-        <h2 class="section__title section__title_dark-theme ${styles.welcome__title}">Welcome to&nbsp;the&nbsp;Louvre
+        <h2 class="${styles.welcome__title}">Welcome to&nbsp;the&nbsp;Louvre
         </h2>
-        <p class="${styles.welcome__paragraf} section__paragraf section__paragraf_dark-theme">From the castle to the
+        <p class="${styles.welcome__paragraf}">From the castle to the
             museum</p>
-        <a class="section__link ${styles.welcome__link}" href="./tours/tour1.html" target="_blank" rel="noopener">
+        <a class="${styles.welcome__link}" href="https://www.louvre.fr/en/explore" target="_blank" rel="noopener">
             Discover the Louvre
         </a>
     </div>

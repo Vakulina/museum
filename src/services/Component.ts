@@ -1,18 +1,48 @@
-import { eventBus, EventBus } from './EventBus';
+import { eventBus, EventBus } from "./EventBus";
 
 export type ComponentProps = Record<string, any> | undefined; // classes events children
 
 export abstract class Component {
   element: HTMLElement;
 
+  static LIFECYRCLE_EVENTS = {
+    INIT: "init",
+    FLOW_RENDER: "flow:render",
+    FLOW_CDM: "flow:component-did-mount",
+  } as const;
+
   protected eventBus: () => EventBus;
 
   protected props: ComponentProps;
 
-  constructor(target = 'div', props: ComponentProps) {
+  constructor(target = "div", props: ComponentProps) {
     this.element = document.createElement(target);
-    this.eventBus = () => eventBus;
     this.props = props;
+    this.eventBus = () => eventBus;
+    this._registerLifecyrcleStages(eventBus);
+    eventBus.emit(Component.LIFECYRCLE_EVENTS.INIT);
+  }
+
+  private _registerLifecyrcleStages(eventBus: EventBus): void {
+    eventBus.on(Component.LIFECYRCLE_EVENTS.INIT, this.init.bind(this));
+    eventBus.on(
+      Component.LIFECYRCLE_EVENTS.FLOW_RENDER,
+      this.render.bind(this),
+    );
+    eventBus.on(
+      Component.LIFECYRCLE_EVENTS.FLOW_CDM,
+      this.componentDidMount.bind(this),
+    );
+  }
+
+  init() {
+    this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_RENDER);
+  }
+
+  componentDidMount() {}
+
+  dispatchComponentDidMount() {
+    this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CDM);
   }
 
   render() {
@@ -26,15 +56,15 @@ export abstract class Component {
   }
 
   markup() {
-    return '';
+    return "";
   }
 
   show(): void {
-    this.element.style.display = 'block';
+    this.element.style.display = "block";
   }
 
   hide(): void {
-    this.element.style.display = 'none';
+    this.element.style.display = "none";
   }
 
   remove(): void {
@@ -45,7 +75,7 @@ export abstract class Component {
   private _addClasses() {
     if (this.props && this.props.classes) {
       const { classes } = this.props;
-      const classArr = classes.split(' ');
+      const classArr = classes.split(" ");
       classArr.forEach((className: string) => {
         this.element.classList.add(className);
       });

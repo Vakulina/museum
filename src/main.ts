@@ -1,7 +1,8 @@
 import "./assets/styles/styles.css";
-import { Header } from "./modules/Header";
-import { Welcome } from "./modules/Welcome";
+import { header } from "./modules/Header";
+import { welcome } from "./modules/Welcome";
+import { render } from "./utiles.ts/renderDOM";
 
-document.querySelector<HTMLDivElement>("#app")!.prepend(Header);
+document.querySelector<HTMLDivElement>("#app")!.prepend(header.element);
 
-document.querySelector<HTMLDivElement>("#content")!.append(Welcome);
+render("#content", welcome);
