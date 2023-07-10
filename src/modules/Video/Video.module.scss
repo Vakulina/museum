@@ -1,7 +1,11 @@
 @import "../../assets/styles/_variables";
 @import "../../assets/styles/_mixins";
 
+
 .video {
+    --progress-el: #710707;
+    --bt-gray: #c4c4c4;
+    
   @include section;
 
   &__container {

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, ComponentProps } from "../../services/Component";
 import { getTemplate } from "./template";
 import s from "./Video.module.scss";
@@ -49,14 +47,18 @@ class Video extends Component {
     if (this.volumeProgress) {
       return this.volumeProgress.value / 100;
     }
-    return null;
+    return 0;
   }
 
   volumeScroll() {
     if (this.volumeProgress && this.frame) {
-      this.volumeProgress.style.background = `linear-gradient(to right,   $progress-el 0%,    $progress-el  ${this.volumeProgress.value}%,
-           $bt-gray ${this.volumeProgress.value}%, $bt-gray 100%)`;
-      if ('volume' in this.frame) this.frame.volume = (this.volumeProgress.value) / 100;
+      if (this.frame.muted && this._getVolume() !== 0) this.toggleMute();
+      if (!this.frame.muted && this._getVolume() === 0) this.toggleMute();
+      console.log(this.volumeProgress);
+      this.volumeProgress.style.background = `linear-gradient(to right,
+         var(--progress-el) 0%, var(--progress-el) ${this.volumeProgress.value}%, var(--bt-gray) ${this.volumeProgress.value}%, var(--bt-gray) 100%)`;
+      this.frame.volume = this._getVolume();
+      this.frame.muted = this._getVolume() === 0;
     }
   }
 
@@ -74,12 +76,19 @@ class Video extends Component {
     }
   }
 
-  mute() {
+  toggleMute() {
     if (!this.frame || !this.volumeProgress) return;
     this.frame.muted = !this.frame.muted;
-    this.btnMuted?.classList.toggle(`${s['custom-player__button_type_value']}`);
-    this.btnMuted?.classList.toggle(`${s['custom-player__button_mute']}`);
-    this.volumeProgress.value = (this.frame.muted) ? 0 : this.currentValume * 100;
+
+    if (!this.frame.muted) {
+      this.btnMuted?.classList.add(`${s['custom-player__button_type_value']}`);
+      this.btnMuted?.classList.remove(`${s['custom-player__button_mute']}`);
+    } else {
+      this.btnMuted?.classList.remove(`${s['custom-player__button_type_value']}`);
+      this.btnMuted?.classList.add(`${s['custom-player__button_mute']}`);
+    }
+
+    this.volumeProgress.value = this.frame.muted ? 0 : this.currentValume * 100;
     this.volumeScroll();
   }
 
@@ -102,8 +111,22 @@ export const video = new Video("section", {
         video.playsToggle();
       }
       if (target.dataset.btn === "mute") {
-        video.mute();
+        video.toggleMute();
       }
+    },
+    input(e: InputEvent) {
+      const target = e.target as HTMLInputElement;
+      video.volumeScroll();
     },
   },
 });
+
+/* volumeProgress.addEventListener('input', () => {
+  if (volumeProgress.value == 0) {
+    mute();
+  }
+  else {
+    volumeScroll();
+  }
+}
+); */
