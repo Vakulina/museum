@@ -29,7 +29,7 @@ export const getTemplate = (styles: any) => `
             data-btn='play'
             id="play"
             type="button"></button>
-            <input class="${styles["custom-player__progress"]}" type="range" value="0" min="0" max="10000" step="1">
+            <input class="${styles["custom-player__progress"]}" type="range" value="0" min="0" max="10000" step="1" data-range="progress">
             <button class="${styles["custom-player__button"]} ${styles["custom-player__button_type_value"]}" data-btn="mute"></button>
             <input class="${styles["custom-player__volume-scroll"]}" type="range" value="20" min="0" max="100" step="1" data-range='volume'>
             <button class="${styles["custom-player__button"]} ${styles["custom-player__button_full-screen"]}"

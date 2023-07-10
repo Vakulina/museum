@@ -8,6 +8,8 @@ class Video extends Component {
 
   volumeProgress: HTMLProgressElement | null;
 
+  progress: HTMLProgressElement | null;
+
   frame: HTMLVideoElement | null;
 
   btnBigPlay: HTMLButtonElement | null;
@@ -26,6 +28,7 @@ class Video extends Component {
     this.btnBigPlay = null;
     this.btnPlay = null;
     this.volumeProgress = null;
+    this.progress = null;
     this.btnMuted = null;
     this.currentValume = 0.2;
   }
@@ -41,6 +44,7 @@ class Video extends Component {
     this.btnPlay = document.getElementById('play') as HTMLButtonElement;
     this.volumeProgress = document.querySelector(`.${s['custom-player__volume-scroll']}`);
     this.btnMuted = document.querySelector(`.${s['custom-player__button_type_value']}`);
+    this.progress = document.querySelector(`.${s['custom-player__progress']}`);
   }
 
   private _getVolume() {
@@ -54,12 +58,29 @@ class Video extends Component {
     if (this.volumeProgress && this.frame) {
       if (this.frame.muted && this._getVolume() !== 0) this.toggleMute();
       if (!this.frame.muted && this._getVolume() === 0) this.toggleMute();
-      console.log(this.volumeProgress);
       this.volumeProgress.style.background = `linear-gradient(to right,
          var(--progress-el) 0%, var(--progress-el) ${this.volumeProgress.value}%, var(--bt-gray) ${this.volumeProgress.value}%, var(--bt-gray) 100%)`;
       this.frame.volume = this._getVolume();
       this.frame.muted = this._getVolume() === 0;
     }
+  }
+
+  videoScroll() {
+    if (!this.progress || !this.frame) return;
+    const { value } = this.progress;
+    this.progress.style.background = `linear-gradient(to right,  var(--progress-el) 0%,  
+    var(--progress-el) ${value / 100}%, var(--bt-gray) ${value / 100}%, var(--bt-gray) 100%)`;
+    const durationInSeconds = Math.floor(this.frame.duration);
+    const roundedValue = Math.floor(value);
+    const intermediateResult = (durationInSeconds * roundedValue) / 10000;
+    this.frame.currentTime = Math.floor(intermediateResult) || 0;
+  }
+
+  videoProgress() {
+    if (!this.progress || !this.frame) return;
+    this.progress.value = (this.frame.currentTime / this.frame.duration) * 10000 || 0;
+    this.progress.style.background = `linear-gradient(to right,  var(--progress-el) 0%,  var(--progress-el)
+     ${this.progress.value / 100}%, var(--bt-gray) ${this.progress.value / 100}%, var(--bt-gray) 100%)`;
   }
 
   playsToggle() {
@@ -116,17 +137,13 @@ export const video = new Video("section", {
     },
     input(e: InputEvent) {
       const target = e.target as HTMLInputElement;
-      video.volumeScroll();
+      if (target.dataset.range === "volume") {
+        video.volumeScroll();
+      }
+      if (target.dataset.range === "progress") {
+        video.videoScroll();
+      }
     },
   },
 });
-
-/* volumeProgress.addEventListener('input', () => {
-  if (volumeProgress.value == 0) {
-    mute();
-  }
-  else {
-    volumeScroll();
-  }
-}
-); */
+/* progress.addEventListener('input', videoScroll); */
