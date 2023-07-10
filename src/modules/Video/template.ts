@@ -13,15 +13,22 @@ export const getTemplate = (styles: any) => `
         <video id="custom-player-video" class="${styles["custom-player__video"]}" preload='none' src='${video}'
             poster="${poster}"> </video>
 
-        <button class="${styles["custom-player__button"]}  ${styles["custom-player__button_type_play"]}" type="button"></button>
+        <button class="${styles["custom-player__button"]}   ${styles["custom-player__button_type_play"]}"  data-btn='bigPlay'></button>
 
 
         <div class="${styles["custom-player__control-panel"]}">
             <button
-                class="${styles["custom-player__button"]} ${styles["custom-player__button_type_pause"]} ${styles["custom-player__button_type_hidden"]}"
-                type="button"></button>
-            <button class="${styles["custom-player__button"]} ${styles["custom-player__button_type_littleplay"]}"
-                type="button"></button>
+                class="${styles["custom-player__button"]} 
+                ${styles["custom-player__button_type_pause"]} 
+                ${styles["custom-player__button_hidden"]}"
+                data-btn='pause'
+                type="button"/>
+            <button 
+            class="${styles["custom-player__button"]} 
+            ${styles["custom-player__button_type_littleplay"]}"
+            data-btn='play'
+            id="play"
+            type="button"></button>
             <input class="${styles["custom-player__progress"]}" type="range" value="0" min="0" max="10000" step="1">
             <button class="${styles["custom-player__button"]} ${styles["custom-player__button_type_value"]}" type="button"></button>
             <input class="${styles["custom-player__volume-scroll"]}" type="range" value="20" min="0" max="100" step="1">

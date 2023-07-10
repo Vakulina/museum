@@ -37,6 +37,7 @@ html {
 *::after {
   box-sizing: border-box;
 }
+
 /* Убираем внешние отступы */
 body,
 h1,
@@ -58,4 +59,21 @@ dd {
 ul,
 ol {
   padding: 0;
+}
+
+@keyframes vanishing {
+  0% {
+    opacity: 1;
+
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+    transform: scale(0.5);
+  }
+}
+
+.animation_vanishing {
+  animation: vanishing 0.7s ease-in-out forwards;
 }
