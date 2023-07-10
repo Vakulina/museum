@@ -20,7 +20,7 @@ class Video extends Component {
 
   currentValume: number;
 
-  videoProgressListener: null | EventListenerOrEventListenerObject;
+  videoElementListeners: { [event: string]: EventListenerOrEventListenerObject };
 
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
@@ -32,7 +32,7 @@ class Video extends Component {
     this.volumeProgress = null;
     this.progress = null;
     this.btnMuted = null;
-    this.videoProgressListener = null;
+    this.videoElementListeners = {};
     this.currentValume = 0.2;
   }
 
@@ -48,6 +48,13 @@ class Video extends Component {
     this.volumeProgress = document.querySelector(`.${s['custom-player__volume-scroll']}`);
     this.btnMuted = document.querySelector(`.${s['custom-player__button_type_value']}`);
     this.progress = document.querySelector(`.${s['custom-player__progress']}`);
+    this.videoElementListeners = { ...this.videoElementListeners, timeupdate: this.videoProgress.bind(this), ended: this.end.bind(this) };
+  }
+
+  end() {
+    if (!this.frame) return null;
+    this.frame.play();
+    setTimeout(() => this.playsToggle(), 10)
   }
 
   private _getVolume() {
@@ -122,12 +129,23 @@ class Video extends Component {
 
   componentDidMount() {
     this._initPlayer();
-    this.videoProgressListener = () => this.videoProgress(); // Запоминаем функцию обратного вызова в переменной класса
-    this.frame?.addEventListener('timeupdate', this.videoProgressListener);
+    this._addVideoElementListeners();
+  }
+
+  private _addVideoElementListeners() {
+    Object.entries(this.videoElementListeners).forEach((item) => {
+      if (!this.frame) return;
+      const [event, callback] = item;
+      this.frame.addEventListener(event, callback);
+    });
   }
 
   remove() {
-    if (this.videoProgressListener) this.frame?.removeEventListener('timeupdate', this.videoProgressListener);
+    Object.entries(this.videoElementListeners).forEach((item) => {
+      if (!this.frame) return;
+      const [event, callback] = item;
+      this.frame.removeEventListener(event, callback);
+    });
     this.dispatchComponentWillUnmount();
   }
 }
@@ -158,4 +176,4 @@ export const video = new Video("section", {
   },
 });
 
-/* video.addEventListener('timeupdate', videoProgress); */
+/* завести стек для хранения слушателей события видео для ended */

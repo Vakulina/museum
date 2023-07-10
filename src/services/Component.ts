@@ -72,7 +72,6 @@ export abstract class Component {
     if (this.props && this.props.events) {
       const { events } = this.props;
       Object.keys(events).forEach((eventName) => {
-        console.log(eventName);
         this.element.addEventListener(eventName, events[eventName]);
       });
     }

@@ -1,15 +1,8 @@
 export class EventBus {
   private listeners: { [key: string]: Function[] } = {};
 
-  private static __instance: EventBus;
-
   constructor() {
-    if (EventBus.__instance) {
-      return EventBus.__instance;
-    }
-
     this.listeners = {};
-    EventBus.__instance = this;
   }
 
   public on(event: string, callback: Function) {
