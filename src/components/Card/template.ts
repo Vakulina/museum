@@ -6,9 +6,7 @@ export type PropsCardTemplate = {
 };
 
 export const getTemplate = (props: PropsCardTemplate) => {
-  const {
-    styles, img, alt, title,
-  } = props;
+  const { styles, img, alt, title } = props;
   return `
       <a class="${styles.card__wrapper}" href="#" target="_blank" rel="noopener">
         <img class="${styles.card__image}" src="${img}" alt="${alt}">

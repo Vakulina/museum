@@ -129,18 +129,14 @@
     width: 440px;
     height: 285px;
 
-  @media (max-width: $breakpoint_large) {
+    @media (max-width: $breakpoint_large) {
       width: 330px;
       height: 215px;
-  }
+    }
 
-
-  @media (max-width: $breakpoint_middle) {
-
+    @media (max-width: $breakpoint_middle) {
       width: 280px;
       height: 180px;
     }
   }
-
-
 }

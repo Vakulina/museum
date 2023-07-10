@@ -39,7 +39,7 @@ export abstract class Component {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_RENDER);
   }
 
-  protected componentDidMount() { }
+  protected componentDidMount() {}
 
   protected dispatchComponentDidMount() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CDM);

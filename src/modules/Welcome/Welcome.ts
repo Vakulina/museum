@@ -57,7 +57,7 @@ class Welcome extends Component {
   }
 
   componentDidMount() {
-    this.addAttribute('id', 'welcome');
+    this.addAttribute("id", "welcome");
     this.initSlider();
   }
 }

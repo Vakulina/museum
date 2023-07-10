@@ -43,15 +43,16 @@ const cardList = [
 ];
 
 const children = cardList.map(
-  (item) => new Card("article", {
-    ...item,
-  }).element,
+  (item) =>
+    new Card("article", {
+      ...item,
+    }).element,
 );
 
 class Visiting extends Component {
   markup() {
     const children = this.getInitChildren();
-    this.addAttribute('id', 'visiting');
+    this.addAttribute("id", "visiting");
     return getTemplate(s, children);
   }
 }

@@ -51,7 +51,6 @@
       width: 100%;
       margin: 0 auto;
     }
-
   }
 
   &__title {
@@ -69,10 +68,9 @@
       padding-bottom: 63px;
       line-height: 60px;
       letter-spacing: 5px;
-
     }
 
-    @media (max-width:$breakpoint_small) {
+    @media (max-width: $breakpoint_small) {
       padding-bottom: 65px;
       font-family: Forum;
       font-size: 28px;
@@ -107,28 +105,15 @@
     }
   }
 
-
-
-
-
-
-
-  ;
-
-
-
-
   @media (max-width: $breakpoint_xxl) {
     padding-bottom: 0;
     padding-top: 40px;
   }
 
-
   @media (max-width: $breakpoint_small) {
     padding-bottom: 34px;
   }
 }
-
 
 .explore-slider {
   padding-bottom: 48.61%;
@@ -139,8 +124,6 @@
   max-width: 720px;
   max-height: 700px;
   box-sizing: border-box;
-
-
 }
 
 @media (max-width: 1500px) {
@@ -153,40 +136,39 @@
     max-height: 700px;
   }
 }
-.explore-slider{
-&__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-}
-&__new-image{
-  display: block;
-}
+.explore-slider {
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  &__new-image {
+    display: block;
+  }
 
-&__image img {
-  object-fit: contain;
-  height: auto;
-  object-position: center;
+  &__image img {
+    object-fit: contain;
+    height: auto;
+    object-position: center;
+  }
 
-}
-
-&__separator {
-  position: absolute;
-  background-image: url('../../assets/explore-slider.svg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position-y: center;
-  width: 39px;
-  max-height: 700px;
-  z-index: 2000;
-  top: 0;
-  left: calc(50%);
-  bottom: 0;
-  height: 100%;
-  cursor: ew-resize;
-}
+  &__separator {
+    position: absolute;
+    background-image: url("../../assets/explore-slider.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    width: 39px;
+    max-height: 700px;
+    z-index: 2000;
+    top: 0;
+    left: calc(50%);
+    bottom: 0;
+    height: 100%;
+    cursor: ew-resize;
+  }
 }
