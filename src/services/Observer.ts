@@ -1,5 +1,8 @@
 export type ObserverTarget = Element | Array<Element>;
-export type ObserverCallback = (entries: IntersectionObserverEntry, observer: Observer) => void;
+export type ObserverCallback = (
+  entries: IntersectionObserverEntry,
+  observer: Observer,
+) => void;
 export type EventMapValue = {
   callback: ObserverCallback;
 };
@@ -11,7 +14,10 @@ export class Observer {
   private eventMap: EventMap = new Map();
 
   constructor(options?: IntersectionObserverInit) {
-    this.observer = new IntersectionObserver(this.watchCallback.bind(this), options);
+    this.observer = new IntersectionObserver(
+      this.watchCallback.bind(this),
+      options,
+    );
   }
 
   private watchCallback = (entries: IntersectionObserverEntry[]) => {
@@ -68,7 +74,10 @@ export class Observer {
     events.push({ callback });
   };
 
-  private unsubscribe = (target: ObserverTarget, callback: ObserverCallback) => {
+  private unsubscribe = (
+    target: ObserverTarget,
+    callback: ObserverCallback,
+  ) => {
     const events = this.eventMap.get(target);
     if (!events) return;
     const findIndex = this.findSubscribeIndex(target, callback);
@@ -77,7 +86,10 @@ export class Observer {
     if (events.length <= 0) this.eventMap.delete(target);
   };
 
-  private findSubscribeIndex = (target: ObserverTarget, callback: ObserverCallback) => {
+  private findSubscribeIndex = (
+    target: ObserverTarget,
+    callback: ObserverCallback,
+  ) => {
     const events = this.eventMap.get(target);
     if (!events) return -1;
     const findIndex = events.findIndex((item) => {

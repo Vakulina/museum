@@ -1,0 +1,383 @@
+@import "../../assets/styles/_variables";
+@import "../../assets/styles/_mixins";
+
+.video {
+  @include section;
+
+  &__container {
+    @include container;
+  }
+
+  &__title {
+    max-width: 720px;
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 75px;
+
+    @media (max-width: $breakpoint_large) {
+      padding-bottom: 32px;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      padding-bottom: 24px;
+    }
+  }
+
+  &__swiper-container {
+    padding-top: 40px;
+
+    @media (max-width: $breakpoint_middle) {
+      padding-top: 22px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      padding-top: 40px;
+    }
+  }
+
+  &__paragraf {
+    line-height: 38px;
+    max-width: 720px;
+
+    @media (max-width: 1440px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: $breakpoint_large) {
+    padding-bottom: 60px;
+  }
+
+  @media (max-width: $breakpoint_middle) {
+    padding-top: 38px;
+    padding-bottom: 73px;
+  }
+
+  @media (max-width: $breakpoint_small) {
+    padding-top: 38px;
+    padding-bottom: 40px;
+  }
+}
+
+.custom-player {
+  position: relative;
+  max-height: 735px;
+
+  &__video-rate {
+    position: absolute;
+    top: 10%;
+    left: calc(50% - 30px);
+    height: 60px;
+    width: 60px;
+    border-radius: 20px;
+    color: #9d8665;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(5px);
+  }
+
+  &__video {
+    max-width: 1440px;
+    max-height: 650px;
+    border: 0;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    margin: 0;
+    display: block;
+  }
+
+  &__progress {
+    -webkit-appearance: none;
+    /*сброс стилей по уполяанию*/
+    -moz-appearance: none;
+    appearance: none;
+    width: 67%;
+    height: 8px;
+    background: linear-gradient(
+      to right,
+      $progress-el 0%,
+      $progress-el 0%,
+      $bt-gray 0%,
+      $bt-gray 100%
+    );
+    transition: 0.5s linear;
+
+    @media (max-width: $breakpoint_large) {
+      height: 5px;
+      width: 62.9%;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      height: 5px;
+      position: absolute;
+      width: 100%;
+      bottom: 52px;
+      left: 0;
+    }
+
+    @media (max-width: 768px) {
+      height: 4px;
+    }
+  }
+
+  &__progress::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    @media (max-width: $breakpoint_large) {
+      width: 13px;
+      height: 13px;
+    }
+
+    @media (max-width: 768px) {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  &__control-panel {
+    display: flex;
+    max-width: 1440px;
+    min-height: 85px;
+    background-color: #000000;
+    padding: 0 30px;
+    justify-content: space-between;
+    margin: 0;
+    align-items: center;
+
+    @media (max-width: $breakpoint_large) {
+      min-height: 62px;
+      padding: 0 40px;
+      margin-top: -2px;
+    }
+
+    @media (max-width: 768px) {
+      min-height: 55px;
+      padding: 0 30px;
+      margin: 0;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      padding: 0 20px;
+    }
+  }
+
+  &__button {
+    border: 0;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: 0.5s linear;
+    cursor: pointer;
+
+    &:hover {
+      filter: invert(68%) sepia(0%) saturate(178%) hue-rotate(229deg)
+        brightness(90%) contrast(84%);
+    }
+  }
+
+  &__button_type_value {
+    width: 38px;
+    height: 31px;
+    background-image: url("../../assets/svg/volume.svg");
+
+    @media (max-width: $breakpoint_large) {
+      background-size: contain;
+      width: 22px;
+      height: 22px;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      background-size: contain;
+      width: 27px;
+      height: 21px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      background-size: contain;
+      width: 18px;
+      height: 14px;
+    }
+  }
+
+  &__button_type_play {
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    top: calc(50% - 152px);
+    /*диаметр значка+85px панель*/
+    left: calc(50% - 110px);
+    background-image: url("../../assets/svg/play_big.svg");
+    z-index: 10;
+
+    @media (max-width: $breakpoint_large) {
+      width: 152px;
+      height: 152px;
+      top: calc(50% - 105px);
+      /*диаметр значка+50px панель*/
+      left: calc(50% - 76px);
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      width: 80px;
+      height: 80px;
+      top: calc(50% - 67px);
+      /*диаметр значка+50px панель*/
+      left: calc(50% - 40px);
+    }
+
+    @media (max-width: $breakpoint_small) {
+      width: 50px;
+      height: 50px;
+      top: calc(50% - 53px);
+      /*диаметр значка+50px панель*/
+      left: calc(50% - 25px);
+    }
+  }
+
+  &__button_type_pause {
+    width: 28px;
+    height: 27px;
+    background-image: url("../../assets/svg/pause.svg");
+    background-size: contain;
+  }
+
+  &__button_type_littleplay {
+    width: 31px;
+    height: 29px;
+    background-image: url("../../assets/svg/play.svg");
+    background-size: contain;
+
+    @media (max-width: $breakpoint_small) {
+      width: 14px;
+      height: 18px;
+    }
+  }
+
+  &__button_mute {
+    width: 38px;
+    height: 34px;
+    background-image: url("../../assets/svg/mute.svg");
+    background-size: contain;
+    margin-top: 4px;
+
+    @media (max-width: $breakpoint_large) {
+      background-size: contain;
+      width: 22px;
+      height: 24px;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      background-size: contain;
+      width: 27px;
+      height: 23px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      background-size: contain;
+      width: 18px;
+      height: 16px;
+    }
+  }
+
+  &__button__type_full-screen {
+    width: 35px;
+    height: 35px;
+    background-image: url("../../assets/svg/Frame.svg");
+
+    @media (max-width: $breakpoint_large) {
+      background-size: contain;
+      width: 26px;
+      height: 26px;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      background-size: contain;
+      width: 27px;
+      height: 27px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      background-size: contain;
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  &__button__type_full-screen_active {
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-image: url("../../assets/svg/fullscreen.svg");
+  }
+
+  &__button_hidden {
+    display: none;
+    padding: 0;
+  }
+
+  &__volume-scroll {
+    -webkit-appearance: none;
+    /*сброс стилей по умолячанию*/
+    -moz-appearance: none;
+    appearance: none;
+    width: 11%;
+    height: 8px;
+    background: linear-gradient(
+      to right,
+      $progress-el 0%,
+      $progress-el 20%,
+      $bt-gray 20%,
+      $bt-gray 100%
+    );
+    transition: 0.5s linear;
+
+    &::-webkit-slider-thumb {
+      width: 15px;
+      height: 15px;
+      background: #fff;
+      border-radius: 50%;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      @media (max-width: $breakpoint_middle) {
+        width: 13px;
+        height: 13px;
+      }
+
+      @media (max-width: $breakpoint_small) {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    @media (max-width: $breakpoint_large) {
+      height: 5px;
+      width: 16.2%;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      width: 72.4%;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      height: 4px;
+      width: 58%;
+    }
+  }
+}
