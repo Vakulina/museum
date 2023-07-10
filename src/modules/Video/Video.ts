@@ -20,6 +20,8 @@ class Video extends Component {
 
   currentValume: number;
 
+  videoProgressListener: null | EventListenerOrEventListenerObject;
+
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
     this.sliderElement = null;
@@ -30,6 +32,7 @@ class Video extends Component {
     this.volumeProgress = null;
     this.progress = null;
     this.btnMuted = null;
+    this.videoProgressListener = null;
     this.currentValume = 0.2;
   }
 
@@ -119,6 +122,13 @@ class Video extends Component {
 
   componentDidMount() {
     this._initPlayer();
+    this.videoProgressListener = () => this.videoProgress(); // Запоминаем функцию обратного вызова в переменной класса
+    this.frame?.addEventListener('timeupdate', this.videoProgressListener);
+  }
+
+  remove() {
+    if (this.videoProgressListener) this.frame?.removeEventListener('timeupdate', this.videoProgressListener);
+    this.dispatchComponentWillUnmount();
   }
 }
 
@@ -144,6 +154,8 @@ export const video = new Video("section", {
         video.videoScroll();
       }
     },
+
   },
 });
-/* progress.addEventListener('input', videoScroll); */
+
+/* video.addEventListener('timeupdate', videoProgress); */

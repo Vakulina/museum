@@ -9,6 +9,7 @@ export abstract class Component {
     INIT: "init",
     FLOW_RENDER: "flow:render",
     FLOW_CDM: "flow:component-did-mount",
+    FLOW_CWU: "flow:component=will-unmount",
   } as const;
 
   protected eventBus: () => EventBus;
@@ -33,16 +34,24 @@ export abstract class Component {
       Component.LIFECYRCLE_EVENTS.FLOW_CDM,
       this.componentDidMount.bind(this),
     );
+    eventBus.on(
+      Component.LIFECYRCLE_EVENTS.FLOW_CWU,
+      this._remove.bind(this),
+    );
   }
 
   protected init() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_RENDER);
   }
 
-  protected componentDidMount() {}
+  protected componentDidMount() { }
 
   protected dispatchComponentDidMount() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CDM);
+  }
+
+  protected dispatchComponentWillUnmount() {
+    this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CWU);
   }
 
   markup() {
@@ -63,6 +72,7 @@ export abstract class Component {
     if (this.props && this.props.events) {
       const { events } = this.props;
       Object.keys(events).forEach((eventName) => {
+        console.log(eventName);
         this.element.addEventListener(eventName, events[eventName]);
       });
     }
@@ -92,9 +102,13 @@ export abstract class Component {
     return children;
   }
 
-  remove(): void {
+  private _remove(): void {
     this._removeEventListeners();
     this.element.remove();
+  }
+
+  remove(): void {
+    this.dispatchComponentWillUnmount();
   }
 
   addClass(className: string): void {
