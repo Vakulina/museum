@@ -10,11 +10,15 @@ class Video extends Component {
 
   volumeProgress: HTMLProgressElement | null;
 
-  frame: HTMLElement | null;
+  frame: HTMLVideoElement | null;
 
   btnBigPlay: HTMLButtonElement | null;
 
   btnPlay: HTMLButtonElement | null;
+
+  btnMuted: HTMLButtonElement | null;
+
+  currentValume: number;
 
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
@@ -23,6 +27,9 @@ class Video extends Component {
     this.volumeProgress = null;
     this.btnBigPlay = null;
     this.btnPlay = null;
+    this.volumeProgress = null;
+    this.btnMuted = null;
+    this.currentValume = 0.2;
   }
 
   markup() {
@@ -30,31 +37,50 @@ class Video extends Component {
     return getTemplate(s);
   }
 
-  getVolume() {
+  private _initPlayer() {
+    this.frame = document.getElementById("custom-player-video") as HTMLVideoElement;
+    this.btnBigPlay = document.querySelector(`.${s['custom-player__button_type_play']}`);
+    this.btnPlay = document.getElementById('play') as HTMLButtonElement;
     this.volumeProgress = document.querySelector(`.${s['custom-player__volume-scroll']}`);
+    this.btnMuted = document.querySelector(`.${s['custom-player__button_type_value']}`);
+  }
+
+  private _getVolume() {
     if (this.volumeProgress) {
       return this.volumeProgress.value / 100;
     }
     return null;
   }
 
-  playsToggle() {
-    this.frame = document.getElementById("custom-player-video");
-    this.btnBigPlay = document.querySelector(`.${s['custom-player__button_type_play']}`);
-    this.btnPlay = document.getElementById('play') as HTMLButtonElement;
+  volumeScroll() {
+    if (this.volumeProgress && this.frame) {
+      this.volumeProgress.style.background = `linear-gradient(to right,   $progress-el 0%,    $progress-el  ${this.volumeProgress.value}%,
+           $bt-gray ${this.volumeProgress.value}%, $bt-gray 100%)`;
+      if ('volume' in this.frame) this.frame.volume = (this.volumeProgress.value) / 100;
+    }
+  }
 
-    const frame = this.frame as HTMLVideoElement;
+  playsToggle() {
     if (!this.frame) return;
     this.btnPlay?.classList.toggle(`${s['custom-player__button_type_pause']}`);
     this.btnPlay?.classList.toggle(`${s['custom-player__button_type_littleplay']}`);
     this.btnBigPlay?.classList.toggle('animation_vanishing');
 
-    if (frame.paused) {
-      frame.volume = this.getVolume() || 0;
-      frame.play();
+    if (this.frame.paused) {
+      this.frame.volume = this._getVolume() || 0;
+      this.frame.play();
     } else {
-      frame.pause();
+      this.frame.pause();
     }
+  }
+
+  mute() {
+    if (!this.frame || !this.volumeProgress) return;
+    this.frame.muted = !this.frame.muted;
+    this.btnMuted?.classList.toggle(`${s['custom-player__button_type_value']}`);
+    this.btnMuted?.classList.toggle(`${s['custom-player__button_mute']}`);
+    this.volumeProgress.value = (this.frame.muted) ? 0 : this.currentValume * 100;
+    this.volumeScroll();
   }
 
   initSlider() { }
@@ -62,9 +88,7 @@ class Video extends Component {
   lazyInitSlider(): void { }
 
   componentDidMount() {
-    "IntersectionObserver" in window
-      ? this.lazyInitSlider()
-      : this.initSlider();
+    this._initPlayer();
   }
 }
 
@@ -76,6 +100,9 @@ export const video = new Video("section", {
       const { id } = target;
       if (target.dataset.btn === "play" || target.dataset.btn === "bigPlay" || id === "custom-player-video") {
         video.playsToggle();
+      }
+      if (target.dataset.btn === "mute") {
+        video.mute();
       }
     },
   },
