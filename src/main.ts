@@ -5,6 +5,7 @@ import { visiting } from "./modules/Visiting";
 import { explore } from "./modules/Explore";
 import { render } from "./utiles.ts/renderDOM";
 import { video } from "./modules/Video";
+import { gallery } from "./modules/Gallery";
 
 document.querySelector<HTMLDivElement>("#app")!.prepend(header.element);
 
@@ -12,3 +13,4 @@ render("#content", welcome);
 render("#content", visiting);
 render("#content", explore);
 render("#content", video);
+render('#content', gallery);
