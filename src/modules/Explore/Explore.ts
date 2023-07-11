@@ -46,8 +46,7 @@ class Explore extends Component {
       const slide = (x: number) => {
         imageElement.style.width = `${x}px`;
         if (this.sliderElement && sliderWidth) {
-          this.sliderElement.style.left = `${
-            imageElement.offsetWidth
+          this.sliderElement.style.left = `${imageElement.offsetWidth
             - this.sliderElement.offsetWidth / 2
             + sliderWidth / 2
             - 20
@@ -79,8 +78,7 @@ class Explore extends Component {
       }
 
       if (this.sliderElement) {
-        imageElement.style.width = `${imageWidth / 2 + 20}px`;
-
+        imageElement.style.width = imageElement.style.width || `${imageWidth / 2 + 20}px`;
         this.sliderElement.addEventListener("pointerdown", slideReady);
         window.addEventListener("pointerup", slideFinish);
       }
@@ -108,9 +106,7 @@ class Explore extends Component {
   }
 
   componentDidMount() {
-    "IntersectionObserver" in window
-      ? this.lazyInitSlider()
-      : this.initSlider();
+    this.lazyInitSlider();
   }
 }
 
