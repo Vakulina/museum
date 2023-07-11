@@ -2,10 +2,11 @@ import { Component, ComponentProps } from "../../services/Component";
 import { getTemplate } from "./template";
 import s from "./Video.module.scss";
 import { ObserverCallback, observer } from "../../services/Observer";
+import {
+  initProperties, removeVideo, setObserver, volumeScroll,
+} from "./utiles";
 
-class Video extends Component {
-  sliderElement: HTMLVideoElement | null;
-
+export class Video extends Component {
   volumeProgress: HTMLProgressElement | null;
 
   progress: HTMLProgressElement | null;
@@ -24,7 +25,6 @@ class Video extends Component {
 
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
-    this.sliderElement = null;
     this.frame = null;
     this.volumeProgress = null;
     this.btnBigPlay = null;
@@ -42,22 +42,16 @@ class Video extends Component {
   }
 
   private _initPlayer() {
-    this.frame = document.getElementById("custom-player-video") as HTMLVideoElement;
-    this.btnBigPlay = document.querySelector(`.${s['custom-player__button_type_play']}`);
-    this.btnPlay = document.getElementById('play') as HTMLButtonElement;
-    this.volumeProgress = document.querySelector(`.${s['custom-player__volume-scroll']}`);
-    this.btnMuted = document.querySelector(`.${s['custom-player__button_type_value']}`);
-    this.progress = document.querySelector(`.${s['custom-player__progress']}`);
-    this.videoElementListeners = { ...this.videoElementListeners, timeupdate: this.videoProgress.bind(this), ended: this.end.bind(this) };
+    initProperties.call(this);
   }
 
   end() {
-    if (!this.frame) return null;
+    if (!this.frame) return;
     this.frame.play();
-    setTimeout(() => this.playsToggle(), 10)
+    setTimeout(() => this.playsToggle(), 10);
   }
 
-  private _getVolume() {
+  getVolume() {
     if (this.volumeProgress) {
       return this.volumeProgress.value / 100;
     }
@@ -65,14 +59,7 @@ class Video extends Component {
   }
 
   volumeScroll() {
-    if (this.volumeProgress && this.frame) {
-      if (this.frame.muted && this._getVolume() !== 0) this.toggleMute();
-      if (!this.frame.muted && this._getVolume() === 0) this.toggleMute();
-      this.volumeProgress.style.background = `linear-gradient(to right,
-         var(--progress-el) 0%, var(--progress-el) ${this.volumeProgress.value}%, var(--bt-gray) ${this.volumeProgress.value}%, var(--bt-gray) 100%)`;
-      this.frame.volume = this._getVolume();
-      this.frame.muted = this._getVolume() === 0;
-    }
+    volumeScroll.call(this);
   }
 
   videoScroll() {
@@ -100,7 +87,7 @@ class Video extends Component {
     this.btnBigPlay?.classList.toggle('animation_vanishing');
 
     if (this.frame.paused) {
-      this.frame.volume = this._getVolume() || 0;
+      this.frame.volume = this.getVolume() || 0;
       this.frame.play();
     } else {
       this.frame.pause();
@@ -123,13 +110,14 @@ class Video extends Component {
     this.volumeScroll();
   }
 
-  initSlider() { }
-
-  lazyInitSlider(): void { }
+  private _setObserver() {
+    setObserver.call(this);
+  }
 
   componentDidMount() {
     this._initPlayer();
     this._addVideoElementListeners();
+    this._setObserver();
   }
 
   private _addVideoElementListeners() {
@@ -141,12 +129,7 @@ class Video extends Component {
   }
 
   remove() {
-    Object.entries(this.videoElementListeners).forEach((item) => {
-      if (!this.frame) return;
-      const [event, callback] = item;
-      this.frame.removeEventListener(event, callback);
-    });
-    this.dispatchComponentWillUnmount();
+    removeVideo.call(this);
   }
 }
 
@@ -175,5 +158,3 @@ export const video = new Video("section", {
 
   },
 });
-
-/* завести стек для хранения слушателей события видео для ended */

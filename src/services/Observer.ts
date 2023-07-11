@@ -69,7 +69,7 @@ export class Observer {
     }
 
     const findIndex = this.findSubscribeIndex(target, callback);
-    if (findIndex !== -1) return null;
+    if (findIndex !== -1) return;
 
     events.push({ callback });
   };

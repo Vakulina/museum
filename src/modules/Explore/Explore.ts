@@ -59,7 +59,7 @@ class Explore extends Component {
         let pos;
 
         if (!clicked) {
-          return null;
+          return;
         }
 
         pos = getCursorPos(evt);
