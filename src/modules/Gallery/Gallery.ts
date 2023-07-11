@@ -2,7 +2,7 @@ import { Component, ComponentProps } from "../../services/Component";
 import { getTemplate } from "./template";
 import s from "./Gallery.module.scss";
 import { ObserverCallback, observer } from "../../services/Observer";
-import { getChildren, shuffledImagesLinks } from "./utiles";
+import { getChildren } from "./utiles";
 
 class Gallery extends Component {
   constructor(target = "section", props: ComponentProps) {
@@ -15,14 +15,22 @@ class Gallery extends Component {
     return getTemplate(s, children);
   }
 
-  initImages() {}
+  initImages() {
+    const listElements = document.querySelectorAll(`.${s.gallery__image}`);
+    const callback: ObserverCallback = (entry, observer) => {
+      const target = entry.target as HTMLImageElement;
+      if (entry.isIntersecting) {
+        target.src = target.dataset.src || '';
+        observer.unobserve(entry.target, callback);
+        entry.target.classList.add("animation_scroll");
+      }
+    };
 
-  initGallery() {}
-
-  lazyInitGallery(): void {}
+    listElements.forEach((item) => observer.observe(item, callback));
+  }
 
   componentDidMount() {
-    this.initGallery();
+    this.initImages();
   }
 }
 const children = await getChildren();

@@ -29,7 +29,6 @@ const shuffle = (arr: string[]) => {
     const elem = arr.splice(random, 1)[0];
     result.push(elem);
   }
-
   return result;
 };
 export const shuffledImagesLinks = shuffle(imagesLinks);
@@ -39,7 +38,15 @@ export const getChildren = async () => {
     const img = document.createElement("img");
     img.classList.add(`${styles.gallery__image}`);
     const imgUrl = new URL(link, import.meta.url).href;
-    img.src = `${imgUrl}`;
+    img.dataset.src = `${imgUrl}`;
+
+    const parts = `${imgUrl}`.split('.');
+    const extension = parts.pop();
+    const filename = parts.join('.');
+    const newFilename = `${filename}_m.${extension}`;
+
+    img.src = newFilename;
+
     img.alt = "";
     return img;
   };
