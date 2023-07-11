@@ -13,4 +13,4 @@ render("#content", welcome);
 render("#content", visiting);
 render("#content", explore);
 render("#content", video);
-render('#content', gallery);
+render("#content", gallery);

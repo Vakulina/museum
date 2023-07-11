@@ -3,7 +3,10 @@ import { getTemplate } from "./template";
 import s from "./Video.module.scss";
 import { ObserverCallback, observer } from "../../services/Observer";
 import {
-  initProperties, removeVideo, setObserver, volumeScroll,
+  initProperties,
+  removeVideo,
+  setObserver,
+  volumeScroll,
 } from "./utiles";
 
 export class Video extends Component {
@@ -21,7 +24,9 @@ export class Video extends Component {
 
   currentValume: number;
 
-  videoElementListeners: { [event: string]: EventListenerOrEventListenerObject };
+  videoElementListeners: {
+    [event: string]: EventListenerOrEventListenerObject;
+  };
 
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
@@ -66,7 +71,9 @@ export class Video extends Component {
     if (!this.progress || !this.frame) return;
     const { value } = this.progress;
     this.progress.style.background = `linear-gradient(to right,  var(--progress-el) 0%,  
-    var(--progress-el) ${value / 100}%, var(--bt-gray) ${value / 100}%, var(--bt-gray) 100%)`;
+    var(--progress-el) ${value / 100}%, var(--bt-gray) ${
+  value / 100
+}%, var(--bt-gray) 100%)`;
     const durationInSeconds = Math.floor(this.frame.duration);
     const roundedValue = Math.floor(value);
     const intermediateResult = (durationInSeconds * roundedValue) / 10000;
@@ -77,14 +84,18 @@ export class Video extends Component {
     if (!this.progress || !this.frame) return;
     this.progress.value = (this.frame.currentTime / this.frame.duration) * 10000 || 0;
     this.progress.style.background = `linear-gradient(to right,  var(--progress-el) 0%,  var(--progress-el)
-     ${this.progress.value / 100}%, var(--bt-gray) ${this.progress.value / 100}%, var(--bt-gray) 100%)`;
+     ${this.progress.value / 100}%, var(--bt-gray) ${
+  this.progress.value / 100
+}%, var(--bt-gray) 100%)`;
   }
 
   playsToggle() {
     if (!this.frame) return;
-    this.btnPlay?.classList.toggle(`${s['custom-player__button_type_pause']}`);
-    this.btnPlay?.classList.toggle(`${s['custom-player__button_type_littleplay']}`);
-    this.btnBigPlay?.classList.toggle('animation_vanishing');
+    this.btnPlay?.classList.toggle(`${s["custom-player__button_type_pause"]}`);
+    this.btnPlay?.classList.toggle(
+      `${s["custom-player__button_type_littleplay"]}`,
+    );
+    this.btnBigPlay?.classList.toggle("animation_vanishing");
 
     if (this.frame.paused) {
       this.frame.volume = this.getVolume() || 0;
@@ -99,11 +110,13 @@ export class Video extends Component {
     this.frame.muted = !this.frame.muted;
 
     if (!this.frame.muted) {
-      this.btnMuted?.classList.add(`${s['custom-player__button_type_value']}`);
-      this.btnMuted?.classList.remove(`${s['custom-player__button_mute']}`);
+      this.btnMuted?.classList.add(`${s["custom-player__button_type_value"]}`);
+      this.btnMuted?.classList.remove(`${s["custom-player__button_mute"]}`);
     } else {
-      this.btnMuted?.classList.remove(`${s['custom-player__button_type_value']}`);
-      this.btnMuted?.classList.add(`${s['custom-player__button_mute']}`);
+      this.btnMuted?.classList.remove(
+        `${s["custom-player__button_type_value"]}`,
+      );
+      this.btnMuted?.classList.add(`${s["custom-player__button_mute"]}`);
     }
 
     this.volumeProgress.value = this.frame.muted ? 0 : this.currentValume * 100;
@@ -139,7 +152,11 @@ export const video = new Video("section", {
     click(e: MouseEvent) {
       const target = e.target as HTMLElement;
       const { id } = target;
-      if (target.dataset.btn === "play" || target.dataset.btn === "bigPlay" || id === "custom-player-video") {
+      if (
+        target.dataset.btn === "play"
+        || target.dataset.btn === "bigPlay"
+        || id === "custom-player-video"
+      ) {
         video.playsToggle();
       }
       if (target.dataset.btn === "mute") {
@@ -155,6 +172,5 @@ export const video = new Video("section", {
         video.videoScroll();
       }
     },
-
   },
 });

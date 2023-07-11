@@ -23,19 +23,31 @@ export function volumeScroll(this: any) {
 }
 
 export function initProperties(this: any) {
-  this.frame = document.getElementById("custom-player-video") as HTMLVideoElement;
-  this.btnBigPlay = document.querySelector(`.${s['custom-player__button_type_play']}`);
-  this.btnPlay = document.getElementById('play') as HTMLButtonElement;
-  this.volumeProgress = document.querySelector(`.${s['custom-player__volume-scroll']}`);
-  this.btnMuted = document.querySelector(`.${s['custom-player__button_type_value']}`);
-  this.progress = document.querySelector(`.${s['custom-player__progress']}`);
-  this.videoElementListeners = { ...this.videoElementListeners, timeupdate: this.videoProgress.bind(this), ended: this.end.bind(this) };
+  this.frame = document.getElementById(
+    "custom-player-video",
+  ) as HTMLVideoElement;
+  this.btnBigPlay = document.querySelector(
+    `.${s["custom-player__button_type_play"]}`,
+  );
+  this.btnPlay = document.getElementById("play") as HTMLButtonElement;
+  this.volumeProgress = document.querySelector(
+    `.${s["custom-player__volume-scroll"]}`,
+  );
+  this.btnMuted = document.querySelector(
+    `.${s["custom-player__button_type_value"]}`,
+  );
+  this.progress = document.querySelector(`.${s["custom-player__progress"]}`);
+  this.videoElementListeners = {
+    ...this.videoElementListeners,
+    timeupdate: this.videoProgress.bind(this),
+    ended: this.end.bind(this),
+  };
 }
 
 export function setObserver(this: any) {
   if (!this.frame) return;
   const callback: ObserverCallback = (entry, oserver) => {
-    if ((!entry.isIntersecting) && (!this.frame.paused)) {
+    if (!entry.isIntersecting && !this.frame.paused) {
       this.playsToggle();
     }
   };

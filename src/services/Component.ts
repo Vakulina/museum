@@ -34,17 +34,14 @@ export abstract class Component {
       Component.LIFECYRCLE_EVENTS.FLOW_CDM,
       this.componentDidMount.bind(this),
     );
-    eventBus.on(
-      Component.LIFECYRCLE_EVENTS.FLOW_CWU,
-      this._remove.bind(this),
-    );
+    eventBus.on(Component.LIFECYRCLE_EVENTS.FLOW_CWU, this._remove.bind(this));
   }
 
   protected init() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_RENDER);
   }
 
-  protected componentDidMount() { }
+  protected componentDidMount() {}
 
   protected dispatchComponentDidMount() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CDM);

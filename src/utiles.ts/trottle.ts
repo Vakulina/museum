@@ -1,5 +1,5 @@
 function throttle(callee: Function, timeout: number) {
-  let timer:any;
+  let timer: any;
   let lastArgs: any[];
 
   return function perform(...args: any) {

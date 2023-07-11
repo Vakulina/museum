@@ -64,7 +64,6 @@ ol {
 @keyframes vanishing {
   0% {
     opacity: 1;
-
   }
 
   100% {
