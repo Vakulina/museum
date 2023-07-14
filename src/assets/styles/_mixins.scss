@@ -6,6 +6,21 @@
   }
 }
 
+@mixin two-columns {
+  width: 100%;
+  display: flex;
+  column-gap: 60px;
+  flex-basis: calc(50% - 30px);
+  padding-top: 103px;
+
+  @media (max-width: $breakpoint_large){
+      column-gap: 40px;
+      flex-basis: auto;
+      padding-top: 63px;
+  }
+}
+
+
 @mixin container {
   box-sizing: border-box;
   max-width: 1440px;

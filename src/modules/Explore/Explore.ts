@@ -78,7 +78,7 @@ class Explore extends Component {
       }
 
       if (this.sliderElement) {
-        imageElement.style.width = imageElement.style.width || `${imageWidth / 2 + 20}px`;
+        imageElement.style.width = `${(imageWidth / 2) + 20}px`;
         this.sliderElement.addEventListener("pointerdown", slideReady);
         window.addEventListener("pointerup", slideFinish);
       }
@@ -98,11 +98,12 @@ class Explore extends Component {
     );
     const callback: ObserverCallback = (entry, observer) => {
       if (!entry.isIntersecting) return;
+      console.log(entry);
       this.initSlider();
       observer.unobserve(entry.target, callback);
     };
 
-    if (this.overlayElement) observer.observe(this.overlayElement, callback);
+    if (this.overlayElement && this.sliderElement) observer.observe(this.sliderElement, callback);
   }
 
   componentDidMount() {

@@ -6,6 +6,8 @@ import { explore } from "./modules/Explore";
 import { render } from "./utiles.ts/renderDOM";
 import { video } from "./modules/Video";
 import { gallery } from "./modules/Gallery";
+import { parallax } from "./modules/Parralax";
+import { contacts } from "./modules/Contacts";
 
 document.querySelector<HTMLDivElement>("#app")!.prepend(header.element);
 
@@ -14,3 +16,5 @@ render("#content", visiting);
 render("#content", explore);
 render("#content", video);
 render("#content", gallery);
+render("#content", parallax);
+render("#content", contacts);

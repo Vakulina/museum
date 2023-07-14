@@ -25,7 +25,7 @@ export abstract class Component {
   }
 
   private _registerLifecyrcleStages(eventBus: EventBus): void {
-    eventBus.on(Component.LIFECYRCLE_EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Component.LIFECYRCLE_EVENTS.INIT, this._init.bind(this));
     eventBus.on(
       Component.LIFECYRCLE_EVENTS.FLOW_RENDER,
       this.render.bind(this),
@@ -37,17 +37,17 @@ export abstract class Component {
     eventBus.on(Component.LIFECYRCLE_EVENTS.FLOW_CWU, this._remove.bind(this));
   }
 
-  protected init() {
+  private _init() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_RENDER);
   }
 
   protected componentDidMount() {}
 
-  protected dispatchComponentDidMount() {
+  dispatchComponentDidMount() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CDM);
   }
 
-  protected dispatchComponentWillUnmount() {
+  private dispatchComponentWillUnmount() {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CWU);
   }
 
