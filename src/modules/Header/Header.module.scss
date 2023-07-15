@@ -190,6 +190,7 @@
       background-size: 32px 24px;
       background-repeat: no-repeat;
     }
+
     @include logo;
   }
 
@@ -263,7 +264,32 @@
     }
   }
 
+  &__social-link {
+    @include social-link;
+
+    &_youtube {
+      @include youtube-link;
+    }
+
+    &_twitter {
+      @include twitter-link;
+    }
+
+    &_pinterest {
+      @include pinterest-link;
+    }
+
+    &_facebook {
+      @include facebook-link;
+    }
+
+    &_instagram {
+      @include instagram-link;
+    }
+  }
+
   &__social-list {
+    @include social-list;
     display: none;
 
     @include media($breakpoint_middle) {
@@ -324,6 +350,7 @@
   &_open &__main-menu {
     left: 0px;
   }
+
   &_open &__title {
     padding-left: 20px;
 
@@ -331,6 +358,7 @@
       padding-left: 25px;
     }
   }
+
   @include media($breakpoint_large) {
     padding: 49px 0 48px 0;
   }

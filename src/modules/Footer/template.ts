@@ -18,23 +18,23 @@ export const getTemplate = (styles: any) => `
 </nav>
 
         <ul class="${styles["footer__social-list"]}">
-        <li class="${styles['footer__social-item']}">
+        <li>
             <a class="${styles['footer__social-link']} ${styles['footer__social-link_youtube']}"
                 href="https://www.youtube.com/user/louvre" target="_blank"></a>
         </li>
-        <li class="${styles['footer__social-item']}">
+        <li>
             <a class="${styles['footer__social-link']} ${styles['footer__social-link_instagram']}"
                 href="https://www.instagram.com/museelouvre/" target="_blank"></a>
         </li>
-        <li class="${styles['footer__social-item']}">
+        <li>
             <a class="${styles['footer__social-link']} ${styles['footer__social-link_facebook']}"
                 href="https://www.facebook.com/museedulouvre" target="_blank"></a>
         </li>
-        <li class="${styles['footer__social-item']}">
+        <li>
             <a class="${styles['footer__social-link']} ${styles['footer__social-link_twitter']}"
                 href="http://twitter.com/museelouvre" target="_blank"></a>
         </li>
-        <li class="${styles['footer__social-item']}">
+        <li>
             <a class="${styles['footer__social-link']} ${styles['footer__social-link_pinterest']}"
                 href="https://www.pinterest.fr/museedulouvre/" target="_blank"></a>
         </li>

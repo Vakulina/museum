@@ -42,25 +42,25 @@ export const getTemplate = (styles: any) => `
 
         </div>
         <div class="${styles.header__line}"></div>
-        <ul class="social-list ${styles["header__social-list"]}">
-            <li class="social-list__social-item">
-                <a class="social-list__soc-link social-list__soc-link_youtube"
+        <ul class="${styles["header__social-list"]}">
+            <li>
+                <a class="${styles["header__social-link"]} ${styles["header__social-link_youtube"]}"
                     href="https://www.youtube.com/user/louvre" target="_blank"></a>
             </li>
-            <li class="social-list__social-item">
-                <a class="social-list__soc-link social-list__soc-link_instagram"
+            <li>
+                <a class="${styles["header__social-link"]}  ${styles["header__social-link_instagram"]} "
                     href="https://www.instagram.com/museelouvre/" target="_blank"></a>
             </li>
-            <li class="social-list__social-item">
-                <a class="social-list__soc-link social-list__soc-link_facebook"
+            <li>
+                <a class="${styles["header__social-link"]} ${styles["header__social-link_facebook"]}"
                     href="https://www.facebook.com/museedulouvre" target="_blank"></a>
             </li>
-            <li class="social-list__social-item">
-                <a class="social-list__soc-link social-list__soc-link_twitter"
+            <li>
+                <a class=" ${styles["header__social-link"]} ${styles["header__social-link_twitter"]}"
                     href="http://twitter.com/museelouvre" target="_blank"></a>
             </li>
-            <li class="social-list__social-item">
-                <a class="social-list__soc-link social-list__soc-link_pinterest"
+            <li>
+                <a class=" ${styles["header__social-link"]} ${styles["header__social-link_pinterest"]}"
                     href="https://www.pinterest.fr/museedulouvre/" target="_blank"></a>
             </li>
         </ul>
