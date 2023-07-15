@@ -8,7 +8,8 @@ import { video } from "./modules/Video";
 import { gallery } from "./modules/Gallery";
 import { parallax } from "./modules/Parralax";
 import { contacts } from "./modules/Contacts";
+import {footer} from './modules/Footer'
 
 document.querySelector<HTMLDivElement>("#app")!.prepend(header.element);
 
-render("#content", [welcome, visiting, explore, video, gallery, parallax, contacts]);
+render("#content", [welcome, visiting, explore, video, gallery, parallax, contacts, footer]);

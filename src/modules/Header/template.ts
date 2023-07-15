@@ -6,9 +6,9 @@ import minMenu2Img from "../../assets/img/image450_2.jpg";
 import minMenu3Img from "../../assets/img/image450_3.jpg";
 
 export const getTemplate = (styles: any) => `
-<div class="container ${styles.header__container}">
+<div class="${styles.header__container}">
     <a class="${styles["header__logo-link"]}" href="#tickets">
-        <div class="logo ${styles.header__logo}"></div>
+        <div class="${styles.header__logo}"></div>
         <h1 class="${styles.header__title}">Louvre</h1>
     </a>
     <div class="${styles.header__burger}" data-btn='toogle-burger'>

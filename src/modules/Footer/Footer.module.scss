@@ -1,0 +1,256 @@
+@import "../../assets/styles/_variables";
+@import "../../assets/styles/_mixins";
+
+.footer {
+  background-color: $bg-dark;
+  padding: 85px 0 50px 0;
+  &__link {
+    text-decoration: none;
+    font-weight: 200;
+    font-size: 22px;
+    text-decoration: none;
+    font-size: $font3;
+    color: $font-light;
+    letter-spacing: 2px;
+    transition: 0.5s linear;
+    margin-top: 4px;
+
+    &:hover {
+      color: $gold-hover;
+    }
+
+    &:active {
+      color: $gold-active;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+  }
+
+
+  &__social-list {
+    @include social-list;
+    list-style: none;
+    display: flex;
+    align-self: flex-end;
+    justify-self: flex-end;
+    width: 340px;
+    justify-content: space-between;
+
+    @media (max-width: 950px) {
+      margin: 20px 90px 0 auto;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      margin: 20px auto 0 auto;
+    }
+  }
+
+
+  &__social-link {
+    @include social-link;
+    display: block;
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 23px;
+    transition: 0.5s linear;
+
+    &_youtube{
+      @include youtube-link;
+    }
+
+    &_twitter{
+      @include twitter-link;
+    }
+    &_pinterest{
+      @include pinterest-link;
+    }
+    &_facebook{
+      @include facebook-link;
+    }
+    &_instagram{
+      @include instagram-link;
+    }
+    &:hover {
+      filter: invert(53%) sepia(46%) saturate(256%) hue-rotate(356deg) brightness(93%) contrast(89%);
+    }
+
+    &:active {
+      filter: invert(43%) sepia(6%) saturate(1946%) hue-rotate(357deg) brightness(95%) contrast(83%);
+    }
+
+    @media (max-width: 950px) {
+      margin-bottom: 10px;
+    }
+  }
+
+
+  &__paragraf {
+    font-family: 'Forum', 'Roman', serif;
+    font-size: $font-logo;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 5px;
+    text-align: left;
+    text-transform: uppercase;
+    color: $font-light;
+    margin-top: 0;
+    padding-top: 0;
+    margin-top: -5px;
+    transition: 1s linear;
+
+
+    @media (max-width: 1100px) {
+      margin-top: -8px;
+    }
+
+
+    @media (max-width: 500px) {
+      margin-top: 0px;
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+
+  &__logo-link:hover &__paragraf {
+    color: $font-gold;
+  }
+
+  &__nav {
+    display: flex;
+    padding-left: 141px;
+    justify-content: flex-start;
+    flex-grow: 1;
+    gap: 171px;
+
+    @media (max-width:$breakpoint_large) {
+      padding-left: 40px;
+      gap: 120px;
+    }
+
+    @media (max-width:$breakpoint_middle) {
+      padding-left: 96px;
+      gap: 180px;
+    }
+
+    @media (max-width: 500px) {
+      padding-left: 0px;
+      margin-top: 30px;
+      gap: 98px;
+    }
+  }
+
+  &__container {
+    @include container;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    max-width: 1440px;
+
+    @media (max-width:$breakpoint_middle) {
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  &__logo-link {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    text-decoration: none;
+  }
+
+  &__logo-link:hover &__logo,
+  &__logo-link:active &__logo {
+    background-image: url("../../assets/svg/logo_gold.svg");
+  }
+
+  &__logo {
+    @include logo;
+    transition: background 1s linear;
+
+    @media (max-width: 500px) {
+      width: 29px;
+      height: 16px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-y: top;
+      margin-top: -3px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+  }
+
+
+  &__line {
+    width: 100%;
+    height: 3px;
+    background-color: #999;
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    @media (max-width: $breakpoint_large) {
+      height: 2px;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__item {
+    height: 50px;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 500px) {
+    &__coopiright &__link {
+      display: none;
+    }
+  }
+
+  &__coopiright {
+    color: $font-light;
+    font-size: $font3;
+    font-weight: 200;
+    line-height: 22px;
+    letter-spacing: 2px;
+    margin: 0;
+
+    @media (max-width: $breakpoint_middle) {
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    @media (max-width:$breakpoint_small) {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  @media (max-width: $breakpoint_middle) {
+    padding: 50px 0 50px 0;
+  }
+}
