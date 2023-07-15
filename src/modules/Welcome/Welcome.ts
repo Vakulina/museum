@@ -30,9 +30,6 @@ class Welcome extends Component {
         bulletClass: `${s["image-pagination__bullet"]}`,
         bulletActiveClass: `${s["image-pagination__bullet_active"]}`,
         type: "bullets",
-        renderFraction(currentClass, totalClass) {
-          return `<span class="${currentClass}">Slide # ${totalClass}</span>`;
-        },
       },
     });
 

@@ -25,7 +25,7 @@ class Explore extends Component {
       function slideFinish() {
         clicked = 0;
       }
-      const imageWidth = imageElement.offsetWidth;
+      const imageWidth = imageElement.offsetWidth * 2 - 40;
       const sliderWidth = this.sliderElement
         ? Number(
           window
@@ -78,7 +78,7 @@ class Explore extends Component {
       }
 
       if (this.sliderElement) {
-        imageElement.style.width = `${(imageWidth / 2) + 20}px`;
+        imageElement.style.width = `calc(50% + 20px)`;
         this.sliderElement.addEventListener("pointerdown", slideReady);
         window.addEventListener("pointerup", slideFinish);
       }
