@@ -11,10 +11,4 @@ import { contacts } from "./modules/Contacts";
 
 document.querySelector<HTMLDivElement>("#app")!.prepend(header.element);
 
-render("#content", welcome);
-render("#content", visiting);
-render("#content", explore);
-render("#content", video);
-render("#content", gallery);
-render("#content", parallax);
-render("#content", contacts);
+render("#content", [welcome, visiting, explore, video, gallery, parallax, contacts]);

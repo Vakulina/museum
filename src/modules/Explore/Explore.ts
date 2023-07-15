@@ -98,7 +98,6 @@ class Explore extends Component {
     );
     const callback: ObserverCallback = (entry, observer) => {
       if (!entry.isIntersecting) return;
-      console.log(entry);
       this.initSlider();
       observer.unobserve(entry.target, callback);
     };

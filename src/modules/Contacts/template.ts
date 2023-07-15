@@ -1,9 +1,7 @@
-import menu1Img from "../../assets/img/menu1.png";
-
 export const getTemplate = (styles: any) => `
-<div class="${styles.contacts__container}">
+<div class="${styles.contacts__container}" >
     <h2 class="${styles.contacts__title}">Contacts</h2>
-    <div class="${styles.contacts__columns}">
+    <div class="${styles.contacts__columns}" >
         <div class="${styles.contacts__adress}">
             <p class="${styles.contacts__paragraf}">Palais Royal</p>
             <p class="${styles.contacts__paragraf}">Musee du Louvre</p>
