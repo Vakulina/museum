@@ -100,7 +100,7 @@ export abstract class Component {
 
   private _remove(): void {
     this._removeEventListeners();
-    this.componentWillUnmount()
+    this.componentWillUnmount();
     this.element.remove();
   }
 
@@ -108,9 +108,7 @@ export abstract class Component {
     this.dispatchComponentWillUnmount();
   }
 
-  componentWillUnmount() {
-
-  }
+  componentWillUnmount() {}
 
   addClass(className: string): void {
     this.element.classList.add(className);

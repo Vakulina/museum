@@ -160,3 +160,10 @@
 @mixin facebook-link {
   background-image: url("../../assets/svg/Facebook.svg");
 }
+
+@mixin input-text {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  color: $font-inForm;
+}

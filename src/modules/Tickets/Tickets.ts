@@ -3,8 +3,13 @@ import { getTemplate } from "./template";
 import { TicketType } from "../../utiles.ts/types";
 import s from "./Tickets.module.scss";
 import { Modal } from "../../components/Modal";
+import { orderElement } from "../Order";
 
-export const modalWithForm = new Modal("div", {});
+console.log(orderElement.innerHTML);
+
+export const modalWithForm = new Modal("div", {
+  children: [orderElement],
+});
 class Tickets extends Component {
   basicTickets: number;
 
@@ -43,9 +48,9 @@ class Tickets extends Component {
     let selectedType;
     this.listTicketsTypes?.forEach((radioButton) => {
       if (
-        radioButton instanceof HTMLInputElement
-        && radioButton.type === "radio"
-        && radioButton.checked
+        radioButton instanceof HTMLInputElement &&
+        radioButton.type === "radio" &&
+        radioButton.checked
       ) {
         selectedType = radioButton.id;
       }
@@ -97,8 +102,9 @@ class Tickets extends Component {
 
   calculation() {
     const price = this.getPrice();
-    const sum = price * this.basicTickets
-      + price * this.discountForSenior * this.seniorTickets;
+    const sum =
+      price * this.basicTickets +
+      price * this.discountForSenior * this.seniorTickets;
     this.setSum(sum);
     return sum;
   }
@@ -140,7 +146,7 @@ export const tickets = new Tickets("section", {
   events: {
     click(e: MouseEvent) {
       if (!(e.target instanceof HTMLElement)) return;
-      if (e.target.id === 'buyBtn') {
+      if (e.target.id === "buyBtn") {
         modalWithForm.activate();
       }
 

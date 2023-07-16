@@ -16,24 +16,28 @@ export class Modal extends Component {
   }
 
   protected componentDidMount(): void {
-    this.overlay = this.element.querySelector(`.${s.modal__overlay}`) as HTMLElement;
-    this.closeButton = this.element.querySelector(`.${s.modal__close}`) as HTMLElement;
-    this.closeButton.addEventListener('click', this.close.bind(this));
-    this.overlay.addEventListener('click', this.close.bind(this));
-    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+    this.overlay = this.element.querySelector(
+      `.${s.modal__overlay}`,
+    ) as HTMLElement;
+    this.closeButton = this.element.querySelector(
+      `.${s.modal__close}`,
+    ) as HTMLElement;
+    this.closeButton.addEventListener("click", this.close.bind(this));
+    this.overlay.addEventListener("click", this.close.bind(this));
+    document.addEventListener("keydown", this.handleKeyDown.bind(this));
   }
 
   componentWillUnmount() {
-    this.closeButton?.removeEventListener('click', this.close.bind(this));
-    this.overlay?.removeEventListener('click', this.close.bind(this));
-    document.removeEventListener('keydown', this.handleKeyDown.bind(this));
+    this.closeButton?.removeEventListener("click", this.close.bind(this));
+    this.overlay?.removeEventListener("click", this.close.bind(this));
+    document.removeEventListener("keydown", this.handleKeyDown.bind(this));
   }
 
   markup() {
-    // const children = this.getInitChildren();
+    const children = this.getInitChildren();
     this.props!.classes = s.modal;
     this.addAttribute("id", "modal");
-    return getTemplate(s);
+    return getTemplate(s, children);
   }
 
   activate() {
@@ -57,7 +61,7 @@ export class Modal extends Component {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Escape' && this.isActive()) {
+    if (event.key === "Escape" && this.isActive()) {
       this.close();
     }
   }
