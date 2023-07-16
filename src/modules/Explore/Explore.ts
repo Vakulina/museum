@@ -28,11 +28,11 @@ class Explore extends Component {
       const imageWidth = imageElement.offsetWidth * 2 - 40;
       const sliderWidth = this.sliderElement
         ? Number(
-          window
-            .getComputedStyle(this.sliderElement, null)
-            .getPropertyValue("width")
-            .slice(0, -2),
-        )
+            window
+              .getComputedStyle(this.sliderElement, null)
+              .getPropertyValue("width")
+              .slice(0, -2),
+          )
         : null;
 
       function getCursorPos(evt: MouseEvent) {
@@ -46,10 +46,11 @@ class Explore extends Component {
       const slide = (x: number) => {
         imageElement.style.width = `${x}px`;
         if (this.sliderElement && sliderWidth) {
-          this.sliderElement.style.left = `${imageElement.offsetWidth
-            - this.sliderElement.offsetWidth / 2
-            + sliderWidth / 2
-            - 20
+          this.sliderElement.style.left = `${
+            imageElement.offsetWidth -
+            this.sliderElement.offsetWidth / 2 +
+            sliderWidth / 2 -
+            20
           }px`;
         }
       };
@@ -102,7 +103,8 @@ class Explore extends Component {
       observer.unobserve(entry.target, callback);
     };
 
-    if (this.overlayElement && this.sliderElement) observer.observe(this.sliderElement, callback);
+    if (this.overlayElement && this.sliderElement)
+      observer.observe(this.sliderElement, callback);
   }
 
   componentDidMount() {

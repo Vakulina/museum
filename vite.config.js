@@ -16,6 +16,6 @@ export default {
   },
 
   optimizeDeps: {
-    include: ['mapbox-gl']
-  }
+    include: ["mapbox-gl"],
+  },
 };

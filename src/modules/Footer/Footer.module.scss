@@ -32,9 +32,7 @@
       font-size: 16px;
       line-height: 19px;
     }
-
   }
-
 
   &__social-list {
     @include social-list;
@@ -46,14 +44,9 @@
     justify-content: space-between;
 
     @media (max-width: 950px) {
-      margin: 20px 90px 0 auto;
-    }
-
-    @media (max-width: $breakpoint_middle) {
       margin: 20px auto 0 auto;
     }
   }
-
 
   &__social-link {
     @include social-link;
@@ -64,28 +57,30 @@
     margin-bottom: 23px;
     transition: 0.5s linear;
 
-    &_youtube{
+    &_youtube {
       @include youtube-link;
     }
 
-    &_twitter{
+    &_twitter {
       @include twitter-link;
     }
-    &_pinterest{
+    &_pinterest {
       @include pinterest-link;
     }
-    &_facebook{
+    &_facebook {
       @include facebook-link;
     }
-    &_instagram{
+    &_instagram {
       @include instagram-link;
     }
     &:hover {
-      filter: invert(53%) sepia(46%) saturate(256%) hue-rotate(356deg) brightness(93%) contrast(89%);
+      filter: invert(53%) sepia(46%) saturate(256%) hue-rotate(356deg)
+        brightness(93%) contrast(89%);
     }
 
     &:active {
-      filter: invert(43%) sepia(6%) saturate(1946%) hue-rotate(357deg) brightness(95%) contrast(83%);
+      filter: invert(43%) sepia(6%) saturate(1946%) hue-rotate(357deg)
+        brightness(95%) contrast(83%);
     }
 
     @media (max-width: 950px) {
@@ -93,9 +88,8 @@
     }
   }
 
-
   &__paragraf {
-    font-family: 'Forum', 'Roman', serif;
+    font-family: "Forum", "Roman", serif;
     font-size: $font-logo;
     font-style: normal;
     font-weight: 400;
@@ -109,11 +103,9 @@
     margin-top: -5px;
     transition: 1s linear;
 
-
     @media (max-width: 1100px) {
       margin-top: -8px;
     }
-
 
     @media (max-width: 500px) {
       margin-top: 0px;
@@ -133,12 +125,12 @@
     flex-grow: 1;
     gap: 171px;
 
-    @media (max-width:$breakpoint_large) {
+    @media (max-width: $breakpoint_large) {
       padding-left: 40px;
       gap: 120px;
     }
 
-    @media (max-width:$breakpoint_middle) {
+    @media (max-width: $breakpoint_middle) {
       padding-left: 96px;
       gap: 180px;
     }
@@ -156,8 +148,9 @@
     width: 100%;
     justify-content: space-between;
     max-width: 1440px;
+    flex-wrap: wrap;
 
-    @media (max-width:$breakpoint_middle) {
+    @media (max-width: $breakpoint_middle) {
       flex-wrap: wrap;
     }
 
@@ -202,9 +195,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
   }
-
 
   &__line {
     width: 100%;
@@ -244,7 +235,7 @@
       line-height: 21px;
     }
 
-    @media (max-width:$breakpoint_small) {
+    @media (max-width: $breakpoint_small) {
       font-size: 16px;
       line-height: 19px;
     }

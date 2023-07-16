@@ -6,10 +6,21 @@ import { explore } from "./modules/Explore";
 import { render } from "./utiles.ts/renderDOM";
 import { video } from "./modules/Video";
 import { gallery } from "./modules/Gallery";
+import { tickets } from "./modules/Tickets";
 import { parallax } from "./modules/Parralax";
 import { contacts } from "./modules/Contacts";
-import {footer} from './modules/Footer'
+import { footer } from "./modules/Footer";
 
 document.querySelector<HTMLDivElement>("#app")!.prepend(header.element);
 
-render("#content", [welcome, visiting, explore, video, gallery, parallax, contacts, footer]);
+render("#content", [
+  welcome,
+  visiting,
+  explore,
+  video,
+  gallery,
+  tickets,
+  parallax,
+  contacts,
+  footer,
+]);

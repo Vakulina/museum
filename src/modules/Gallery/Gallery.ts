@@ -20,7 +20,7 @@ class Gallery extends Component {
     const callback: ObserverCallback = (entry, observer) => {
       const target = entry.target as HTMLImageElement;
       if (entry.isIntersecting) {
-        target.src = target.dataset.src || '';
+        target.src = target.dataset.src || "";
         observer.unobserve(entry.target, callback);
         entry.target.classList.add("animation_scroll");
       }

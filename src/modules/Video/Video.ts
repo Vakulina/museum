@@ -72,8 +72,8 @@ export class Video extends Component {
     const { value } = this.progress;
     this.progress.style.background = `linear-gradient(to right,  var(--progress-el) 0%,  
     var(--progress-el) ${value / 100}%, var(--bt-gray) ${
-  value / 100
-}%, var(--bt-gray) 100%)`;
+      value / 100
+    }%, var(--bt-gray) 100%)`;
     const durationInSeconds = Math.floor(this.frame.duration);
     const roundedValue = Math.floor(value);
     const intermediateResult = (durationInSeconds * roundedValue) / 10000;
@@ -82,11 +82,12 @@ export class Video extends Component {
 
   videoProgress() {
     if (!this.progress || !this.frame) return;
-    this.progress.value = (this.frame.currentTime / this.frame.duration) * 10000 || 0;
+    this.progress.value =
+      (this.frame.currentTime / this.frame.duration) * 10000 || 0;
     this.progress.style.background = `linear-gradient(to right,  var(--progress-el) 0%,  var(--progress-el)
      ${this.progress.value / 100}%, var(--bt-gray) ${
-  this.progress.value / 100
-}%, var(--bt-gray) 100%)`;
+       this.progress.value / 100
+     }%, var(--bt-gray) 100%)`;
   }
 
   playsToggle() {
@@ -153,9 +154,9 @@ export const video = new Video("section", {
       const target = e.target as HTMLElement;
       const { id } = target;
       if (
-        target.dataset.btn === "play"
-        || target.dataset.btn === "bigPlay"
-        || id === "custom-player-video"
+        target.dataset.btn === "play" ||
+        target.dataset.btn === "bigPlay" ||
+        id === "custom-player-video"
       ) {
         video.playsToggle();
       }

@@ -40,9 +40,9 @@ export const getChildren = async () => {
     const imgUrl = new URL(link, import.meta.url).href;
     img.dataset.src = `${imgUrl}`;
 
-    const parts = `${imgUrl}`.split('.');
+    const parts = `${imgUrl}`.split(".");
     const extension = parts.pop();
-    const filename = parts.join('.');
+    const filename = parts.join(".");
     const newFilename = `${filename}_m.${extension}`;
 
     img.src = newFilename;

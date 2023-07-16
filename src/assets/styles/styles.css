@@ -6,8 +6,13 @@ body {
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  box-sizing: border-box;
 }
-
+main {
+  max-width: 100%;
+  box-sizing: border-box;
+}
 *,
 *::before,
 *::after {
@@ -55,15 +60,15 @@ ol {
 
 @keyframes scroll {
   0% {
-    transform: translate(0px, 40% ) scale(0.8);
-    }
-      
-    100%{
-      transform: translate(0px, 0px ) scale(1);
-      opacity: 1;
-    }
+    transform: translate(0px, 40%) scale(0.8);
   }
-  .animation_scroll {
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
     opacity: 1;
-    animation: scroll 1s ease-out    forwards;
   }
+}
+.animation_scroll {
+  opacity: 1;
+  animation: scroll 1s ease-out forwards;
+}

@@ -1,6 +1,6 @@
 export const getTemplate = (styles: any) => `
-<div class="container ${styles.footer__container}">
-<a class="${styles['footer__logo-link']}" href="./index.html">
+<div class="${styles.footer__container}">
+<a class="${styles["footer__logo-link"]}" href="./index.html">
     <div class="${styles.footer__logo}"></div>
     <p class="${styles.footer__paragraf}">Louvre</p>
 </a>
@@ -19,23 +19,23 @@ export const getTemplate = (styles: any) => `
 
         <ul class="${styles["footer__social-list"]}">
         <li>
-            <a class="${styles['footer__social-link']} ${styles['footer__social-link_youtube']}"
+            <a class="${styles["footer__social-link"]} ${styles["footer__social-link_youtube"]}"
                 href="https://www.youtube.com/user/louvre" target="_blank"></a>
         </li>
         <li>
-            <a class="${styles['footer__social-link']} ${styles['footer__social-link_instagram']}"
+            <a class="${styles["footer__social-link"]} ${styles["footer__social-link_instagram"]}"
                 href="https://www.instagram.com/museelouvre/" target="_blank"></a>
         </li>
         <li>
-            <a class="${styles['footer__social-link']} ${styles['footer__social-link_facebook']}"
+            <a class="${styles["footer__social-link"]} ${styles["footer__social-link_facebook"]}"
                 href="https://www.facebook.com/museedulouvre" target="_blank"></a>
         </li>
         <li>
-            <a class="${styles['footer__social-link']} ${styles['footer__social-link_twitter']}"
+            <a class="${styles["footer__social-link"]} ${styles["footer__social-link_twitter"]}"
                 href="http://twitter.com/museelouvre" target="_blank"></a>
         </li>
         <li>
-            <a class="${styles['footer__social-link']} ${styles['footer__social-link_pinterest']}"
+            <a class="${styles["footer__social-link"]} ${styles["footer__social-link_pinterest"]}"
                 href="https://www.pinterest.fr/museedulouvre/" target="_blank"></a>
         </li>
     </ul>

@@ -20,19 +20,19 @@
   }
 }
 
-
 @mixin container {
   box-sizing: border-box;
   max-width: 1440px;
   margin: 0 auto;
   min-width: 0;
+  width: 100%;
 
   @media (max-width: 1500px) {
     padding: 0 20px;
   }
 
   @media (max-width: $breakpoint_large) {
-    max-width: 1024px;
+    max-width: 100%;
     padding: 0 20px;
   }
 }
@@ -112,7 +112,6 @@
   }
 }
 
-
 @mixin social-list {
   list-style: none;
   display: flex;
@@ -120,7 +119,6 @@
   justify-self: flex-end;
   min-width: 340px;
   justify-content: space-between;
-
 
   @media (max-width: $breakpoint_middle) {
     min-width: 240px;
@@ -137,11 +135,13 @@
   transition: 0.5s linear;
 
   &:hover {
-    filter: invert(53%) sepia(46%) saturate(256%) hue-rotate(356deg) brightness(93%) contrast(89%);
+    filter: invert(53%) sepia(46%) saturate(256%) hue-rotate(356deg)
+      brightness(93%) contrast(89%);
   }
 
   &:active {
-    filter: invert(43%) sepia(6%) saturate(1946%) hue-rotate(357deg) brightness(95%) contrast(83%);
+    filter: invert(43%) sepia(6%) saturate(1946%) hue-rotate(357deg)
+      brightness(95%) contrast(83%);
   }
 }
 
