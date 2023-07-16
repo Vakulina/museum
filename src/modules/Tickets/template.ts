@@ -1,6 +1,10 @@
 import venereImg from "../../assets/img/venere.jpg";
 
-export const getTemplate = (styles: any, countBasic:string | number, countSenior:string | number) => `
+export const getTemplate = (
+  styles: any,
+  countBasic: string | number,
+  countSenior: string | number,
+) => `
 <div class="${styles.tickets__container}">
     <h2 class="${styles.tickets__title}">Buy tickets</h2>
     <div class="${styles["tickets__two-columns"]}">
@@ -10,7 +14,7 @@ export const getTemplate = (styles: any, countBasic:string | number, countSenior
                 <h4 class="${styles.tickets__subtitle}">Ticket Type</h4>
                 <div>
                     <input class="${styles.tickets__radio}" type="radio" name="type-ticket" id="permanent-type" value="20"
-                        checked>
+                        >
                     <label class="${styles["tickets__type-exibition"]}" for="permanent-type">Permanent exhibition</label>
                 </div>
                 <div>
