@@ -43,10 +43,9 @@ const cardList = [
 ];
 
 const children = cardList.map(
-  (item) =>
-    new Card("article", {
-      ...item,
-    }).element,
+  (item) => new Card("article", {
+    ...item,
+  }).element,
 );
 
 class Visiting extends Component {
