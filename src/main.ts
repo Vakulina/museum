@@ -6,7 +6,7 @@ import { explore } from "./modules/Explore";
 import { render } from "./utiles.ts/renderDOM";
 import { video } from "./modules/Video";
 import { gallery } from "./modules/Gallery";
-import { tickets } from "./modules/Tickets";
+import { tickets, modalWithForm } from "./modules/Tickets";
 import { parallax } from "./modules/Parralax";
 import { contacts } from "./modules/Contacts";
 import { footer } from "./modules/Footer";
@@ -23,4 +23,5 @@ render("#content", [
   parallax,
   contacts,
   footer,
+  modalWithForm,
 ]);

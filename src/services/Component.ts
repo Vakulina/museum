@@ -100,11 +100,16 @@ export abstract class Component {
 
   private _remove(): void {
     this._removeEventListeners();
+    this.componentWillUnmount()
     this.element.remove();
   }
 
   remove(): void {
     this.dispatchComponentWillUnmount();
+  }
+
+  componentWillUnmount() {
+
   }
 
   addClass(className: string): void {

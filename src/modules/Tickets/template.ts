@@ -44,7 +44,7 @@ export const getTemplate = (
                     <button class="${styles.tickets__button}" type="button" id="increaseSeniorTicketsButton">+</button>
                 </div>
                 <p class="${styles.tickets__paragraf}  ${styles.tickets__result}">Total €<output name="result" id="result">0</output></p>
-                <button class="${styles.tickets__button} ${styles.tickets__button_buy}">Buy Now</button>
+                <button class="${styles.tickets__button} ${styles.tickets__button_buy}" id='buyBtn' type='button'>Buy Now</button>
             </div>
         </form>
     </div>
