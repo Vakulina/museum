@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import louvreImg from "../../assets/img/overview_louvre.jpg";
 
 export const getTemplate = (
@@ -74,11 +75,11 @@ export const getTemplate = (
         </span>
 
         <div class="${styles.order__types}">
-        <select class="${styles.order__select} ${styles.order__select_types}">
-            <option value='permanent-type'>Permanent exhibition</option>
-            <option value='temporary-type'>Temporary exhibition</option>
-            <option value='combined-type'>Combined Admission</option>
-        </select>
+            <select class="${styles.order__select} ${styles.order__select_types}" name = "type-ticket">
+                <option value='permanent-type' data-value='20' ${type === "permanent-type" && 'selected'}>Permanent exhibition</option>
+                <option value='temporary-type' data-value='25' ${type === "temporary-type" && 'selected'}>Temporary exhibition</option>
+                <option value='combined-type'  data-value='40' ${type === "combined-type" && 'selected'}>Combined Admission</option>
+            </select>
         <div class="${styles.order__arrow}"></div>
         </div>
 

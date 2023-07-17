@@ -6,9 +6,7 @@ import { Modal } from "../../components/Modal";
 import { orderElement } from "../Order";
 import { ticketsButtons } from "../../components/TicketsCount";
 
-export const modalWithForm = new Modal("div", {
-  children: [orderElement],
-});
+export const modalWithForm = new Modal("div", {}, orderElement.element);
 class Tickets extends Component {
   discountForSenior: number;
 
@@ -54,6 +52,9 @@ class Tickets extends Component {
     });
     if (selectedType) {
       this.setTicketType(selectedType);
+      const selectElement = document.querySelector(`select[name="type-ticket"]`) as HTMLSelectElement;
+      selectElement.value = selectedType;
+      localStorage.setItem("ticketType", this.ticketType);
     }
     this.calculation();
   }
@@ -78,7 +79,11 @@ class Tickets extends Component {
   }
 
   setSum(sum: number) {
-    if (this.result) this.result.value = String(sum);
+    const resultOutputs = document.querySelectorAll("#result");
+    resultOutputs.forEach((item) => {
+      if (item instanceof HTMLOutputElement) item.innerHTML = String(sum);
+      if (item instanceof HTMLInputElement) item.value = String(sum);
+    });
   }
 
   calculation() {
@@ -86,11 +91,11 @@ class Tickets extends Component {
     const basicTicketsInput = document.getElementById(
       "countBasic",
     ) as HTMLInputElement;
-    const basicTickets = Number(basicTicketsInput.value);
+    const basicTickets = Number(basicTicketsInput?.value);
     const seniorTicketsInput = document.getElementById(
       "countSenior",
     ) as HTMLInputElement;
-    const seniorTickets = Number(seniorTicketsInput.value);
+    const seniorTickets = Number(seniorTicketsInput?.value);
     const sum = price * basicTickets + price * this.discountForSenior * seniorTickets;
     this.setSum(sum);
     return sum;
