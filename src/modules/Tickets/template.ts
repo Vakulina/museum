@@ -23,6 +23,7 @@ export const getTemplate = (styles: any, ticketCount: HTMLElement) => `
                 </div>
             </div>
             <div class= "${styles.ticketsCount__column}">
+            <h4 class="${styles.tickets__subtitle} ${styles.tickets__subtitle_amount}">Amount</h4>
                 ${ticketCount.innerHTML}    
                 <p class="${styles.tickets__paragraf}  ${styles.tickets__result}">Total €<output name="result" id="result">0</output></p>
                 <button class="${styles.tickets__button} ${styles.tickets__button_buy}" id='buyBtn' type='button'>Buy Now</button>     

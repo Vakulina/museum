@@ -4,7 +4,6 @@ export const getTemplate = (
   countSenior: string | number,
 ) => {
   return `
-<h4 class="${styles.ticketsCount__subtitle} ${styles.ticketscount__subtitle_amount}">Amount</h4>
 <p class="${styles.ticketsCount__paragraf}">Basic 18+</p>
 <div class="${styles.ticketsCount__buttons}">
     <button class="${styles.ticketsCount__button}" id="decreaseBasicTicketsButton" type="button">–</button>

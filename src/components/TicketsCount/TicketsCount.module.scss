@@ -3,36 +3,6 @@
 
 .ticketsCount {
   @include section;
-  &__subtitle {
-    font-weight: bold;
-    font-size: $font-logo;
-    line-height: 33px;
-    color: #000000;
-    margin-bottom: 53px;
-  }
-
-  &__subtitle_amount {
-    text-align: right;
-    margin-bottom: 26px;
-
-    @media (max-width: $breakpoint_large) {
-      text-align: left;
-      margin-bottom: 30px;
-    }
-
-    @media (max-width: $breakpoint_middle) {
-      margin-bottom: 40px;
-    }
-
-    @media (max-width: $breakpoint_small) {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 16px;
-      line-height: 19px;
-      margin-bottom: 20px;
-    }
-  }
-
   &__paragraf {
     padding-bottom: 14px;
 

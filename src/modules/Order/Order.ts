@@ -3,6 +3,7 @@ import { getTemplate } from "./template";
 import { TicketType } from "../../utiles.ts/types";
 import s from "./Order.module.scss";
 import { Modal } from "../../components/Modal";
+import { ticketCount } from "../../components/TicketsCount";
 
 // export const modalWithForm = new Modal("div", {});
 /* ДОБАВЛЯТЬ И УДАЛЯТЬ TOOL когда задано время
@@ -19,7 +20,7 @@ document.querySelector('.time-input').classList.add('tool');
 class Order extends Component {
   markup() {
     this.addAttribute("id", "order");
-    return getTemplate(s);
+    return getTemplate(s, ticketCount.element);
   }
 }
 
