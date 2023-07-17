@@ -5,6 +5,7 @@ import s from "./Tickets.module.scss";
 import { Modal } from "../../components/Modal";
 import { orderElement } from "../Order";
 import { ticketsButtons } from "../../components/TicketsCount";
+import { render } from "../../utiles.ts/renderDOM";
 
 export const modalWithForm = new Modal("div", {}, orderElement);
 class Tickets extends Component {
@@ -116,6 +117,8 @@ export const tickets = new Tickets("section", {
     click(e: MouseEvent) {
       if (!(e.target instanceof HTMLElement)) return;
       if (e.target.id === "buyBtn") {
+        if (!document.getElementById('modal')) render("#content", [modalWithForm])
+        modalWithForm.dispatchComponentDidMount()
         modalWithForm.activate();
       }
       tickets.calculation();

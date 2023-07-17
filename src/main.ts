@@ -23,6 +23,5 @@ render("#content", [
   parallax,
   contacts,
   footer,
-  modalWithForm,
 ]);
 
