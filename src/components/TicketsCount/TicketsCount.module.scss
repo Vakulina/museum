@@ -1,0 +1,131 @@
+@import "../../assets/styles/_variables";
+@import "../../assets/styles/_mixins";
+
+.ticketsCount {
+  @include section;
+  &__subtitle {
+    font-weight: bold;
+    font-size: $font-logo;
+    line-height: 33px;
+    color: #000000;
+    margin-bottom: 53px;
+  }
+
+  &__subtitle_amount {
+    text-align: right;
+    margin-bottom: 26px;
+
+    @media (max-width: $breakpoint_large) {
+      text-align: left;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 19px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__paragraf {
+    padding-bottom: 14px;
+
+    @media (max-width: $breakpoint_large) {
+      padding-bottom: 10px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      font-size: 16px;
+      line-height: 19px;
+      padding-bottom: 14px;
+    }
+  }
+
+  &__column {
+    display: block;
+
+    @media (max-width: $breakpoint_large) {
+      text-align: left;
+      max-width: 175px;
+      margin-left: 20px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      margin-left: 0;
+    }
+  }
+
+  &__button {
+    color: #000;
+    border: none;
+    outline: none;
+    background-color: $font-light;
+    width: 42px;
+    height: 44px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+    padding-left: 0;
+    font-size: 30px;
+    line-height: 37px;
+    text-align: center;
+    transition: 0.5s linear;
+
+    &_number {
+      width: 46px;
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 26px;
+      text-align: center;
+      padding-left: 0;
+    }
+  }
+
+  &__buttons:hover &__button {
+    color: $font-gold;
+  }
+
+  &__buttons {
+    width: 150px;
+    border: 3px solid #000;
+    margin-bottom: 13px;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    margin-left: 25px;
+    transition: 0.5s linear;
+
+    &:nth-of-type(2) {
+      margin-bottom: 33px;
+    }
+
+    &:hover {
+      border-color: $font-gold;
+    }
+
+    @media (max-width: $breakpoint_large) {
+      width: 175px;
+      margin-left: 0;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: $breakpoint_middle) {
+      margin-bottom: 25px;
+    }
+
+    @media (max-width: $breakpoint_small) {
+      margin-bottom: 22px;
+    }
+  }
+
+  @media (max-width: $breakpoint_small) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}

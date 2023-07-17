@@ -1,10 +1,6 @@
 import venereImg from "../../assets/img/venere.jpg";
 
-export const getTemplate = (
-  styles: any,
-  countBasic: string | number,
-  countSenior: string | number,
-) => `
+export const getTemplate = (styles: any, ticketCount: HTMLElement) => `
 <div class="${styles.tickets__container}">
     <h2 class="${styles.tickets__title}">Buy tickets</h2>
     <div class="${styles["tickets__two-columns"]}">
@@ -26,25 +22,10 @@ export const getTemplate = (
                     <label class="${styles["tickets__type-exibition"]}" for="combined-type">Combined Admission</label>
                 </div>
             </div>
-
-            <div class="${styles.tickets__column} ${styles.tickets__column_amount}">
-                <h4 class="${styles.tickets__subtitle} ${styles.tickets__subtitle_amount}">Amount</h4>
-                <p class="${styles.tickets__paragraf}">Basic 18+</p>
-                <div class="${styles.tickets__buttons}">
-                    <button class="${styles.tickets__button}" id="decreaseBasicTicketsButton" type="button">–</button>
-                    <input class="${styles.tickets__button}  ${styles.tickets__button_number} ${styles.tickets__amount}" type="number"
-                        id="countBasic" min="0" max="10" value="${countBasic}" readonly>
-                    <button class="${styles.tickets__button}" type="button" id="increaseBasicTicketsButton">+</button>
-                </div>
-                <p class="s${styles.tickets__paragraf}">Senior 65+</p>
-                <div class="${styles.tickets__buttons}">
-                    <button class="${styles.tickets__button}" id="decreaseSeniorTicketsButton" type="button">–</button>
-                    <input class="${styles.tickets__button}  ${styles.tickets__button_number} ${styles.tickets__amount}" type="number"
-                        id="countSenior" min="0" max="10" value="${countSenior}" readonly>
-                    <button class="${styles.tickets__button}" type="button" id="increaseSeniorTicketsButton">+</button>
-                </div>
+            <div class= "${styles.ticketsCount__column}">
+                ${ticketCount.innerHTML}    
                 <p class="${styles.tickets__paragraf}  ${styles.tickets__result}">Total €<output name="result" id="result">0</output></p>
-                <button class="${styles.tickets__button} ${styles.tickets__button_buy}" id='buyBtn' type='button'>Buy Now</button>
+                <button class="${styles.tickets__button} ${styles.tickets__button_buy}" id='buyBtn' type='button'>Buy Now</button>     
             </div>
         </form>
     </div>

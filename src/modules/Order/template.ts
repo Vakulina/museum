@@ -1,6 +1,9 @@
-import venereImg from "../../assets/img/venere.jpg";
-
-export const getTemplate = (styles: any) => `
+export const getTemplate = (
+  styles: any,
+  countBasic = "0",
+  countSenior = "0",
+  type = "permanent-type",
+) => `
 <form class="${styles.order__form}">
 <div class="${styles.order__column}">
     <div class="${styles.order__header}">
@@ -81,35 +84,24 @@ export const getTemplate = (styles: any) => `
       </div>
 
     </fieldset>
-    <fieldset class="popup__fieldset popup__fieldset_type_entry-ticket">
+    <fieldset class="${styles.order__fieldset}  ${styles.order__fieldset_type_tickets}">
         <h3 class="popup__subtitle">Entry ticket</h3>
         <div class="popup__line"></div>
 
-        <div class="two-columns">
-            <label for="basic-tickets" class="popup__label">Basic 18+ (20 €)</label>
-
-            <div class="popup__buttons">
-                <button class="popup__button popup__button_type_operations" type="button"
-                    onclick="this.nextElementSibling.stepDown()">–</button>
-                <input id="basic-tickets"
-                    class="popup__button popup__button_type_number  popup__amount" type="number"
-                    min="0" max="20" value="1" readonly>
-                <button class="popup__button popup__button_type_operations" type="button"
-                    onclick="this.previousElementSibling.stepUp()">+</button>
-            </div>
+        <p class="${styles.tickets__paragraf}">Basic 18+</p>
+        <div class="${styles.tickets__buttons}">
+            <button class="${styles.tickets__button}" id="decreaseBasicTicketsButton" type="button">–</button>
+            <input class="${styles.tickets__button}  ${styles.tickets__button_number} ${styles.tickets__amount}" type="number"
+                id="countBasic" min="0" max="10" value="${countBasic}" readonly>
+            <button class="${styles.tickets__button}" type="button" id="increaseBasicTicketsButton">+</button>
         </div>
 
-
-        <div class="two-columns">
-            <label for="basic-tickets" class="popup__label">Senior 65+ (10 €)</label>
-            <div class="popup__buttons">
-                <button class="popup__button popup__button_type_operations" type="button"
-                    onclick="this.nextElementSibling.stepDown()">–</button>
-                <input class="popup__button popup__button_type_number  popup__amount" type="number"
-                    min="0" max="20" value="1" readonly>
-                <button class="popup__button popup__button_type_operations" type="button"
-                    onclick="this.previousElementSibling.stepUp()">+</button>
-            </div>
+        <p class="s${styles.tickets__paragraf}">Senior 65+</p>
+        <div class="${styles.tickets__buttons}">
+            <button class="${styles.tickets__button}" id="decreaseSeniorTicketsButton" type="button">–</button>
+            <input class="${styles.tickets__button}  ${styles.tickets__button_number} ${styles.tickets__amount}" type="number"
+                id="countSenior" min="0" max="10" value="${countSenior}" readonly>
+            <button class="${styles.tickets__button}" type="button" id="increaseSeniorTicketsButton">+</button>
         </div>
 
     </fieldset>
