@@ -107,6 +107,13 @@ export const getTemplate = (
         <div id='ticketContent'>
        
         </div>
+        <div   class=${styles.order__result}>
+            <div class="${styles.order__line}"></div>
+            <p class="${styles.order__paragraf}">
+            Total €
+            <output name="result" id="result">0</output>
+            </p>  
+        </div>
         </div>
 
     </fieldset>

@@ -22,6 +22,12 @@
 
   &__payment {
     @include two-columns;
+
+    @media (max-width: $breakpoint_large) {
+      gap: 15px;
+      padding: 25px;
+    }
+
     gap: 15px;
     margin-top: 10px;
     align-items: flex-start;
@@ -39,6 +45,7 @@
     text-align: left;
     color: #272727;
   }
+
   &__image {
     margin-top: 20px;
   }
@@ -61,12 +68,15 @@
     background-position: 0px 2px;
     background-size: 15px 15px;
     padding-left: 31px;
+
     &_type_date {
       background-image: url("../../assets/svg/date.svg");
     }
+
     &_type_operations {
       background-image: url("../../assets/svg/check_circle_outline.svg");
     }
+
     &_type_time {
       background-image: url("../../assets/svg/time.svg");
     }
@@ -164,8 +174,7 @@
     width: 100%;
   }
 
-  &__date {
-  }
+  &__date {}
 
   &__input {
     width: 100%;
@@ -363,6 +372,7 @@
   &__columns {
     @include two-columns;
     padding-top: 0;
+    justify-content: space-around;
 
     @media (max-width: $breakpoint_large) {
       padding-top: 0;
@@ -406,7 +416,8 @@
       box-sizing: border-box;
       font-size: 12px;
       transition: none;
-animation: none;
+      animation: none;
+
       &:nth-of-type(2) {
         margin-bottom: 16px;
       }
@@ -417,12 +428,26 @@ animation: none;
       border: 1px solid #000;
     }
 
-    div:hover > input {
+    div:hover>input {
       color: #000 !important;
     }
 
-    div:hover > button {
+    div:hover>button {
       color: #fff !important;
+    }
+  }
+
+  &__result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 100px;
+    
+    p {
+  
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 38px;
     }
   }
 
