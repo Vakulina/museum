@@ -2,7 +2,6 @@ import louvreImg from "../../assets/img/overview_louvre.jpg";
 
 export const getTemplate = (
   styles: any,
-  ticketCount: HTMLElement,
   type = "permanent-type",
 ) => `
 <form class="${styles.order__form}">
@@ -105,8 +104,8 @@ export const getTemplate = (
         <img class="${styles.order__image}" alt="louvre" src="${louvreImg}">
         </div>
         <div class="${styles.order__columns}">
-        <div class="${styles.order__count}">
-            ${ticketCount.innerHTML}
+        <div id='ticketContent'>
+       
         </div>
         </div>
 

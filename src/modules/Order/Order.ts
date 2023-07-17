@@ -20,7 +20,12 @@ document.querySelector('.time-input').classList.add('tool');
 class Order extends Component {
   markup() {
     this.addAttribute("id", "order");
-    return getTemplate(s, ticketCount.element);
+    return getTemplate(s);
+  }
+
+  componentDidMount(): void {
+    document.querySelector<HTMLDivElement>("#ticketContent")?.replaceWith(ticketCount.element);
+    document.querySelector('#orderTickets')?.classList.add(`${s.order__count}`);
   }
 }
 

@@ -4,7 +4,7 @@ import { TicketType } from "../../utiles.ts/types";
 import s from "./Tickets.module.scss";
 import { Modal } from "../../components/Modal";
 import { orderElement } from "../Order";
-import { ticketCount } from "../../components/TicketsCount";
+import { ticketsButtons } from "../../components/TicketsCount";
 
 export const modalWithForm = new Modal("div", {
   children: [orderElement],
@@ -35,15 +35,19 @@ class Tickets extends Component {
         radio.setAttribute("checked", "true");
       }
     });
+    this.element.querySelector("#ticketsContent")?.replaceWith(ticketsButtons.element);
+
+    //   this.element.querySelector<HTMLDivElement>("#ticketContent")
+    // document.querySelector('#orderTickets')?.classList.add(`${s.order__count}`);
   }
 
   handleRadioChange() {
     let selectedType;
     this.listTicketsTypes?.forEach((radioButton) => {
       if (
-        radioButton instanceof HTMLInputElement &&
-        radioButton.type === "radio" &&
-        radioButton.checked
+        radioButton instanceof HTMLInputElement
+        && radioButton.type === "radio"
+        && radioButton.checked
       ) {
         selectedType = radioButton.id;
       }
@@ -87,15 +91,14 @@ class Tickets extends Component {
       "countSenior",
     ) as HTMLInputElement;
     const seniorTickets = Number(seniorTicketsInput.value);
-    const sum =
-      price * basicTickets + price * this.discountForSenior * seniorTickets;
+    const sum = price * basicTickets + price * this.discountForSenior * seniorTickets;
     this.setSum(sum);
     return sum;
   }
 
   markup() {
     this.addAttribute("id", "tickets");
-    return getTemplate(s, ticketCount.element);
+    return getTemplate(s);
   }
 
   private getTicketTypeFromLocalStorage() {
@@ -112,24 +115,6 @@ export const tickets = new Tickets("section", {
       if (!(e.target instanceof HTMLElement)) return;
       if (e.target.id === "buyBtn") {
         modalWithForm.activate();
-      }
-      if (e.target.id === "decreaseBasicTicketsButton") {
-        const nextSibling = e.target?.nextElementSibling as HTMLInputElement;
-        ticketCount.setBasicTickets(Number(nextSibling.value) - 1);
-      }
-      if (e.target.id === "increaseBasicTicketsButton") {
-        const prevSibling = e.target
-          ?.previousElementSibling as HTMLInputElement;
-        ticketCount.setBasicTickets(Number(prevSibling.value) + 1);
-      }
-      if (e.target.id === "decreaseSeniorTicketsButton") {
-        const nextSibling = e.target?.nextElementSibling as HTMLInputElement;
-        ticketCount.setSeniorTickets(Number(nextSibling.value) - 1);
-      }
-      if (e.target.id === "increaseSeniorTicketsButton") {
-        const prevSibling = e.target
-          ?.previousElementSibling as HTMLInputElement;
-        ticketCount.setSeniorTickets(Number(prevSibling.value) + 1);
       }
       tickets.calculation();
     },
