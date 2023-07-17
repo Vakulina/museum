@@ -1,9 +1,3 @@
-import { Component, ComponentProps } from "../../services/Component";
-import { getTemplate } from "./template";
-import { TicketType } from "../../utiles.ts/types";
-import s from "./Order.module.scss";
-import { ticketCount } from "../../components/TicketsCount";
-
 // export const modalWithForm = new Modal("div", {});
 /* ДОБАВЛЯТЬ И УДАЛЯТЬ TOOL когда задано время
  const isValiTime = () => {
@@ -16,6 +10,13 @@ document.querySelector('.time-input').classList.add('tool');
   }
 }; */
 
+import { Component, ComponentProps } from "../../services/Component";
+import { getTemplate } from "./template";
+import { TicketType } from "../../utiles.ts/types";
+import s from "./Order.module.scss";
+import { ticketCount } from "../../components/TicketsCount";
+import { OrderFormValidator } from "./OrderFormValidator";
+
 class Order extends Component {
   ticketType: TicketType;
 
@@ -23,11 +24,14 @@ class Order extends Component {
 
   result: HTMLFormElement | null;
 
+  validation: OrderFormValidator | null;
+
   constructor(target = "div", props: ComponentProps) {
     super(target, props);
     this.discountForSenior = 0.5;
     this.ticketType = this.getTicketTypeFromLocalStorage();
     this.result = null;
+    this.validation = null;
   }
 
   private getTicketTypeFromLocalStorage() {
@@ -42,9 +46,14 @@ class Order extends Component {
   }
 
   componentDidMount(): void {
-    document.querySelector<HTMLDivElement>("#ticketContent")?.replaceWith(ticketCount.element);
-    document.querySelector('#orderTickets')?.classList.add(`${s.order__count}`);
-    this.result = this.element.querySelector("#result") as HTMLFormElement;
+    const ticketContent = document.querySelector<HTMLDivElement>("#ticketContent");
+    ticketContent?.replaceWith(ticketCount.element);
+    const orderTickets = document.querySelector('#orderTickets');
+    orderTickets?.classList.add(`${s.order__count}`);
+    this.result = this.element.querySelector("#result");
+    if (document.getElementById('orderForm')) {
+      this.validation = new OrderFormValidator('orderForm');
+    }
   }
 
   setSum(sum: number) {
@@ -96,7 +105,7 @@ class Order extends Component {
       "countSenior",
     ) as HTMLInputElement;
     const seniorTickets = Number(seniorTicketsInput.value);
-    const sum = price && (typeof price === 'number') ? price * basicTickets + price * this.discountForSenior * seniorTickets : 0;
+    const sum = price * basicTickets + price * this.discountForSenior * seniorTickets;
     this.setSum(sum);
     return sum;
   }
@@ -116,5 +125,6 @@ export const orderElement = new Order("div", {
         orderElement.setTicketType();
       }
     },
+
   },
 });

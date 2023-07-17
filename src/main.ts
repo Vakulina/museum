@@ -25,3 +25,4 @@ render("#content", [
   footer,
   modalWithForm,
 ]);
+

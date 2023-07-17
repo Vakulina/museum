@@ -5,7 +5,7 @@ export const getTemplate = (
   styles: any,
   type = "permanent-type",
 ) => `
-<form class="${styles.order__form}">
+<form class="${styles.order__form}" id="orderForm">
     <div class="${styles.order__column}">
     <div class="${styles.order__header}">
         <div class="${styles.order__logo}"></div>
@@ -17,10 +17,11 @@ export const getTemplate = (
         <div class="${styles.order__detailes}">
 
         <div class="${styles.order__date}">
-            <input type="date" class="${styles.order__input} ${styles.order__input_type_date}" data-placeholder="Date"
-            required>
-
-        </div>
+            <input  type="date" class="${styles.order__input} ${styles.order__input_type_date}" data-placeholder="Date" id="input-date" required>
+            <span class="${styles.order__error} ${styles.order__error_select}" id="input-date-error">
+            Choose a date no earlier than tomorrow</span>
+            </div>
+       
         <div class="${styles.order__time}">
             <select class="${styles.order__input} ${styles.order__input_type_time}" required id="input-time"
             data-placeholder="Time">
@@ -47,8 +48,11 @@ export const getTemplate = (
             </select>
 
             <div class="${styles.order__arrow}"></div>
+            <span class="${styles.order__error} ${styles.order__error_select}" id="input-time-error"></span>
         </div>
+        
         </div>
+
 
         <div class="${styles.order__text}">
         <input type="text" id="name" class="${styles.order__input} ${styles.order__input_type_text}"
@@ -60,22 +64,22 @@ export const getTemplate = (
         </span>
 
         <div class="${styles.order__email}">
-        <input type="text" class="${styles.order__input} ${styles.order__input_type_email}" placeholder="E-mail"
-            id="email" required pattern="^[a-zA-Z0-9_-]{3,15}@[a-zA-Z0-9-]{4,}\.[a-zA-Z]{2,}$">
+        <input class="${styles.order__input} ${styles.order__input_type_email}" placeholder="E-mail"
+            id="email" required type='email' >
         </div>
         <span class="${styles.order__error}" id="email-error">Enter an address in the following format:
         username@example.com </span>
 
         <div class="${styles.order__tel}">
-        <input type="tel" class="${styles.order__input} ${styles.order__input_type_tel}" placeholder="Phone"
-            id="phone" pattern="^([\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" required>
+        <input type="text" class="${styles.order__input} ${styles.order__input_type_tel}" placeholder="Phone"
+            id="phone"  pattern='^[+]{0,1}[0-9]{11,15}$' required />
         </div>
         <span class="${styles.order__error}" id="phone-error">
         Enter the phone number in a convenient format: without separators, using a hyphen or space (up to 10 digits)
         </span>
 
         <div class="${styles.order__types}">
-            <select class="${styles.order__select} ${styles.order__select_types}" name = "type-ticket">
+            <select class="${styles.order__select} ${styles.order__select_types}" name = "type-ticket" id="tycket-type">
                 <option value='permanent-type' data-value='20' ${type === "permanent-type" && 'selected'}>Permanent exhibition</option>
                 <option value='temporary-type' data-value='25' ${type === "temporary-type" && 'selected'}>Temporary exhibition</option>
                 <option value='combined-type'  data-value='40' ${type === "combined-type" && 'selected'}>Combined Admission</option>
@@ -121,5 +125,6 @@ export const getTemplate = (
 
     </div>
     <div class="${styles.order__column}">
+    <button type="submit" class="popup__button submit">Book</button>
     </div>
 </form>`;

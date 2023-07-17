@@ -1,7 +1,6 @@
 import { Component, ComponentProps } from "../../services/Component";
 import { getTemplate } from "./template";
 import s from "./Modal.module.scss";
-import { orderElement } from "../../modules/Order";
 
 let activeModals: HTMLElement[] = [];
 
@@ -10,9 +9,9 @@ export class Modal extends Component {
 
   closeButton: HTMLElement | null;
 
-  orderElement: HTMLElement;
+  orderElement: Component;
 
-  constructor(target = "div", props: ComponentProps, orderElement: HTMLElement) {
+  constructor(target = "div", props: ComponentProps, orderElement: Component) {
     super(target, props);
     this.orderElement = orderElement;
     this.overlay = null;
@@ -26,11 +25,11 @@ export class Modal extends Component {
     this.closeButton = this.element.querySelector(
       `.${s.modal__close}`,
     ) as HTMLElement;
+
     this.closeButton.addEventListener("click", this.close.bind(this));
     this.overlay.addEventListener("click", this.close.bind(this));
     document.addEventListener("keydown", this.handleKeyDown.bind(this));
-
-    this.element.querySelector("#modalContent")?.replaceWith(this.orderElement);
+    document.querySelector("#modalContent")?.replaceWith(this.orderElement.element);
   }
 
   componentWillUnmount() {

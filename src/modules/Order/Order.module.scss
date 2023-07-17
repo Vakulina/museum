@@ -133,6 +133,7 @@
     margin-bottom: 20px;
     border: none;
     gap: 20px;
+    position: relative;
   }
 
   &__detailes {
@@ -317,10 +318,12 @@
       left: 45px;
     }
 
-    &.tool::after {
-      content: "";
-    }
   }
+  &__time[data-tool="tool"]::after {
+    content: "";
+  }
+
+  
 
   &__arrow {
     position: absolute;
@@ -346,6 +349,7 @@
       display: inline;
     }
   }
+
 
   &__select_types {
     width: 100%;
@@ -442,9 +446,9 @@
     flex-direction: column;
     justify-content: center;
     margin-top: 100px;
-    
+
     p {
-  
+
       font-size: 32px;
       font-weight: 400;
       line-height: 38px;

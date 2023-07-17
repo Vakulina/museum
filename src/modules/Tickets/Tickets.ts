@@ -6,7 +6,7 @@ import { Modal } from "../../components/Modal";
 import { orderElement } from "../Order";
 import { ticketsButtons } from "../../components/TicketsCount";
 
-export const modalWithForm = new Modal("div", {}, orderElement.element);
+export const modalWithForm = new Modal("div", {}, orderElement);
 class Tickets extends Component {
   discountForSenior: number;
 
@@ -34,9 +34,6 @@ class Tickets extends Component {
       }
     });
     this.element.querySelector("#ticketsContent")?.replaceWith(ticketsButtons.element);
-
-    //   this.element.querySelector<HTMLDivElement>("#ticketContent")
-    // document.querySelector('#orderTickets')?.classList.add(`${s.order__count}`);
   }
 
   handleRadioChange() {
