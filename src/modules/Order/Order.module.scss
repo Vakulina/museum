@@ -149,6 +149,11 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
+
+    @media (max-width: $breakpoint_small) {
+      flex-direction: column;
+      
+    }
   }
 
   &__subtitle {
@@ -346,7 +351,7 @@
     background-image: url("../../assets/svg/time-date-arrow.svg");
     background-repeat: no-repeat;
     background-size: 17px 17px;
-    z-index: 999;
+    z-index: 99;
     pointer-events: none;
     cursor: pointer;
   }
@@ -379,7 +384,7 @@
       position: absolute;
       left: 15px;
       top: 14px;
-      z-index: 999;
+      z-index: 99;
     }
   }
 

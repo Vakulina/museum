@@ -146,7 +146,6 @@ export const visitorList = new VisitorList('div', {
     change(e: InputEvent) {
       if (!(e.target instanceof HTMLInputElement)) return;
       if (e.target.dataset.btn === "select-to-remove") {
-        console.log("check!!!")
         visitorList.checkSelectedCheckboxes();
       }
     },
