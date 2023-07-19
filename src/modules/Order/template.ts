@@ -125,6 +125,6 @@ export const getTemplate = (
 
     </div>
     <div class="${styles.order__column}">
-    <button type="submit" class="popup__button submit">Book</button>
+    <button type="button" class="${styles.order__submit}">Payment</button>
     </div>
 </form>`;

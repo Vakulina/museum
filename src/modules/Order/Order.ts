@@ -4,6 +4,7 @@ import { TicketType } from "../../utiles.ts/types";
 import s from "./Order.module.scss";
 import { ticketCount } from "../../components/TicketsCount";
 import { OrderFormValidator } from "./OrderFormValidator";
+import { visitorList } from "../VisitorList";
 
 class Order extends Component {
   ticketType: TicketType;
@@ -39,8 +40,14 @@ class Order extends Component {
     const orderTickets = document.querySelector('#orderTickets');
     orderTickets?.classList.add(`${s.order__count}`);
     this.result = this.element.querySelector("#result");
-    if (document.getElementById('orderForm')) {
+    const form = document.getElementById('orderForm');
+
+    if (form) {
       this.validation = new OrderFormValidator('orderForm');
+      const secondColumn = form.lastElementChild;
+      if (secondColumn instanceof Element) {
+        secondColumn.prepend(visitorList.element);
+      }
     }
   }
 

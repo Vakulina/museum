@@ -1,0 +1,64 @@
+@import "../../assets/styles/_variables";
+@import "../../assets/styles/_mixins";
+
+.visitorList {
+    list-style: none;
+    display: block;
+
+    &__item,
+    &__inputs {
+        display: flex;
+        margin-top: 20px;
+        box-sizing: border-box;
+        margin-bottom: 15px;
+        gap:10px;
+        width: 100%;
+    }
+
+    &__inputs {
+        padding-right: 30px;
+    }
+
+    &__paragraf {
+        margin: 13px 0 9px 0;
+        font-size: 18px;
+        line-height: 21px;
+        font-weight: 400;
+        color: #710707;
+    }
+
+    &__line {
+        width: 100%;
+        height: 3px;
+        background: #740c11;
+        opacity: 0.9;
+    }
+
+    &__delete {}
+
+    button {
+        margin-bottom: 20px;
+        padding: 0;
+        border: none;
+        outline: none;
+        width: 100%;
+        max-width: 100px;
+        height: 30px;
+        background-color: #710707;
+        color: #FFF;
+        overflow: hidden;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    button:enabled:hover {
+        background-color: $gold-hover;
+    }
+
+    button:disabled {
+        opacity: 0.5;
+        background-color: $bt-gray;
+        cursor: none;
+    }
+}
