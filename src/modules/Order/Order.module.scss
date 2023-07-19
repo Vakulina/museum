@@ -13,7 +13,11 @@
 
     &:last-of-type {
       margin-top: 80px;
+      @media (max-width: 950px) {
+        margin-top: 0;
+      }
     }
+
   }
 
   &__header {
@@ -22,12 +26,6 @@
 
   &__payment {
     @include two-columns;
-
-    @media (max-width: $breakpoint_large) {
-      gap: 15px;
-      padding: 25px;
-    }
-
     gap: 15px;
     margin-top: 10px;
     align-items: flex-start;
@@ -36,6 +34,17 @@
     max-width: 530px;
     border: 1px solid #000;
     padding: 25px;
+
+    @media (max-width: $breakpoint_small) {
+      flex-direction: column;
+    }
+    @media (max-width: $breakpoint_large) {
+      gap: 15px;
+      padding: 25px;
+    }
+
+
+
   }
 
   &__overview-title {
@@ -382,6 +391,10 @@
     @media (max-width: $breakpoint_large) {
       padding-top: 0;
     }
+    @media (max-width: $breakpoint_small) {
+      flex-direction: column;
+    }
+
   }
 
   &__count {
@@ -447,6 +460,11 @@
     flex-direction: column;
     justify-content: center;
     margin-top: 100px;
+    min-width: 190px;
+
+    @media (max-width: $breakpoint_small) {
+      margin-top: 0;
+    }
 
     p {
 
@@ -460,6 +478,11 @@
     display: flex;
     gap: 30px;
     justify-content: center;
+    @media (max-width: 950px) {
+      align-items: center;
+      flex-direction: column;
+      gap: 0;
+    }
   }
 
   &__submit {

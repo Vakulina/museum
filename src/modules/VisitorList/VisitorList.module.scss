@@ -13,6 +13,10 @@
         margin-bottom: 15px;
         gap:10px;
         width: 100%;
+        
+    @media (max-width: $breakpoint_small) {
+        flex-wrap: wrap;
+      }
     }
 
     &__inputs {
@@ -35,6 +39,9 @@
     }
 
     &__delete {}
+input::placeholder{
+    opacity: 0.4;
+}
 
     button {
         margin-bottom: 20px;
