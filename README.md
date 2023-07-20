@@ -1,6 +1,6 @@
-[Выполнено по мотивам макета](<https://www.figma.com/file/CucahHfhUCrkZ9ozvNhayR/Museum-04.09-(Copy)?type=design&node-id=0%3A1&mode=dev>)
+Выполнено по мотивам [макета](<https://www.figma.com/file/CucahHfhUCrkZ9ozvNhayR/Museum-04.09-(Copy)?type=design&node-id=0%3A1&mode=dev>)
 
-### Выполнено в качестве тестового задания к [таске](https://youtrack.inostudio.net/issue/JIM-112) 
+### Является тестовым заданием к [таске](https://youtrack.inostudio.net/issue/JIM-112) 
 ## Работа имеет необходимый функционал:
 - Адаптивная верстка
 
@@ -12,9 +12,10 @@
 
 - Все ui элементы должны реализованы с нуля (кроме slider), в том числе:
 
--- Input
--- Select
--- Checkbox
+    - [Input] 
+    - [Select] 
+    - [Checkbox] 
+
 - Форма покупки билетов имеет кастомную валидацию
 
 - Реализована ленивая подгрузка (раздеы Gallery, Video )
