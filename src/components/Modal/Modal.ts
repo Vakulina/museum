@@ -40,8 +40,8 @@ export class Modal extends Component {
 
   markup() {
     this.props!.classes = s.modal;
-    this.addAttribute("id", this.props?.id||"modal");
-    return getTemplate(s).slice()
+    this.addAttribute("id", this.props?.id || "modal");
+    return getTemplate(s).slice();
   }
 
   activate() {

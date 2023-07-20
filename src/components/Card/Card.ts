@@ -28,10 +28,7 @@ class Card extends Component {
   }
 
   getFrameTemplate() {
-    const itemElement = this.element
-      .querySelector<HTMLElement>("#frame-template")
-      ?.cloneNode(true)
-
+    const itemElement = this.element?.querySelector<HTMLTemplateElement>("#frame-template")?.content.querySelector('div')?.cloneNode(true);
     return itemElement as HTMLElement;
   }
 

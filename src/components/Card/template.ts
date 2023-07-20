@@ -18,9 +18,11 @@ export const getTemplate = (props: PropsCardTemplate) => {
         <p class="${styles.card__paragraph}">Google Street Panorama View</p>
       </div>
       <template id="frame-template">
+      <div>
 <iframe class="maps-frame" src="${src}"
  width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
 </iframe>
+</div>
 </template>
     `;
 };
