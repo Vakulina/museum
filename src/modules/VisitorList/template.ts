@@ -16,8 +16,8 @@ export const getTemplate = (
 <button type="button" id="remove-selected" disabled >remove</button>
     <template id="item-template"> 
       <li class='${styles.visitorList__item}'>
-        <input type="text" placeholder="Surname">
-        <input type="text" placeholder="Name">
+        <input type="text" placeholder="Surname" data-input='surname'>
+        <input type="text" placeholder="Name" data-input='name'>
    <input type="checkbox" class='${styles.visitorList__delete}' data-btn='select-to-remove'/>
       </li>
     </template>

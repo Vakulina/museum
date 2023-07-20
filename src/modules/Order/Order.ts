@@ -48,7 +48,14 @@ class Order extends Component {
       if (secondColumn instanceof Element) {
         secondColumn.prepend(visitorList.element);
       }
+      form.querySelector('#submit')?.addEventListener('click', () => this.submit(this.validation!));
     }
+  }
+
+  private submit(validation:OrderFormValidator) {
+    const intermediateResult = validation.handleSubmit.apply(validation);
+    const result = { ...intermediateResult, visitors: visitorList.getVisitors() };
+    console.log('SUBMIT:', result);
   }
 
   setSum(sum: number) {

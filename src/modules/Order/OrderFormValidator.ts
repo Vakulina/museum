@@ -16,7 +16,6 @@ export class OrderFormValidator {
       input.addEventListener('input', this.handleInput.bind(this));
     });
 
-    this.form.addEventListener('submit', this.handleSubmit.bind(this));
   }
 
   private handleInput(event: Event) {
@@ -62,15 +61,13 @@ export class OrderFormValidator {
     }
   }
 
-  private handleSubmit(event: Event) {
-    event.preventDefault();
-
+  public handleSubmit() {
     if (this.validateForm()) {
       const result = this.inputs.reduce((obj: { [key: string]: string }, item) => {
         obj[item.id] = item.value;
         return obj;
       }, {});
-      console.log('SUBMIT', result);
+     return result;
     }
   }
 

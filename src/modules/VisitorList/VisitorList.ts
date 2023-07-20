@@ -91,6 +91,10 @@ class VisitorList extends Component {
     });
   }
 
+  public getVisitors() {
+    return this.visitors;
+  }
+
   removeSelectedItems() {
     const checkboxes = this.getAllCheckboxes();
 
@@ -108,7 +112,7 @@ class VisitorList extends Component {
     this.checkSelectedCheckboxes();
   }
 
-  private renderNewVisitor(item:HTMLElement) {
+  private renderNewVisitor(item: HTMLElement) {
     this.list?.prepend(item);
   }
 
@@ -118,7 +122,7 @@ class VisitorList extends Component {
     ) || [];
   }
 
- checkSelectedCheckboxes() {
+  checkSelectedCheckboxes() {
     const checkboxes = this.getAllCheckboxes();
     const hasCheckedCheckbox = Array.from(checkboxes).some((checkbox) => checkbox.checked);
     const removeSelectedButton = this.element.querySelector<HTMLButtonElement>(
@@ -138,7 +142,7 @@ export const visitorList = new VisitorList('div', {
       const target = e.target as HTMLElement;
       if (target.id === "add-visitor") {
         visitorList.addListItem();
-      } 
+      }
       if (target.id === "remove-selected") {
         visitorList.removeSelectedItems();
       }
