@@ -1,6 +1,4 @@
-export const getTemplate = (
-  styles: any,
-) => `
+export const getTemplate = (styles: any) => `
 <p class="${styles.visitorList__paragraf}">Fill in the information for each visitor.</p>
 <div class="${styles.visitorList__line}"></div>
 <div class='${styles.visitorList__inputs}'>

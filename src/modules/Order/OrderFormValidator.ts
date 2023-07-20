@@ -7,21 +7,24 @@ export class OrderFormValidator {
 
   constructor(formId: string) {
     this.form = document.getElementById(formId) as HTMLFormElement;
-    this.inputs = Array.from(this.form?.querySelectorAll('input, select')) as HTMLInputElement[];
+    this.inputs = Array.from(
+      this.form?.querySelectorAll("input, select"),
+    ) as HTMLInputElement[];
     this.initialize();
   }
 
   private initialize() {
     this.inputs.forEach((input) => {
-      input.addEventListener('input', this.handleInput.bind(this));
+      input.addEventListener("input", this.handleInput.bind(this));
     });
-
   }
 
   private handleInput(event: Event) {
     const input = event.target as HTMLInputElement;
     const inputId = input.id;
-    const errorElement = document.querySelector(`#${inputId}-error`) as HTMLElement;
+    const errorElement = document.querySelector(
+      `#${inputId}-error`,
+    ) as HTMLElement;
 
     if (!input.validity.valid) {
       if (errorElement) this.showInputError(errorElement);
@@ -29,11 +32,11 @@ export class OrderFormValidator {
       this.hideInputError(errorElement);
     }
 
-    if (input.type === 'date') {
+    if (input.type === "date") {
       this.validateDate(input, errorElement);
     }
 
-    if (input.id === 'input-time') {
+    if (input.id === "input-time") {
       this.validateTime(input, errorElement);
     }
   }
@@ -42,10 +45,12 @@ export class OrderFormValidator {
     if (!input.value) {
       errorElement.textContent = "Enter a valid time";
       this.showInputError(errorElement);
-      document.querySelector(`.${s.order__time}`)?.removeAttribute('data-tool');
+      document.querySelector(`.${s.order__time}`)?.removeAttribute("data-tool");
     } else {
       this.hideInputError(errorElement);
-      document.querySelector(`.${s.order__time}`)?.setAttribute('data-tool', 'tool');
+      document
+        .querySelector(`.${s.order__time}`)
+        ?.setAttribute("data-tool", "tool");
     }
   }
 
@@ -63,11 +68,14 @@ export class OrderFormValidator {
 
   public handleSubmit() {
     if (this.validateForm()) {
-      const result = this.inputs.reduce((obj: { [key: string]: string }, item) => {
-        obj[item.id] = item.value;
-        return obj;
-      }, {});
-     return result;
+      const result = this.inputs.reduce(
+        (obj: { [key: string]: string }, item) => {
+          obj[item.id] = item.value;
+          return obj;
+        },
+        {},
+      );
+      return result;
     }
   }
 
@@ -84,7 +92,9 @@ export class OrderFormValidator {
 
     this.inputs.forEach((input) => {
       const inputId = input.id;
-      const errorElement = document.querySelector(`#${inputId}-error`) as HTMLElement;
+      const errorElement = document.querySelector(
+        `#${inputId}-error`,
+      ) as HTMLElement;
       if (!input.validity.valid) {
         if (errorElement) this.showInputError(errorElement);
         isValid = false;

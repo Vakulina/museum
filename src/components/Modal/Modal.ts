@@ -29,7 +29,9 @@ export class Modal extends Component {
     this.closeButton.addEventListener("click", this.close.bind(this));
     this.overlay.addEventListener("click", this.close.bind(this));
     document.addEventListener("keydown", this.handleKeyDown.bind(this));
-    document.querySelector("#modalContent")?.replaceWith(this.orderElement.element);
+    document
+      .querySelector("#modalContent")
+      ?.replaceWith(this.orderElement.element);
   }
 
   componentWillUnmount() {
@@ -70,4 +72,3 @@ export class Modal extends Component {
     }
   }
 }
-// buyBtn

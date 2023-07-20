@@ -30,38 +30,44 @@ class VisitorList extends Component {
   }
 
   protected componentDidMount(): void {
-    this.lastNameInput = this.element.querySelector<HTMLInputElement>('#last-name');
-    this.firstNameInput = this.element.querySelector<HTMLInputElement>('#first-name');
+    this.lastNameInput = this.element.querySelector<HTMLInputElement>("#last-name");
+    this.firstNameInput = this.element.querySelector<HTMLInputElement>("#first-name");
     this.list = this.element.querySelector<HTMLUListElement>("#visitor-list");
   }
 
   protected getItemTemplate() {
-    const itemElement = this.element.querySelector<HTMLTemplateElement>("#item-template")?.content.cloneNode(true);
+    const itemElement = this.element
+      .querySelector<HTMLTemplateElement>("#item-template")
+      ?.content.cloneNode(true);
 
     return itemElement as HTMLElement;
   }
 
   addListItem() {
-    const item = this.getItemTemplate()?.querySelector('li');
+    const item = this.getItemTemplate()?.querySelector("li");
     const lastName = this.lastNameInput?.value.trim();
     const firstName = this.firstNameInput?.value.trim();
     const id = this.generateId();
 
-    if (item && item.firstElementChild instanceof HTMLInputElement && item.children[1] instanceof HTMLInputElement) {
-      item.firstElementChild.value = lastName || '';
-      item.children[1].value = firstName || '';
+    if (
+      item
+      && item.firstElementChild instanceof HTMLInputElement
+      && item.children[1] instanceof HTMLInputElement
+    ) {
+      item.firstElementChild.value = lastName || "";
+      item.children[1].value = firstName || "";
       item.id = id;
 
       const handleItemClick = (e: Event) => {
         if (!(e.target instanceof HTMLInputElement)) return;
         if (e.target.dataset.input === "surname") {
-          this.visitors.filter((visitor) => visitor.id === id)[0].lastName = e.target.value
+          this.visitors.filter((visitor) => visitor.id === id)[0].lastName = e.target.value;
         }
         if (e.target.dataset.input === "name") {
-          this.visitors.filter((visitor) => visitor.id === id)[0].firstName = e.target.value
+          this.visitors.filter((visitor) => visitor.id === id)[0].firstName = e.target.value;
         }
       };
-      item.addEventListener('change', handleItemClick);
+      item.addEventListener("change", handleItemClick);
     }
 
     if (!lastName || !firstName) {
@@ -94,14 +100,6 @@ class VisitorList extends Component {
     }
   }
 
-  private renderVisitors() {
-    this.visitors.forEach((item) => {
-      if (this.lastNameInput) this.lastNameInput.value = item.lastName;
-      if (this.firstNameInput) this.firstNameInput.value = item.firstName;
-      if (this.list && this.item) this.list.prepend(this.item);
-    });
-  }
-
   public getVisitors() {
     return this.visitors;
   }
@@ -115,7 +113,9 @@ class VisitorList extends Component {
         if (listItem) {
           const itemId = listItem.id;
           listItem.remove();
-          this.visitors = this.visitors.filter((visitor) => visitor.id !== itemId);
+          this.visitors = this.visitors.filter(
+            (visitor) => visitor.id !== itemId,
+          );
         }
       }
     });
@@ -128,17 +128,19 @@ class VisitorList extends Component {
   }
 
   private getAllCheckboxes(): NodeListOf<HTMLInputElement> {
-    return this.element?.querySelectorAll<HTMLInputElement>(
-      `.${s.visitorList__delete}`,
-    ) || [];
+    return (
+      this.element?.querySelectorAll<HTMLInputElement>(
+        `.${s.visitorList__delete}`,
+      ) || []
+    );
   }
 
   checkSelectedCheckboxes() {
     const checkboxes = this.getAllCheckboxes();
-    const hasCheckedCheckbox = Array.from(checkboxes).some((checkbox) => checkbox.checked);
-    const removeSelectedButton = this.element.querySelector<HTMLButtonElement>(
-      "#remove-selected",
+    const hasCheckedCheckbox = Array.from(checkboxes).some(
+      (checkbox) => checkbox.checked,
     );
+    const removeSelectedButton = this.element.querySelector<HTMLButtonElement>("#remove-selected");
 
     if (removeSelectedButton) {
       removeSelectedButton.disabled = !hasCheckedCheckbox;
@@ -146,7 +148,7 @@ class VisitorList extends Component {
   }
 }
 
-export const visitorList = new VisitorList('div', {
+export const visitorList = new VisitorList("div", {
   classes: s.visitorList,
   events: {
     click(e: MouseEvent) {
@@ -164,6 +166,5 @@ export const visitorList = new VisitorList('div', {
         visitorList.checkSelectedCheckboxes();
       }
     },
-
   },
 });

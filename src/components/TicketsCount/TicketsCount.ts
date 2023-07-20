@@ -83,7 +83,7 @@ export const ticketCount = new TicketCount("div", {
       }
     },
   },
-  id: 'orderTickets',
+  id: "orderTickets",
 });
 
 export const ticketsButtons = new TicketCount("div", {
@@ -111,5 +111,5 @@ export const ticketsButtons = new TicketCount("div", {
       }
     },
   },
-  id: 'ticketsButtons',
+  id: "ticketsButtons",
 });

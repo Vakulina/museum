@@ -1,10 +1,7 @@
 /* eslint-disable no-useless-escape */
 import louvreImg from "../../assets/img/overview_louvre.jpg";
 
-export const getTemplate = (
-  styles: any,
-  type = "permanent-type",
-) => `
+export const getTemplate = (styles: any, type = "permanent-type") => `
 <form class="${styles.order__form}" id="orderForm">
     <div class="${styles.order__column}">
     <div class="${styles.order__header}">
@@ -13,17 +10,25 @@ export const getTemplate = (
         <p class="${styles.order__paragraf}">Tour to Louvre</p>
         <div class="${styles.order__line}"></div>
     </div>
-    <fieldset class="${styles.order__fieldset}  ${styles.order__fieldset_type_detailes}">
+    <fieldset class="${styles.order__fieldset}  ${
+  styles.order__fieldset_type_detailes
+}">
         <div class="${styles.order__detailes}">
 
         <div class="${styles.order__date}">
-            <input  type="date" class="${styles.order__input} ${styles.order__input_type_date}" data-placeholder="Date" id="input-date" required>
-            <span class="${styles.order__error} ${styles.order__error_select}" id="input-date-error">
+            <input  type="date" class="${styles.order__input} ${
+  styles.order__input_type_date
+}" data-placeholder="Date" id="input-date" required>
+            <span class="${styles.order__error} ${
+  styles.order__error_select
+}" id="input-date-error">
             Choose a date no earlier than tomorrow</span>
             </div>
        
         <div class="${styles.order__time}">
-            <select class="${styles.order__input} ${styles.order__input_type_time}" required id="input-time"
+            <select class="${styles.order__input} ${
+  styles.order__input_type_time
+}" required id="input-time"
             data-placeholder="Time">
             <option value="">&nbsp;</option>
             <option value="9:00">9:00</option>
@@ -48,14 +53,18 @@ export const getTemplate = (
             </select>
 
             <div class="${styles.order__arrow}"></div>
-            <span class="${styles.order__error} ${styles.order__error_select}" id="input-time-error"></span>
+            <span class="${styles.order__error} ${
+  styles.order__error_select
+}" id="input-time-error"></span>
         </div>
         
         </div>
 
 
         <div class="${styles.order__text}">
-        <input type="text" id="name" class="${styles.order__input} ${styles.order__input_type_text}"
+        <input type="text" id="name" class="${styles.order__input} ${
+  styles.order__input_type_text
+}"
             placeholder="Name" pattern="[a-zа-яA-ZА-Я\s]{3,15}" required>
         </div>
 
@@ -64,14 +73,20 @@ export const getTemplate = (
         </span>
 
         <div class="${styles.order__email}">
-        <input class="${styles.order__input} ${styles.order__input_type_email}" placeholder="E-mail"
+        <input class="${styles.order__input} ${
+  styles.order__input_type_email
+}" placeholder="E-mail"
             id="email" required type='email' >
         </div>
-        <span class="${styles.order__error}" id="email-error">Enter an address in the following format:
+        <span class="${
+  styles.order__error
+}" id="email-error">Enter an address in the following format:
         username@example.com </span>
 
         <div class="${styles.order__tel}">
-        <input type="text" class="${styles.order__input} ${styles.order__input_type_tel}" placeholder="Phone"
+        <input type="text" class="${styles.order__input} ${
+  styles.order__input_type_tel
+}" placeholder="Phone"
             id="phone"  pattern='^[+]{0,1}[0-9]{11,15}$' required />
         </div>
         <span class="${styles.order__error}" id="phone-error">
@@ -79,16 +94,26 @@ export const getTemplate = (
         </span>
 
         <div class="${styles.order__types}">
-            <select class="${styles.order__select} ${styles.order__select_types}" name = "type-ticket" id="tycket-type">
-                <option value='permanent-type' data-value='20' ${type === "permanent-type" && 'selected'}>Permanent exhibition</option>
-                <option value='temporary-type' data-value='25' ${type === "temporary-type" && 'selected'}>Temporary exhibition</option>
-                <option value='combined-type'  data-value='40' ${type === "combined-type" && 'selected'}>Combined Admission</option>
+            <select class="${styles.order__select} ${
+  styles.order__select_types
+}" name = "type-ticket" id="tycket-type">
+                <option value='permanent-type' data-value='20' ${
+  type === "permanent-type" && "selected"
+}>Permanent exhibition</option>
+                <option value='temporary-type' data-value='25' ${
+  type === "temporary-type" && "selected"
+}>Temporary exhibition</option>
+                <option value='combined-type'  data-value='40' ${
+  type === "combined-type" && "selected"
+}>Combined Admission</option>
             </select>
         <div class="${styles.order__arrow}"></div>
         </div>
 
     </fieldset>
-    <fieldset class="${styles.order__fieldset}  ${styles.order__fieldset_type_tickets}">
+    <fieldset class="${styles.order__fieldset}  ${
+  styles.order__fieldset_type_tickets
+}">
         <h3 class="${styles.order__subtitle}">Entry ticket</h3>
         <div class="${styles.order__line}"></div>
         <div class="${styles.order__payment}">
@@ -96,13 +121,19 @@ export const getTemplate = (
             <p class="${styles["order__overview-title"]}">Overview</p>
             <p class="${styles["order__overview-subtitle"]}">Tour to Louvre</p>
             <output name="overview-date"
-            class="${styles["order__overview-paragraf"]} ${styles["order__overview-paragraf_type_date"]}">Friday,
+            class="${styles["order__overview-paragraf"]} ${
+  styles["order__overview-paragraf_type_date"]
+}">Friday,
             August
             19</output>
             <output name="overview-time"
-            class="${styles["order__overview-paragraf"]} ${styles["order__overview-paragraf_type_time"]}">16 :
+            class="${styles["order__overview-paragraf"]} ${
+  styles["order__overview-paragraf_type_time"]
+}">16 :
             30</output>
-            <p class="${styles["order__overview-paragraf"]} ${styles["order__overview-paragraf_type_operations"]}">
+            <p class="${styles["order__overview-paragraf"]} ${
+  styles["order__overview-paragraf_type_operations"]
+}">
             Temporary
             exhibition</p>
         </div>
@@ -125,6 +156,8 @@ export const getTemplate = (
 
     </div>
     <div class="${styles.order__column}">
-    <button id="submit" type="button" class="${styles.order__submit}" >Payment</button>
+    <button id="submit" type="button" class="${
+  styles.order__submit
+}" >Payment</button>
     </div>
 </form>`;

@@ -37,25 +37,34 @@ class Order extends Component {
   componentDidMount(): void {
     const ticketContent = document.querySelector<HTMLDivElement>("#ticketContent");
     ticketContent?.replaceWith(ticketCount.element);
-    const orderTickets = document.querySelector('#orderTickets');
+    const orderTickets = document.querySelector("#orderTickets");
     orderTickets?.classList.add(`${s.order__count}`);
     this.result = this.element.querySelector("#result");
-    const form = document.getElementById('orderForm');
+    const form = document.getElementById("orderForm");
 
     if (form) {
-      this.validation = new OrderFormValidator('orderForm');
+      this.validation = new OrderFormValidator("orderForm");
       const secondColumn = form.lastElementChild;
       if (secondColumn instanceof Element) {
         secondColumn.prepend(visitorList.element);
       }
-      form.querySelector('#submit')?.addEventListener('click', () => this.submit(this.validation!));
+      const handleFormSubmit = () => {
+        this.submit(this.validation!);
+        document.querySelector("#modal")?.remove();
+      };
+      form
+        .querySelector("#submit")
+        ?.addEventListener("click", handleFormSubmit);
     }
   }
 
-  private submit(validation:OrderFormValidator) {
+  private submit(validation: OrderFormValidator) {
     const intermediateResult = validation.handleSubmit.apply(validation);
-    const result = { ...intermediateResult, visitors: visitorList.getVisitors() };
-    console.log('SUBMIT:', result);
+    const result = {
+      ...intermediateResult,
+      visitors: visitorList.getVisitors(),
+    };
+    console.log("SUBMIT:", result);
   }
 
   setSum(sum: number) {
@@ -67,7 +76,9 @@ class Order extends Component {
   }
 
   setSelectedRadioButton(radioButtonId: TicketType) {
-    const radioButton = document.querySelector(`#${radioButtonId}`) as HTMLInputElement;
+    const radioButton = document.querySelector(
+      `#${radioButtonId}`,
+    ) as HTMLInputElement;
     if (radioButton) {
       radioButton.checked = true;
     }
@@ -85,10 +96,15 @@ class Order extends Component {
   }
 
   getPrice() {
-    const optionElements = this.element.querySelectorAll(`.${s.order__select} option`);
+    const optionElements = this.element.querySelectorAll(
+      `.${s.order__select} option`,
+    );
     let selectedOption: HTMLOptionElement | undefined;
     optionElements.forEach((option) => {
-      if ((option instanceof HTMLOptionElement) && option.value === this.ticketType) {
+      if (
+        option instanceof HTMLOptionElement
+        && option.value === this.ticketType
+      ) {
         selectedOption = option;
       }
     });
@@ -127,6 +143,5 @@ export const orderElement = new Order("div", {
         orderElement.setTicketType();
       }
     },
-
   },
 });

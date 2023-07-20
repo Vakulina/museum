@@ -36,7 +36,6 @@
       left: 0;
       right: 0;
       max-height: 100%;
-      ;
     }
   }
 
@@ -71,29 +70,28 @@
       color: $font-light;
       border-radius: 5px;
       width: 30px;
-      height:30px;
+      height: 30px;
       background-image: none;
       &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 60%;
-      height: 3px;
-      background-color: white;
-      transform: translate(-50%, -50%);
-      opacity: 0.8;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60%;
+        height: 3px;
+        background-color: white;
+        transform: translate(-50%, -50%);
+        opacity: 0.8;
+      }
 
-    }
-    
-    &:before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-    
-    &:after {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
     }
   }
 }

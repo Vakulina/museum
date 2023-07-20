@@ -7,7 +7,6 @@ import { orderElement } from "../Order";
 import { ticketsButtons } from "../../components/TicketsCount";
 import { render } from "../../utiles.ts/renderDOM";
 
-export const modalWithForm = new Modal("div", {}, orderElement);
 class Tickets extends Component {
   discountForSenior: number;
 
@@ -17,12 +16,15 @@ class Tickets extends Component {
 
   result: HTMLFormElement | null;
 
+  modalWithForm: Modal;
+
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
     this.discountForSenior = 0.5;
     this.ticketType = this.getTicketTypeFromLocalStorage();
     this.listTicketsTypes = null;
     this.result = null;
+    this.modalWithForm = new Modal("div", {}, orderElement);
   }
 
   protected componentDidMount(): void {
@@ -34,7 +36,9 @@ class Tickets extends Component {
         radio.setAttribute("checked", "true");
       }
     });
-    this.element.querySelector("#ticketsContent")?.replaceWith(ticketsButtons.element);
+    this.element
+      .querySelector("#ticketsContent")
+      ?.replaceWith(ticketsButtons.element);
   }
 
   handleRadioChange() {
@@ -50,7 +54,9 @@ class Tickets extends Component {
     });
     if (selectedType) {
       this.setTicketType(selectedType);
-      const selectElement = document.querySelector(`select[name="type-ticket"]`) as HTMLSelectElement;
+      const selectElement = document.querySelector(
+        `select[name="type-ticket"]`,
+      ) as HTMLSelectElement;
       selectElement.value = selectedType;
       localStorage.setItem("ticketType", this.ticketType);
     }
@@ -117,9 +123,12 @@ export const tickets = new Tickets("section", {
     click(e: MouseEvent) {
       if (!(e.target instanceof HTMLElement)) return;
       if (e.target.id === "buyBtn") {
-        if (!document.getElementById('modal')) render("#content", [modalWithForm])
-        modalWithForm.dispatchComponentDidMount()
-        modalWithForm.activate();
+        if (!document.getElementById("modal")) {
+          this.modalWithForm = new Modal("div", {}, orderElement);
+          render("#content", [this.modalWithForm]);
+        }
+        this.modalWithForm.dispatchComponentDidMount();
+        this.modalWithForm.activate();
       }
       tickets.calculation();
     },
