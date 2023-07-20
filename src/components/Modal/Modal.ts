@@ -2,18 +2,16 @@ import { Component, ComponentProps } from "../../services/Component";
 import { getTemplate } from "./template";
 import s from "./Modal.module.scss";
 
-let activeModals: HTMLElement[] = [];
-
 export class Modal extends Component {
   overlay: HTMLElement | null;
 
   closeButton: HTMLElement | null;
 
-  orderElement: Component;
+  contentElement: HTMLElement;
 
-  constructor(target = "div", props: ComponentProps, orderElement: Component) {
+  constructor(target = "div", props: ComponentProps, contentElement: HTMLElement) {
     super(target, props);
-    this.orderElement = orderElement;
+    this.contentElement = contentElement;
     this.overlay = null;
     this.closeButton = null;
   }
@@ -29,9 +27,9 @@ export class Modal extends Component {
     this.closeButton.addEventListener("click", this.close.bind(this));
     this.overlay.addEventListener("click", this.close.bind(this));
     document.addEventListener("keydown", this.handleKeyDown.bind(this));
-    document
+    this.element
       .querySelector("#modalContent")
-      ?.replaceWith(this.orderElement.element);
+      ?.replaceWith(this.contentElement);
   }
 
   componentWillUnmount() {
@@ -42,24 +40,22 @@ export class Modal extends Component {
 
   markup() {
     this.props!.classes = s.modal;
-    this.addAttribute("id", "modal");
-    return getTemplate(s);
+    this.addAttribute("id", this.props?.id||"modal");
+    return getTemplate(s).slice()
   }
 
   activate() {
-    activeModals.push(this.element);
     this.addClass(`${s.modal_open}`);
     document.querySelector("body")!.style.overflow = "hidden";
   }
 
   deactivate() {
-    activeModals = activeModals.filter((modal) => modal !== this.element);
     this.removeClass(`${s.modal_open}`);
     document.querySelector("body")!.style.overflow = "auto";
   }
 
   isActive() {
-    return activeModals[activeModals.length - 1] === this.element;
+    return this.element.classList.contains(`${s.modal_open}`);
   }
 
   close() {

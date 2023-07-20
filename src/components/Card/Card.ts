@@ -7,23 +7,35 @@ type PropsCard = {
   img: any;
   alt: string;
   title: string;
+  src: string;
 };
 class Card extends Component {
-  constructor(target = "div", props: PropsCard & Record<string, any>) {
+  constructor(target = "button", props: PropsCard & Record<string, any>) {
     super(target, { classes: s.card, ...props });
   }
 
   markup() {
-    const { img, alt, title } = this.props as PropsCard & Record<string, any>;
+    const {
+      img, alt, title, src,
+    } = this.props as PropsCard & Record<string, any>;
     return getTemplate({
       styles: s,
       img,
       alt,
       title,
+      src,
     });
   }
 
-  componentDidMount() {}
+  getFrameTemplate() {
+    const itemElement = this.element
+      .querySelector<HTMLElement>("#frame-template")
+      ?.cloneNode(true)
+
+    return itemElement as HTMLElement;
+  }
+
+  componentDidMount() { }
 }
 
 export { Card };

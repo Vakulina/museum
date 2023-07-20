@@ -16,7 +16,7 @@ class Tickets extends Component {
 
   result: HTMLFormElement | null;
 
-  modalWithForm: Modal;
+  modalWithForm: Modal | null;
 
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
@@ -24,7 +24,7 @@ class Tickets extends Component {
     this.ticketType = this.getTicketTypeFromLocalStorage();
     this.listTicketsTypes = null;
     this.result = null;
-    this.modalWithForm = new Modal("div", {}, orderElement);
+    this.modalWithForm = null;
   }
 
   protected componentDidMount(): void {
@@ -123,8 +123,8 @@ export const tickets = new Tickets("section", {
     click(e: MouseEvent) {
       if (!(e.target instanceof HTMLElement)) return;
       if (e.target.id === "buyBtn") {
-        if (!document.getElementById("modal")) {
-          this.modalWithForm = new Modal("div", {}, orderElement);
+        if (!this.modalWithForm) {
+          this.modalWithForm = new Modal("div", {}, orderElement.element);
           render("#content", [this.modalWithForm]);
         }
         this.modalWithForm.dispatchComponentDidMount();
