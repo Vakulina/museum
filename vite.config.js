@@ -9,9 +9,6 @@ export default {
     minify: "terser", // Минификация кода
     sourcemap: true, // Генерация sourcemaps для отладки
     rollupOptions: {
-      output: {
-        manualChunks: undefined, // Отключить ручное разделение бандлов (для SplitChunks)
-      },
     },
   },
 

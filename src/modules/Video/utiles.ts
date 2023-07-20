@@ -1,3 +1,4 @@
+import { Video } from ".";
 import { ObserverCallback, observer } from "../../services/Observer";
 import s from "./Video.module.scss";
 
@@ -44,10 +45,10 @@ export function initProperties(this: any) {
   };
 }
 
-export function setObserver(this: any) {
+export function setObserver(this: Video) {
   if (!this.frame) return;
-  const callback: ObserverCallback = (entry, oserver) => {
-    if (!entry.isIntersecting && !this.frame.paused) {
+  const callback: ObserverCallback = (entry) => {
+    if (!entry.isIntersecting && !this.frame?.paused) {
       this.playsToggle();
     }
   };

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import { Component, ComponentProps } from "../../services/Component";
 import { getTemplate } from "./template";
 import { TicketType } from "../../utiles.ts/types";
@@ -23,13 +24,13 @@ class Order extends Component {
     this.validation = null;
   }
 
-  private getTicketTypeFromLocalStorage() {
+  private getTicketTypeFromLocalStorage(): TicketType {
     return (
       (localStorage.getItem("ticketType") as TicketType) || "permanent-type"
     );
   }
 
-  markup() {
+  markup(): string {
     this.addAttribute("id", "order");
     return getTemplate(s, this.ticketType);
   }
@@ -58,7 +59,7 @@ class Order extends Component {
     }
   }
 
-  private submit(validation: OrderFormValidator) {
+  private submit(validation: OrderFormValidator): void {
     const intermediateResult = validation.handleSubmit.apply(validation);
     const result = {
       ...intermediateResult,
@@ -67,7 +68,7 @@ class Order extends Component {
     console.log("SUBMIT:", result);
   }
 
-  setSum(sum: number) {
+  setSum(sum: number): void {
     const resultOutputs = document.querySelectorAll("#result");
     resultOutputs.forEach((item) => {
       if (item instanceof HTMLOutputElement) item.innerHTML = String(sum);
@@ -75,7 +76,7 @@ class Order extends Component {
     });
   }
 
-  setSelectedRadioButton(radioButtonId: TicketType) {
+  setSelectedRadioButton(radioButtonId: TicketType): void {
     const radioButton = document.querySelector(
       `#${radioButtonId}`,
     ) as HTMLInputElement;
@@ -84,7 +85,7 @@ class Order extends Component {
     }
   }
 
-  setTicketType() {
+  setTicketType(): void {
     const selectElement = this.element.querySelector(
       `.${s.order__select_types}`,
     ) as HTMLSelectElement;
@@ -95,7 +96,7 @@ class Order extends Component {
     localStorage.setItem("ticketType", this.ticketType);
   }
 
-  getPrice() {
+  get price(): number | undefined {
     const optionElements = this.element.querySelectorAll(
       `.${s.order__select} option`,
     );
@@ -110,11 +111,11 @@ class Order extends Component {
     });
 
     const dataValue = selectedOption?.dataset.value;
-    return dataValue;
+    return dataValue ? parseFloat(dataValue) : undefined;
   }
 
-  calculation() {
-    const price = this.getPrice();
+  calculation(): number | null {
+    const price = this.price;
     const basicTicketsInput = document.getElementById(
       "countBasic",
     ) as HTMLInputElement;
@@ -123,9 +124,14 @@ class Order extends Component {
       "countSenior",
     ) as HTMLInputElement;
     const seniorTickets = Number(seniorTicketsInput.value);
-    const sum = price * basicTickets + price * this.discountForSenior * seniorTickets;
-    this.setSum(sum);
-    return sum;
+
+    if (typeof price === "number") {
+      const sum = price * basicTickets + price * this.discountForSenior * seniorTickets;
+      this.setSum(sum);
+      return sum;
+    }
+    console.error("Error with price!");
+    return null;
   }
 }
 
