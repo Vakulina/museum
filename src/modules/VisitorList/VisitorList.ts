@@ -51,6 +51,17 @@ class VisitorList extends Component {
       item.firstElementChild.value = lastName || '';
       item.children[1].value = firstName || '';
       item.id = id;
+
+      const handleItemClick = (e: Event) => {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        if (e.target.dataset.input === "surname") {
+          this.visitors.filter((visitor) => visitor.id === id)[0].lastName = e.target.value
+        }
+        if (e.target.dataset.input === "name") {
+          this.visitors.filter((visitor) => visitor.id === id)[0].firstName = e.target.value
+        }
+      };
+      item.addEventListener('change', handleItemClick);
     }
 
     if (!lastName || !firstName) {
