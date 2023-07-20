@@ -1,4 +1,4 @@
-function throttle(callee: Function, timeout: number) {
+export function throttle(callee: Function, timeout: number) {
   let timer: any;
   let lastArgs: any[];
 

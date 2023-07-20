@@ -1,7 +1,6 @@
 import { Component, ComponentProps } from "../../services/Component";
 import { getTemplate } from "./template";
 import s from "./Video.module.scss";
-import { ObserverCallback, observer } from "../../services/Observer";
 import {
   initProperties,
   removeVideo,

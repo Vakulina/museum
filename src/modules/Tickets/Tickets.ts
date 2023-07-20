@@ -8,48 +8,67 @@ import { ticketsButtons } from "../../components/TicketsCount";
 import { render } from "../../utiles.ts/renderDOM";
 
 class Tickets extends Component {
-  discountForSenior: number;
+  private discountForSenior: number;
 
-  ticketType: TicketType;
+  private ticketType: TicketType;
 
-  listTicketsTypes: NodeListOf<Element> | null;
+  private listTicketsTypes: NodeListOf<Element> | null;
 
-  result: HTMLFormElement | null;
-
-  modalWithForm: Modal | null;
+  private modalWithForm: Modal | null;
 
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
+
     this.discountForSenior = 0.5;
     this.ticketType = this.getTicketTypeFromLocalStorage();
     this.listTicketsTypes = null;
-    this.result = null;
-    this.modalWithForm = null;
+    this.modalWithForm = new Modal("div", {}, orderElement.element);
+    if (this.modalWithForm) render("#content", [this.modalWithForm]);
   }
 
   protected componentDidMount(): void {
     this.listTicketsTypes = document.querySelectorAll(`.${s.tickets__radio}`);
-    this.calculation();
-    this.result = this.element.querySelector("#result") as HTMLFormElement;
-    this.listTicketsTypes.forEach((radio) => {
+    this.updateTicketTypeRadio();
+    this.calculatePrice();
+    this.element.querySelector("#ticketsContent")?.replaceWith(ticketsButtons.element);
+  }
+
+  handleClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    if (target.id === "buyBtn") {
+      this.showOrderModal();
+    }
+    this.calculatePrice();
+  }
+
+  handleInputChange(event: InputEvent): void {
+    const target = event.target as HTMLInputElement;
+    if (target.name === "type-ticket") {
+      this.handleRadioChange();
+    }
+  }
+
+  private getTicketTypeFromLocalStorage(): TicketType {
+    return (localStorage.getItem("ticketType") as TicketType) || "permanent-type";
+  }
+
+  private updateTicketTypeRadio(): void {
+    this.listTicketsTypes?.forEach((radio) => {
       if (radio.id === this.ticketType) {
         radio.setAttribute("checked", "true");
       }
     });
-    this.element
-      .querySelector("#ticketsContent")
-      ?.replaceWith(ticketsButtons.element);
   }
 
-  handleRadioChange() {
-    let selectedType;
+  private handleRadioChange(): void {
+    let selectedType: TicketType | undefined;
     this.listTicketsTypes?.forEach((radioButton) => {
       if (
         radioButton instanceof HTMLInputElement
         && radioButton.type === "radio"
         && radioButton.checked
       ) {
-        selectedType = radioButton.id;
+        selectedType = radioButton.id as TicketType;
       }
     });
     if (selectedType) {
@@ -60,29 +79,21 @@ class Tickets extends Component {
       selectElement.value = selectedType;
       localStorage.setItem("ticketType", this.ticketType);
     }
-    this.calculation();
+    this.calculatePrice();
   }
 
-  private saveTicketTypeToLocalStorage(ticketType: TicketType) {
-    localStorage.setItem("ticketType", ticketType);
-  }
-
-  setTicketType(ticketType: TicketType) {
+  private setTicketType(ticketType: TicketType): void {
     this.ticketType = ticketType;
-    this.saveTicketTypeToLocalStorage(ticketType);
   }
 
-  getPrice() {
+  private getPrice(): number {
     return Number(
-      (
-        this?.element?.querySelector(
-          `input[id="${this.ticketType}"]`,
-        ) as HTMLInputElement
-      ).value,
+      (this?.element?.querySelector(`input[id="${this.ticketType}"]`) as HTMLInputElement)
+        .value,
     );
   }
 
-  setSum(sum: number) {
+  private setSum(sum: number): void {
     const resultOutputs = document.querySelectorAll("#result");
     resultOutputs.forEach((item) => {
       if (item instanceof HTMLOutputElement) item.innerHTML = String(sum);
@@ -90,30 +101,29 @@ class Tickets extends Component {
     });
   }
 
-  calculation() {
+  private calculatePrice(): number {
     const price = this.getPrice();
-    const basicTicketsInput = document.getElementById(
-      "countBasic",
-    ) as HTMLInputElement;
+    const basicTicketsInput = document.getElementById("countBasic") as HTMLInputElement;
     const basicTickets = Number(basicTicketsInput?.value);
-    const seniorTicketsInput = document.getElementById(
-      "countSenior",
-    ) as HTMLInputElement;
+    const seniorTicketsInput = document.getElementById("countSenior") as HTMLInputElement;
     const seniorTickets = Number(seniorTicketsInput?.value);
     const sum = price * basicTickets + price * this.discountForSenior * seniorTickets;
     this.setSum(sum);
     return sum;
   }
 
-  markup() {
-    this.addAttribute("id", "tickets");
-    return getTemplate(s);
+  private showOrderModal(): void {
+    if (!this.modalWithForm) {
+      this.modalWithForm = new Modal("div", {}, orderElement.element);
+      render("#content", [this.modalWithForm]);
+    }
+    this.modalWithForm.dispatchComponentDidMount();
+    this.modalWithForm.activate();
   }
 
-  private getTicketTypeFromLocalStorage() {
-    return (
-      (localStorage.getItem("ticketType") as TicketType) || "permanent-type"
-    );
+  markup(): string {
+    this.addAttribute("id", "tickets");
+    return getTemplate(s);
   }
 }
 
@@ -122,21 +132,11 @@ export const tickets = new Tickets("section", {
   events: {
     click(e: MouseEvent) {
       if (!(e.target instanceof HTMLElement)) return;
-      if (e.target.id === "buyBtn") {
-        if (!this.modalWithForm) {
-          this.modalWithForm = new Modal("div", {}, orderElement.element);
-          render("#content", [this.modalWithForm]);
-        }
-        this.modalWithForm.dispatchComponentDidMount();
-        this.modalWithForm.activate();
-      }
-      tickets.calculation();
+      tickets.handleClick(e);
     },
     change(e: InputEvent) {
       if (!(e.target instanceof HTMLInputElement)) return;
-      if (e.target.name === "type-ticket") {
-        tickets.handleRadioChange();
-      }
+      tickets.handleInputChange(e);
     },
   },
 });
