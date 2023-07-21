@@ -54,12 +54,9 @@ export const getChildren = async () => {
     img.classList.add(`${styles.gallery__image}`);
     const imgUrl = link;
     img.dataset.src = imgUrl;
-    const parts = `${imgUrl}`.split(".");
-    const extension = parts.pop();
-    const filename = parts.join(".");
-
+   
     const regex = /^(.*\/)([^/]+)$/;
-    const newFilename = `${filename.replace(regex, '$1m_$2')}.${extension}`;
+    const newFilename = `${new URL(link, import.meta.url).href.replace(regex, '$1m_$2')}`;
 
     img.src = (await import(newFilename)).default;
 

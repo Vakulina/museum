@@ -15,4 +15,8 @@ export default {
   optimizeDeps: {
     include: ["mapbox-gl"],
   },
+
+  resolve: {
+    extensions: [ '.js', '.ts', '.jpg', ],
+  },
 };
