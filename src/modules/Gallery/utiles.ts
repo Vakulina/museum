@@ -61,7 +61,7 @@ export const getChildren = async () => {
     const regex = /^(.*\/)([^/]+)$/;
     const newFilename = `${filename.replace(regex, '$1m_$2')}.${extension}`;
 
-    img.src = (await newFilename);
+    img.src = (await import(newFilename));
 
     img.alt = "";
     return img;
