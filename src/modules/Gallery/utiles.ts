@@ -13,6 +13,7 @@ import image12 from "../../assets/img/galery15_sm.jpg";
 import image13 from "../../assets/img/galery12_ss.jpg";
 import image14 from "../../assets/img/galery11_sm.jpg";
 import image15 from "../../assets/img/galery2_sl.jpg";
+
 import styles from "./Gallery.module.scss";
 
 const imagesLinks = [
@@ -61,7 +62,7 @@ export const getChildren = async () => {
     const regex = /^(.*\/)([^/]+)$/;
     const newFilename = `${filename.replace(regex, '$1m_$2')}.${extension}`;
 
-    img.src = (await import(newFilename));
+    img.src = (await import(newFilename)).default
 
     img.alt = "";
     return img;
