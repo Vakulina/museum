@@ -57,7 +57,9 @@ export const getChildren = async () => {
     const parts = `${imgUrl}`.split(".");
     const extension = parts.pop();
     const filename = parts.join(".");
-    const newFilename = `${filename}_m.${extension}`;
+
+    const regex = /^(.*\/)([^/]+)$/;
+    const newFilename = `${filename.replace(regex, '$1m_$2')}.${extension}`;
 
     img.src = newFilename;
 
