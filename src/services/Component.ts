@@ -1,6 +1,6 @@
 import { eventBus, EventBus } from "./EventBus";
 
-export type ComponentProps = Record<string, any> | undefined; // classes events children
+export type ComponentProps = Record<string, any> | undefined; 
 
 export abstract class Component {
   element: HTMLElement;
@@ -47,10 +47,6 @@ export abstract class Component {
     this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CDM);
   }
 
-  private dispatchComponentWillUnmount() {
-    this.eventBus().emit(Component.LIFECYRCLE_EVENTS.FLOW_CWU);
-  }
-
   markup() {
     return "";
   }
@@ -78,7 +74,7 @@ export abstract class Component {
     if (this.props && this.props.events) {
       const { events } = this.props;
       Object.keys(events).forEach((eventName) => {
-        this.element!.removeEventListener(eventName, events[eventName]);
+        this.element?.removeEventListener(eventName, events[eventName]);
       });
     }
   }
@@ -105,7 +101,7 @@ export abstract class Component {
   }
 
   remove(): void {
-    this.dispatchComponentWillUnmount();
+    this._remove();
   }
 
   componentWillUnmount() {}

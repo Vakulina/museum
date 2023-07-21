@@ -51,7 +51,6 @@ class Order extends Component {
       }
       const handleFormSubmit = () => {
         this.submit(this.validation!);
-        document.querySelector("#modal")?.remove();
       };
       form
         .querySelector("#submit")
