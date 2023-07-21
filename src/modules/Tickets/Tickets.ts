@@ -21,7 +21,7 @@ class Tickets extends Component {
     this.discountForSenior = 0.5;
     this.ticketType = this.getTicketTypeFromLocalStorage();
     this.listTicketsTypes = null;
-    this.modalWithForm = new Modal("div", {}, orderElement.element);
+   this.modalWithForm = null;
   }
 
   protected componentDidMount(): void {
