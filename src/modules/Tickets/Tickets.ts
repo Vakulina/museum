@@ -18,15 +18,14 @@ class Tickets extends Component {
 
   constructor(target = "section", props: ComponentProps) {
     super(target, props);
-
     this.discountForSenior = 0.5;
     this.ticketType = this.getTicketTypeFromLocalStorage();
     this.listTicketsTypes = null;
-    this.modalWithForm = new Modal("div", {}, orderElement.element);
-    if (this.modalWithForm) render("#content", [this.modalWithForm]);
+    this.modalWithForm = null;
   }
 
   protected componentDidMount(): void {
+    if (!document.getElementById('modal') && this.modalWithForm) render("#tickets", [this.modalWithForm]);
     this.listTicketsTypes = document.querySelectorAll(`.${s.tickets__radio}`);
     this.updateTicketTypeRadio();
     this.calculatePrice();
@@ -38,6 +37,12 @@ class Tickets extends Component {
     if (target.id === "buyBtn") {
       this.showOrderModal();
     }
+    if ((target.id === 'submit') && orderElement?.validation?.isValidForm) {
+      this.modalWithForm?.close();
+      this.modalWithForm?.remove();
+      this.modalWithForm = null;
+    }
+
     this.calculatePrice();
   }
 
@@ -115,7 +120,7 @@ class Tickets extends Component {
   private showOrderModal(): void {
     if (!this.modalWithForm) {
       this.modalWithForm = new Modal("div", {}, orderElement.element);
-      render("#content", [this.modalWithForm]);
+      render("#ticketsContent", [this.modalWithForm]);
     }
     this.modalWithForm.dispatchComponentDidMount();
     this.modalWithForm.activate();

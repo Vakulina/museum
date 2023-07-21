@@ -67,7 +67,7 @@ export class OrderFormValidator {
   }
 
   public handleSubmit() {
-    if (this.validateForm()) {
+    if (this.isValidForm) {
       const result = this.inputs.reduce(
         (obj: { [key: string]: string }, item) => {
           obj[item.id] = item.value;
@@ -87,7 +87,7 @@ export class OrderFormValidator {
     errorElement.classList.remove(`${s.order__error_active}`);
   }
 
-  public validateForm(): boolean {
+  get isValidForm(): boolean {
     let isValid = true;
 
     this.inputs.forEach((input) => {
