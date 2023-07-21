@@ -84,7 +84,7 @@ class Tickets extends Component {
       const selectElement = document.querySelector(
         `select[name="type-ticket"]`,
       ) as HTMLSelectElement;
-      selectElement.value = selectedType;
+      if (selectElement) selectElement.value = selectedType;
       localStorage.setItem("ticketType", this.ticketType);
     }
     this.calculatePrice();
