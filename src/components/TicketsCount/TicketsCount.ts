@@ -19,11 +19,16 @@ class TicketCount extends Component {
   public setBasicTickets(basicTickets: number) {
     if (basicTickets < 0 || basicTickets > 10) return;
     this.basicTickets = basicTickets;
-    const countBasicInputs = document.querySelectorAll("#countBasic");
+    const countBasicInputs = document.querySelectorAll(".basic");
     countBasicInputs.forEach((item) => {
       if (item instanceof HTMLInputElement) item.value = String(this.basicTickets);
     });
     this.saveBasicTicketsToLocalStorage(basicTickets);
+  }
+
+  componentDidMount() {
+    this.setBasicTickets(this.basicTickets);
+    this.setSeniorTickets(this.seniorTickets);
   }
 
   public setSeniorTickets(seniorTickets: number) {
@@ -38,7 +43,7 @@ class TicketCount extends Component {
 
   markup() {
     this.addAttribute("id", this.id);
-    return getTemplate(s, this.basicTickets, this.seniorTickets);
+    return getTemplate(s);
   }
 
   private saveBasicTicketsToLocalStorage(basicTickets: number) {
