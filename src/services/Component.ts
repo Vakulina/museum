@@ -1,6 +1,6 @@
 import { eventBus, EventBus } from "./EventBus";
 
-export type ComponentProps = Record<string, any> | undefined; 
+export type ComponentProps = Record<string, any> | undefined;
 
 export abstract class Component {
   element: HTMLElement;

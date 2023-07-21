@@ -4,6 +4,10 @@
 .visiting {
   @include section;
 
+  iframe{
+    max-width: 100vw;
+  }
+
   &__container {
     @include container;
   }

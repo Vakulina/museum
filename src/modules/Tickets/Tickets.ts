@@ -21,7 +21,7 @@ class Tickets extends Component {
     this.discountForSenior = 0.5;
     this.ticketType = this.getTicketTypeFromLocalStorage();
     this.listTicketsTypes = null;
-   this.modalWithForm = null;
+    this.modalWithForm = null;
   }
 
   protected componentDidMount(): void {
@@ -38,8 +38,8 @@ class Tickets extends Component {
       this.showOrderModal();
     }
     if ((target.id === 'submit') && orderElement?.validation?.isValidForm) {
-      this.modalWithForm?.close()
-      this.modalWithForm?.remove()
+      this.modalWithForm?.close();
+      this.modalWithForm?.remove();
       this.modalWithForm = null;
     }
 
