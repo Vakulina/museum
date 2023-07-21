@@ -36,6 +36,9 @@ class Tickets extends Component {
     const target = event.target as HTMLElement;
     if (target.id === "buyBtn") {
       this.showOrderModal();
+      this.handleRadioChange();
+      ticketsButtons.setBasicTickets(parseInt(localStorage.getItem("basicTickets") || "1", 10));
+      ticketsButtons.setSeniorTickets(parseInt(localStorage.getItem("seniorTickets") || "1", 10));
     }
     if ((target.id === 'submit') && orderElement?.validation?.isValidForm) {
       this.modalWithForm?.close();
@@ -66,14 +69,14 @@ class Tickets extends Component {
   }
 
   private handleRadioChange(): void {
-    let selectedType: TicketType | undefined;
+    let selectedType;
     this.listTicketsTypes?.forEach((radioButton) => {
       if (
         radioButton instanceof HTMLInputElement
         && radioButton.type === "radio"
         && radioButton.checked
       ) {
-        selectedType = radioButton.id as TicketType;
+        selectedType = radioButton.id;
       }
     });
     if (selectedType) {
