@@ -2,7 +2,6 @@
 @import "../../assets/styles/_mixins";
 
 .order {
-  padding-left: 20px;
 
   &__column {
     max-width: 450px;
@@ -473,10 +472,12 @@
     display: flex;
     gap: 30px;
     justify-content: center;
+    box-sizing: border-box;
     @media (max-width: 950px) {
       align-items: center;
       flex-direction: column;
       gap: 0;
+      padding: 20px;
     }
   }
 

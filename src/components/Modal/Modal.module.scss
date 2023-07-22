@@ -66,12 +66,6 @@
     background-image: url("../../assets/svg/Close.svg");
     z-index: 200;
 
-    &_visiting{
-      @media (max-width: $breakpoint_middle) {
-      top: 55px;
-      right: 18px;
-      }
-    }
     @media (max-width: $breakpoint_middle) {
       background-color: #710707;
       color: $font-light;
@@ -81,6 +75,7 @@
       width: 30px;
       height: 30px;
       background-image: none;
+
       &:before,
       &:after {
         content: "";
@@ -92,6 +87,14 @@
         background-color: white;
         transform: translate(-50%, -50%);
         opacity: 0.8;
+      }
+
+
+      &_visiting {
+        @media (max-width: $breakpoint_middle) {
+          top: 55px;
+          right: 18px;
+        }
       }
 
       &:before {

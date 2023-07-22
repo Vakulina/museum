@@ -80,8 +80,8 @@ export abstract class Component {
   }
 
   render() {
-    this.element.innerHTML=''
-    this.element.insertAdjacentHTML("beforeend", this.markup())
+    this.element.innerHTML = '';
+    this.element.insertAdjacentHTML("beforeend", this.markup());
     this._addClasses();
     this._addEvents();
   }

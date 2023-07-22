@@ -30,6 +30,7 @@ class Tickets extends Component {
     this.updateTicketTypeRadio();
     this.calculatePrice();
     this.element.querySelector("#ticketsContent")?.replaceWith(ticketsButtons.element);
+    ticketsButtons.componentDidMount();
   }
 
   handleClick(event: MouseEvent): void {
