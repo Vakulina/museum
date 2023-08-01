@@ -9,7 +9,7 @@
     - [Select] 
     - [Checkbox] 
 - Использованы библиотеки для [слайдера](https://www.npmjs.com/package/swiper) и [карт](https://www.npmjs.com/package/mapbox-gl)
-- Реализована ленивая подгрузка (раздеы Gallery, Video) на основе [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+- Реализована ленивая подгрузка (разделы Gallery, Video) на основе [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
 - Для локального хранения данных использован Local Storage
 - Настроена сборка проекта с использованием [vite](https://vite-docs-ru.vercel.app/)
 ### Дополнительно:
